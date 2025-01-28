@@ -6,10 +6,7 @@
 			<h3 class="highlight mb-0">Parking Management</h3> --%> <i
 			class="fas fa-parking fs-4 text-success me-2"></i> <span class="fs-4">ParkEase</span>
 		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarNav">
-			<span class="navbar-toggler-icon">aaa</span>
-		</button>
+
 		<div class="collapse navbar-collapse" id="navbarNav">
 
 			<ul class="navbar-nav ms-auto">

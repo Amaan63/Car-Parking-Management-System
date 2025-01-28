@@ -31,6 +31,13 @@ public class UserLoginServlet extends HttpServlet {
 			// Initialize session
 			HttpSession session = request.getSession();
 
+			// Check for admin login
+			if ("admin@gmail.com".equals(emailAddress) && "admin123".equals(password)) {
+				session.setAttribute("loginStatus", "Successfully Logged In as Admin");
+				response.sendRedirect("AdminPages/AdminDashBoard.jsp");
+				return;
+			}
+
 			// Validations
 			UserDao userDao = new UserDao(FactoryProvider.getFactory());
 			User user = userDao.getUserByEmail(emailAddress);

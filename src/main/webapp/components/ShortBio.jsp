@@ -8,7 +8,7 @@
 
 
 <!-- New Section - Why this is Important -->
-<div class="container mt-5">
+<div class="container mt-5" id="Info">
 	<div class="row">
 		<div class="col-md-6">
 			<img src="images/Why-Important.svg" alt="Why This Is Important"
