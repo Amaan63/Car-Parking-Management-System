@@ -8,10 +8,55 @@
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
+<style>
+.sidebar {
+	min-height: 100vh;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+	padding: 1rem;
+	color: #ffffff80;
+	border-radius: 8px;
+	margin: 4px 0;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+	color: white;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.stats-card {
+	transition: transform 0.2s;
+}
+
+.stats-card:hover {
+	transform: translateY(-5px);
+}
+
+.parking-slot {
+	width: 60px;
+	height: 80px;
+	margin: 5px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
-	<h1>Welcome Admin</h1>
 
+	<div class="container-fluid">
+		<div class="row">
+			<%@include file="../components/AdminComponents/Sidebar.jsp"%>
+			<%@include file="../components/AdminComponents/AdminNavBar.jsp"%>
+			<%@include file="../components/AdminComponents/Cards.jsp"%>
+			<%@include file="../components/AdminComponents/Charts.jsp"%>
+			<%@include file="../components/AdminComponents/ParkingMap.jsp"%>
+		</div>
+	</div>
 	<%
 	// Get the logout message from the session
 	String adminLoggedIn = (String) session.getAttribute("loginStatus");
