@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #121212;
+	color: #ffffff;
+	overflow-x: hidden;  
+    overflow-y: auto;    
+	-webkit-overflow-scrolling: touch;
+}
+
+.highlight {
+	color: #1db954;
+}

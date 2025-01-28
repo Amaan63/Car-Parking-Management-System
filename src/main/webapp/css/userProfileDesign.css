@@ -1,0 +1,77 @@
+@charset "ISO-8859-1";
+/*
+ Navbar Styles 
+ navbar {
+	background-color: #1db954;
+	padding: 0 20px;
+}
+
+.navbar .nav-link {
+	color: #ffffff;
+}
+
+.navbar .nav-link:hover {
+	color: #e0e0e0;
+}
+
+Avatar Styles 
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #1db954;
+	cursor: pointer;
+}
+*/
+/* Profile Card */
+.profile-card {
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 15px;
+	padding: 20px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	margin: 20px auto;
+	max-width: 400px;
+}
+
+.profile-card h2 {
+	text-align: center;
+	color: #1db954;
+	margin-bottom: 10px;
+}
+
+.profile-card p {
+	color: #ddd;
+	text-align: center;
+}
+
+/* Profile Info Styles */
+.profile-info {
+	margin-top: 15px;
+}
+
+.profile-info .form-label {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+/* Form Control */
+.custom-form-control {
+	background-color: transparent;
+	border: 1px solid #444;
+	color: black; /* Change the text color to black */
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.custom-form-control:focus {
+	border-color: #1db954;
+	box-shadow: 0 0 8px rgba(29, 185, 84, 0.5);
+	outline: none;
+}
+.custom-icon:hover{
+	transform: scale(1.50);
+}

@@ -1,0 +1,108 @@
+@charset "ISO-8859-1";
+
+.toggle {
+	display: flex;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.toggle button {
+	padding: 8px 30px;
+	border: 1px solid #1db954;
+	background-color: transparent;
+	color: #1db954;
+	border-radius: 20px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle button.active {
+	background-color: #1db954;
+	color: #ffffff;
+}
+
+.container {
+	width: 1200px;
+	height: auto;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	position: relative;
+	padding: 20px;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: auto;
+}
+
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.form-wrapper img {
+	width: 45%;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form {
+	width: 100%;
+	padding: 20px;
+}
+
+.form h2 {
+	margin-bottom: 20px;
+	color: #1db954;
+}
+
+.form .form-label {
+	color: #ffffff;
+}
+
+.form .btn {
+	width: 100%;
+	background: #1db954;
+	color: #ffffff;
+	border: none;
+	transition: background 0.3s ease;
+}
+
+.form .btn:hover {
+	background: #17a74b;
+}
+
+.radio-item label {
+	display: block;
+	text-align: center;
+	cursor: pointer;
+}
+
+.radio-item img {
+	width: 180px; /* Adjust the size */
+	height: auto;
+	border: 2px solid #ddd;
+	border-radius: 8px;
+	transition: transform 0.2s ease-in-out;
+}
+
+.radio-item img:hover {
+	transform: scale(1.05);
+	border: 7px solid #1db954;
+}
+
+.radio-item span {
+	display: block;
+	margin-top: 8px;
+	font-weight: 500;
+	color: #fff;
+}
