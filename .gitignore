@@ -1,6 +1,6 @@
 /target/
 # Ignore web.xml in WEB-INF folder
-**/WEB-INF/web.xml
+/WEB-INF/web.xml
 # Eclipse project settings
 .classpath
 .project
