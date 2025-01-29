@@ -12,9 +12,9 @@
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item"><a class="nav-link"
 					href="User-Registration&Login.jsp">Sign In (User)</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Sign In
-						(Staff)</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Sign In
+				<%-- <li class="nav-item"><a class="nav-link" href="#">Sign In
+						(Staff)</a></li> --%>
+				<li class="nav-item"><a class="nav-link" href="Admin-Login.jsp">Sign In
 						(Admin)</a></li>
 			</ul>
 		</div>

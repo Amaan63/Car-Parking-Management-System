@@ -31,10 +31,10 @@ public class UserLoginServlet extends HttpServlet {
 			// Initialize session
 			HttpSession session = request.getSession();
 
-			// Check for admin login
+			// Check if the user is trying to log in as admin from the wrong page
 			if ("admin@gmail.com".equals(emailAddress) && "admin123".equals(password)) {
-				session.setAttribute("loginStatus", "Successfully Logged In as Admin");
-				response.sendRedirect("AdminPages/AdminDashBoard.jsp");
+				session.setAttribute("loginStatus", "Please use the Admin Login Page.");
+				response.sendRedirect("Admin-Login.jsp"); // Redirect to admin login page
 				return;
 			}
 

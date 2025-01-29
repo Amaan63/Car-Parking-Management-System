@@ -34,6 +34,7 @@
   	<description></description>
   	<servlet-class>com.servlet.FetchVehicleByEmail</servlet-class>
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>UserRegistrationServlet</servlet-name>
   	<url-pattern>/UserRegistrationServlet</url-pattern>
@@ -54,4 +55,5 @@
   	<servlet-name>FetchVehicleByEmail</servlet-name>
   	<url-pattern>/FetchVehicleByEmail</url-pattern>
   </servlet-mapping>
+  
 </web-app>
