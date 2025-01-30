@@ -2,7 +2,7 @@
 <div class="col-md-3 col-lg-2 px-0 bg-dark sidebar">
 	<div class="p-3">
 		<a class="d-flex align-items-center text-light text-decoration-none">
-			<i class="fas fa-parking fs-4 text-primary me-2"></i> <span
+			<i class="fas fa-parking fs-4 text-success me-2"></i> <span
 			class="fs-4">ParkEase</span>
 		</a>
 	</div>

@@ -21,7 +21,7 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 	<div class="container mt-5">
 		<div class="form-container">
 			<h2 class="text-center mb-4 highlight">Vehicle Booking Form</h2>
-			<form action="/CarParkingManagementSystem/SaveVehicleBooking"
+			<form action="../SaveVehicleBooking"
 				method="post" onsubmit="return validateForm()">
 				
 				<input type="hidden" name="userId" value="<%=userDetailForBooking.getUserId()%>">

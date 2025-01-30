@@ -4,56 +4,20 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>UserRegistrationServlet</servlet-name>
-  	<display-name>UserRegistrationServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.servlet.UserRegistrationServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>UserLoginServlet</servlet-name>
-  	<display-name>UserLoginServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.servlet.UserLoginServlet</servlet-class>
-  </servlet>
+  
   <servlet>
   	<servlet-name>UserLogout</servlet-name>
   	<display-name>UserLogout</display-name>
   	<description></description>
   	<servlet-class>com.servlet.UserLogout</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>SaveVehicleBooking</servlet-name>
-  	<display-name>SaveVehicleBooking</display-name>
-  	<description></description>
-  	<servlet-class>com.servlet.SaveVehicleBooking</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>FetchVehicleByEmail</servlet-name>
-  	<display-name>FetchVehicleByEmail</display-name>
-  	<description></description>
-  	<servlet-class>com.servlet.FetchVehicleByEmail</servlet-class>
-  </servlet>
   
-  <servlet-mapping>
-  	<servlet-name>UserRegistrationServlet</servlet-name>
-  	<url-pattern>/UserRegistrationServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>UserLoginServlet</servlet-name>
-  	<url-pattern>/UserLoginServlet</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>UserLogout</servlet-name>
   	<url-pattern>/UserLogout</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>SaveVehicleBooking</servlet-name>
-  	<url-pattern>/SaveVehicleBooking</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>FetchVehicleByEmail</servlet-name>
-  	<url-pattern>/FetchVehicleByEmail</url-pattern>
-  </servlet-mapping>
+  
+  
   
 </web-app>
