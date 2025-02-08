@@ -53,7 +53,9 @@
 			<%@include file="../components/AdminComponents/Sidebar.jsp"%>
 			<%@include file="../components/AdminComponents/AdminNavBar.jsp"%>
 			<%@include file="../components/AdminComponents/Cards.jsp"%>
+			<%@include file="../components/AdminComponents/QuickAction.jsp"%>
 			<%@include file="../components/AdminComponents/Charts.jsp"%>
+			
 			<%@include file="../components/AdminComponents/ParkingMap.jsp"%>
 		</div>
 	</div>
