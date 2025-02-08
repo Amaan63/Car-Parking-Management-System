@@ -28,6 +28,7 @@ public class AdminLoginServlet extends HttpServlet {
 			// Check for admin login
 			if ("admin@gmail.com".equals(emailAddress) && "admin123".equals(password)) {
 				session.setAttribute("loginStatus", "Successfully Logged In as Admin");
+				session.setAttribute("currentAdmin", "admin");
 				response.sendRedirect("AdminPages/AdminDashBoard.jsp");
 				return;
 			}

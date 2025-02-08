@@ -58,6 +58,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userForProfile", user);
 					session.setAttribute("userDetailForBooking", user);
 					session.setAttribute("userForFetchingVehicleByEmail", user);
+					session.setAttribute("currentUserForValidations", user);
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 
 				} else {

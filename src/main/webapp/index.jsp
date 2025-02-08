@@ -35,6 +35,19 @@
 	session.removeAttribute("userLogoutMessage");
 	}
 	%>
+	<%
+	// Get the logout message from the session
+	String adminLogout = (String) session.getAttribute("adminLogoutMessage");
+
+	// Check if the logout message is set
+	if (adminLogout != null && adminLogout.equals("Admin Logout Successfully")) {
+	%>
+	<%@ include file="components/popups/AdminLogoutPopup.jsp"%>
+	<%
+	// Remove the logout message from the session to prevent the popup from showing on reload
+	session.removeAttribute("adminLogoutMessage");
+	}
+	%>
 	
 </body>
 </html>
