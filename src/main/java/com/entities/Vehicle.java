@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -22,6 +23,14 @@ public class Vehicle {
 
 	@Column(length = 100, name = "user_name")
 	private String userName;
+
+	public Slot getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Slot slot) {
+		this.slot = slot;
+	}
 
 	@Column(length = 100, name = "user_email")
 	private String userEmailId;
@@ -50,7 +59,12 @@ public class Vehicle {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	
+	@OneToOne
+	@JoinColumn(name = "slot_id", referencedColumnName = "slotId", unique = true)
+	private Slot slot;
+	
+	
 	public Vehicle() {
 		super();
 		// TODO Auto-generated constructor stub
