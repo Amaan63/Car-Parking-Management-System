@@ -16,5 +16,6 @@
 		<!-- Mapping Entities Classes -->
 		<mapping class="com.entities.User" />
 		<mapping class="com.entities.Vehicle" />
+		<mapping class="com.entities.Slot" />
 	</session-factory>
 </hibernate-configuration>
