@@ -24,14 +24,6 @@ public class Vehicle {
 	@Column(length = 100, name = "user_name")
 	private String userName;
 
-	public Slot getSlot() {
-		return slot;
-	}
-
-	public void setSlot(Slot slot) {
-		this.slot = slot;
-	}
-
 	@Column(length = 100, name = "user_email")
 	private String userEmailId;
 
@@ -59,12 +51,11 @@ public class Vehicle {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@OneToOne
 	@JoinColumn(name = "slot_id", referencedColumnName = "slotId", unique = true)
 	private Slot slot;
-	
-	
+
 	public Vehicle() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -99,9 +90,6 @@ public class Vehicle {
 		BookingDate = bookingDate;
 		this.timeDuration = timeDuration;
 	}
-	
-	
-	
 
 	public int getVehicleId() {
 		return vehicleId;
@@ -189,6 +177,14 @@ public class Vehicle {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Slot getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Slot slot) {
+		this.slot = slot;
 	}
 
 	// Generate the token before Saving the entity in to DB

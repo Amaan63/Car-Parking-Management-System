@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -49,7 +50,7 @@ public class VehicleDao {
 
 	// Method to get all vehicles by email
 	public List<Vehicle> getAllVehicleByEmailId(String email) {
-		Session session = factory.openSession();
+		Session session = this.factory.openSession();
 		List<Vehicle> vehicles = null;
 		try {
 			String hql = "FROM Vehicle WHERE userEmailId = :email";
@@ -68,4 +69,19 @@ public class VehicleDao {
 		return vehicles;
 	}
 
+	public List<Vehicle> getUnassignedVehicles() {
+		Session session = this.factory.openSession();
+		List<Vehicle> unassignedVehicles = new ArrayList<>();
+
+		try {
+			// Fetch vehicles without assigned slots
+			unassignedVehicles = session.createQuery("FROM Vehicle v WHERE v.slot IS NULL", Vehicle.class)
+					.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return unassignedVehicles;
+	}
 }
