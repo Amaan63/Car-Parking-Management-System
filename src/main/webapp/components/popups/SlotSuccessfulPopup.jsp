@@ -9,6 +9,7 @@
 	background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
 	align-items: center;
 	justify-content: center;
+	z-index: 3;
 }
 
 .popup-content {
@@ -41,10 +42,10 @@
 <div class="popup" id="popupMessage">
 	<div class="popup-content">
 		<span class="popup-close" id="popupClose">&times;</span> <img
-			src="videos/AnimatedLogo/RegistrationSuccessful.gif" alt="Successfully Registered"
+			src="../images/Icons/SuccessfulSlot.png" alt="Slot Created"
 			class="popup-image">
-		<h3  style="color: green;">Successfully Registered</h3>
-		<p style="color: black;">You have Registered  Successfully</p>
+		<h3 style="color: green;">Successfully Created the Slot</h3>
+		<p style="color: black;">You have Created the New Slot</p>
 	</div>
 </div>
 <script>

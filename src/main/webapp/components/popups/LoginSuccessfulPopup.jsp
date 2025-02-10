@@ -41,7 +41,7 @@
 <div class="popup" id="popupMessage">
 	<div class="popup-content">
 		<span class="popup-close" id="popupClose">&times;</span> <img
-			src="../videos/AnimatedLogo/Login.gif" alt="Success"
+			src="../videos/AnimatedLogo/Login.gif" alt="Successfully Logged In"
 			class="popup-image">
 		<h3  style="color: green;">Successfully Logged In</h3>
 		<p style="color: black;">You have Logged In Successfully</p>

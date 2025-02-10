@@ -55,7 +55,7 @@
 			<%@include file="../components/AdminComponents/Cards.jsp"%>
 			<%@include file="../components/AdminComponents/QuickAction.jsp"%>
 			<%@include file="../components/AdminComponents/Charts.jsp"%>
-			
+
 			<%@include file="../components/AdminComponents/ParkingMap.jsp"%>
 		</div>
 	</div>
@@ -71,6 +71,21 @@
 	// Remove the logout message from the session to prevent the popup from showing on reload
 	session.removeAttribute("loginStatus");
 	}
+	%>
+
+	<%
+	String slotStatus = (String) session.getAttribute("creatingSlot");
+	if (slotStatus != null && slotStatus.equals("Successful")) {
+	%>
+	<%@ include file="../components/popups/SlotSuccessfulPopup.jsp"%>
+	<%
+	session.removeAttribute("creatingSlot");
+	} else if (slotStatus != null && slotStatus.equals("Rejected")) {
+	%>
+	<%@ include file="../components/popups/SlotRejectedPopup.jsp"%>
+	<%
+	}
+	session.removeAttribute("creatingSlot");
 	%>
 </body>
 </html>

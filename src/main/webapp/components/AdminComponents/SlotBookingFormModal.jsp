@@ -20,9 +20,9 @@
 					<div class="mb-3">
 						<label for="slotStatus" class="form-label">Slot Status</label> <select
 							id="slotStatus" class="form-select" name="slotStatus" required>
-							<option selected>AVAILABLE</option>
-							<option value="Toyota">OCCUPIED</option>
-							<option value="Honda">RESERVED</option>
+							<option selected value="AVAILABLE">AVAILABLE</option>
+							<option value="OCCUPIED">OCCUPIED</option>
+							<option value="RESERVED">RESERVED</option>
 						</select>
 					</div>
 					<div class="btn col-md-12 mt-3">

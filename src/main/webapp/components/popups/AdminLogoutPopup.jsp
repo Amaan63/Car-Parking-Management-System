@@ -42,7 +42,7 @@
 <div class="popup" id="popupMessage">
 	<div class="popup-content">
 		<span class="popup-close" id="popupClose">&times;</span> <img
-			src="videos/AnimatedLogo/Logout.gif" alt="Success"
+			src="videos/AnimatedLogo/Logout.gif" alt="Admin Logout"
 			class="popup-image">
 		<h3  style="color: red;">Admin You Successfully Logged Out</h3>
 		<p style="color: black;">You have Logged Out Successfully</p>
