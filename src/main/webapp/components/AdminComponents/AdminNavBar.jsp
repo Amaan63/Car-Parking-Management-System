@@ -2,7 +2,7 @@
 <div class="col-md-9 col-lg-10 px-md-4 py-4">
 	<!-- Header -->
 	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1 class="h2"> Admin Dashboard Overview</h1>
+		<h1 class="h2"> Admin Dashboard</h1>
 		<div class="btn-group">
 
 			<button class="btn btn-dark border-secondary dropdown-toggle"
