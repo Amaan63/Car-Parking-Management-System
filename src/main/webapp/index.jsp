@@ -48,6 +48,18 @@
 	session.removeAttribute("adminLogoutMessage");
 	}
 	%>
-	
+	<%
+	// Get the logout message from the session
+	String authenticationError = (String) session.getAttribute("notAuthenticated");
+
+	// Check if the logout message is set
+	if (authenticationError != null && authenticationError.equals("Please login to access this page.")) {
+	%>
+	<%@ include file="components/popups/AuthenticationErrorPopup.jsp"%>
+	<%
+	// Remove the logout message from the session to prevent the popup from showing on reload
+	session.removeAttribute("notAuthenticated");
+	} 
+	%>
 </body>
 </html>

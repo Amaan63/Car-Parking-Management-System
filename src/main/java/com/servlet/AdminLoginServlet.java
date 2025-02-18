@@ -22,24 +22,26 @@ public class AdminLoginServlet extends HttpServlet {
 		try {
 			String emailAddress = request.getParameter("adminEmail");
 			String password = request.getParameter("adminPassword");
-			
+
 			HttpSession session = request.getSession();
-			
+
 			// Check for admin login
 			if ("admin@gmail.com".equals(emailAddress) && "admin123".equals(password)) {
 				session.setAttribute("loginStatus", "Successfully Logged In as Admin");
 				session.setAttribute("currentAdmin", "admin");
+				System.out.println("Admin session set: " + session.getAttribute("currentAdmin"));
 				response.sendRedirect("AdminPages/AdminDashBoard.jsp");
 				return;
-			}
-			else if (!"admin@gmail.com".equals(emailAddress) || !"admin123".equals(password)) {
-			    session.setAttribute("loginStatus", "Invalid Admin Credentials");
-			    response.sendRedirect("Admin-Login.jsp");  // You can set your own error or login page
-			    return;
+			} else if (!"admin@gmail.com".equals(emailAddress) || !"admin123".equals(password)) {
+				session.setAttribute("loginStatus", "Invalid Admin Credentials");
+				response.sendRedirect("Admin-Login.jsp"); // You can set your own error or login page
+				return;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }

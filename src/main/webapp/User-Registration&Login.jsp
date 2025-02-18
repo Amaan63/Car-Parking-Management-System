@@ -133,6 +133,8 @@
 	session.removeAttribute("loginStatus");
 	}
 	%>
+	
+	
 	<script src="javascript/UserRegistration&Login.js"></script>
 </body>
 </html>

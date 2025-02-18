@@ -55,10 +55,11 @@ public class UserLoginServlet extends HttpServlet {
 					// Password is correct
 					session.setAttribute("loginStatus", "Successfully Logged In");
 					session.setAttribute("userForBanner", user); // Store the user object in session
-					session.setAttribute("userForProfile", user);
-					session.setAttribute("userDetailForBooking", user);
-					session.setAttribute("userForFetchingVehicleByEmail", user);
-					session.setAttribute("currentUserForValidations", user);
+					session.setAttribute("userForProfile", user); // For Profile
+					session.setAttribute("userDetailForBooking", user); // For Booking Form Details
+					session.setAttribute("userForFetchingVehicleByEmail", user); // FOr Fetching user Booked Vehicle
+					session.setAttribute("currentUserForValidations", user); //For user Logout
+					session.setAttribute("userForAuthentication", user); // For Security
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 
 				} else {
