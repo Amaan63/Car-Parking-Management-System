@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 public class AuthentificationFilter implements Filter {
 
 
-	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;

@@ -16,6 +16,7 @@
 	<div class="toggle">
 		<button id="loginToggle" class="btn active">Login</button>
 		<button id="registerToggle" class="btn">Register</button>
+
 	</div>
 
 	<!-- Form Container -->
@@ -74,7 +75,6 @@
 						<textarea class="form-control" id="userAddress" name="userAddress"
 							rows="3" placeholder="Enter your address" required></textarea>
 					</div>
-					<script src="javascript/UserRegistrationValidation.js"></script>
 					<button type="submit" class="btn mt-3">Register</button>
 				</form>
 			</div>
@@ -123,8 +123,7 @@
 	} else {
 	%>
 	<script type="text/javascript">
-            alert("Unexpected status: <%=loginStatus%>
-		");
+            alert("Unexpected status: <%=loginStatus%>");
 	</script>
 	<%
 	}
@@ -133,8 +132,95 @@
 	session.removeAttribute("loginStatus");
 	}
 	%>
-	
-	
-	<script src="javascript/UserRegistration&Login.js"></script>
+
+
+
+
+
+	<script>
+	function validateForm() {
+		let fullName = document.getElementById("userFullName").value;
+		let email = document.getElementById("userEmail").value;
+		let password = document.getElementById("userPassword").value;
+		let phoneNumber = document.getElementById("userPhoneNumber").value;
+		let address = document.getElementById("userAddress").value;
+
+
+
+		// Validate Full Name
+		if (fullName === "") {
+			alert("Full Name is required!");
+			return false; // Prevent form submission
+		}
+
+		// Validate Email
+		if (email === "") {
+			console.log("Email is invalid");
+			alert("Email is required!");
+			return false; // Prevent form submission
+		}
+		// Check if email format is valid
+		let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+		if (!emailPattern.test(email)) {
+			console.log("Email Pattern is invalid");
+			alert("Please enter a valid email address!");
+			return false; // Prevent form submission
+		}
+
+		// Validate Password
+		if (password === "") {
+			alert("Password is required!");
+			return false; // Prevent form submission
+		}
+		// Password length check (minimum 6 characters)
+		if (password.length < 6) {
+			console.log("Password Length Must Be More");
+			alert("Password must be at least 6 characters long!");
+			return false; // Prevent form submission
+		}
+
+		// Validate Phone Number
+		if (phoneNumber === "") {
+			alert("Phone Number is required!");
+			return false; // Prevent form submission
+		}
+		// Check if phone number is numeric and 10 digits
+		let phonePattern = /^[0-9]{10}$/;
+		if (!phonePattern.test(phoneNumber)) {
+			console.log("Phone Number SHould be of 10 digit");
+			alert("Please enter a valid 10-digit phone number!");
+			return false; // Prevent form submission
+		}
+
+		// Validate Address
+		if (address === "") {
+			alert("Address is required!");
+			return false; // Prevent form submission
+		}
+
+		// If all fields are valid, return true and submit the form
+		return true; // Allow form submission
+	}
+	</script>
+	<script>
+/**
+ * 
+ */
+  const formContainer = document.getElementById("formContainer");
+    const loginToggle = document.getElementById("loginToggle");
+    const registerToggle = document.getElementById("registerToggle");
+
+    loginToggle.addEventListener("click", () => {
+      formContainer.style.transform = "translateX(0)";
+      loginToggle.classList.add("active");
+      registerToggle.classList.remove("active");
+    });
+
+    registerToggle.addEventListener("click", () => {
+      formContainer.style.transform = "translateX(-50%)";
+      registerToggle.classList.add("active");
+      loginToggle.classList.remove("active");
+    });
+</script>
 </body>
 </html>
