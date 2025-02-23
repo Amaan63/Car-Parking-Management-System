@@ -59,7 +59,7 @@ public class AuthentificationFilter implements Filter {
 
 	// Improved static resource detection (CSS, JS, images)
 	private boolean isStaticResource(String uri) {
-		return uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/") || uri.contains("/videos/");
+		return uri.contains("/css/") || uri.contains("/javascript/") || uri.contains("/images/") || uri.contains("/videos/");
 	}
 
 	// Check if the request is targeting the login page, login servlet, admin login
