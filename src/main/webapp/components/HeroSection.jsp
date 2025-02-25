@@ -1,3 +1,4 @@
+
 <section class="hero">
 	<!-- Background video -->
 	<video class="hero-video" autoplay muted loop>
@@ -8,14 +9,26 @@
 	<!-- Hero content in the front -->
 	<div class="hero-content text-center">
 		<h1 class="display-4 fw-bold text-white">
-			Revolutionize Parking, <span class="highlight">Seamlessly</span>
+			Revolutionize Parking, <span class="highlight" id="typed"></span>
 		</h1>
 		<p class="lead text-white">Effortless parking management designed
 			for modern living. Manage, book, and pay all in one place.</p>
 		<div class="mt-4">
-			<a href="#features" class="btn  btn-outline-light custom-btn  btn-lg me-2">Explore
+			<a href="#features"
+				class="btn  btn-outline-light custom-btn  btn-lg me-2">Explore
 				Features</a> <a href="#contact" class="btn btn-outline-light btn-lg">Get
 				in Touch</a>
 		</div>
 	</div>
 </section>
+<script>
+	var typed = new Typed("#typed", {
+		strings : [ "Effortlessly", "Flawlessly", "Smoothly", "Conveniently",
+				"Hassle-Free", "Seamlessly" ],
+		typeSpeed : 100, // Typing speed in milliseconds
+		backSpeed : 50, // Backspacing speed
+		loop : true, // Keep looping
+		showCursor : true
+	// Show blinking cursor
+	});
+</script>
