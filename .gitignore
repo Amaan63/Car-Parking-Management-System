@@ -1,14 +1,9 @@
+# Ignore build and Eclipse-related files
 /target/
+/bin/
+/WEB-INF/web.xml
+
 # Eclipse specific files  
 .classpath  
 .project  
-.settings/  
-
-# Build directories  
-target/  
-bin/  
-
-# Web project files  
-WEB-INF/web.xml  
-
-
+.settings/
