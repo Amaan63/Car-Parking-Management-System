@@ -28,6 +28,7 @@ public class AdminLogout extends HttpServlet {
 			session.invalidate();
 			HttpSession s = request.getSession();
 			s.setAttribute("adminLogoutMessage", "Admin Logout Successfully");
+			System.out.println("Admin Logout");
 		}
 		// Redirect to the login or home page
 		response.sendRedirect("index.jsp");

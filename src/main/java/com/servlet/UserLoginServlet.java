@@ -61,6 +61,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("currentUserForValidations", user); //For user Logout
 					session.setAttribute("userForAuthentication", user); // For Security
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
+					System.out.println("User session set: " + session.getAttribute("currentUserForValidations"));
 
 				} else {
 					// Password is incorrect

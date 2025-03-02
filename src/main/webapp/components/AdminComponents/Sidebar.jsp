@@ -46,17 +46,20 @@
 	</div>
 	<hr class="text-secondary" />
 	<ul class="nav flex-column mb-2 px-2">
-		<li class="nav-item"><a class="nav-link " href="../AdminPages/AdminDashBoard.jsp"> <i
+		<li class="nav-item"><a class="nav-link "
+			href="../AdminPages/AdminDashBoard.jsp"> <i
 				class="fas fa-dashboard me-2"></i> Dashboard
 		</a></li>
-		<li class="nav-item"><a class="nav-link" href="../AdminPages/ManageUsers.jsp">
-				<i class="fas fa-users me-2"></i> Users
+		<li class="nav-item"><a class="nav-link"
+			href="../AdminPages/ManageUsers.jsp"> <i
+				class="fas fa-users me-2"></i> Users
 		</a></li>
 		<li class="nav-item"><a class="nav-link"> <i
 				class="fas fa-car me-2"></i> Parking Slots
 		</a></li>
-		<li class="nav-item"><a class="nav-link"> <i
-				class="fas fa-ticket me-2"></i> Bookings
+		<li class="nav-item"><a class="nav-link"
+			href="../AdminPages/ManageVehicle.jsp"> <i
+				class="fas fa-ticket me-2"></i> Vehicle Bookings
 		</a></li>
 		<li class="nav-item"><a class="nav-link"> <i
 				class="fas fa-chart-bar me-2"></i> Reports
@@ -67,7 +70,7 @@
 	</ul>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     let navLinks = document.querySelectorAll(".nav-link");
 
     navLinks.forEach(link => {
@@ -92,5 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
+}); 
+
+
 </script>

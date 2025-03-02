@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.entities.User;
+import com.entities.Vehicle;
 
 public class AdminDao {
 	private SessionFactory factory;
@@ -36,4 +37,23 @@ public class AdminDao {
 		}
 		return users;
 	}
+	
+	public List<Vehicle> getAllVehicles() {
+	    Session session = this.factory.openSession();
+	    Transaction transaction = null;
+	    List<Vehicle> vehicles = null;
+	    try {
+	        transaction = session.beginTransaction();
+	        // HQL Query to get all vehicles
+	        Query<Vehicle> query = session.createQuery("FROM Vehicle", Vehicle.class);
+	        vehicles = query.list();
+	        transaction.commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return vehicles;
+	}
+
 }

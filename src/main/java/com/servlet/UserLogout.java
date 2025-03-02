@@ -38,6 +38,7 @@ public class UserLogout extends HttpServlet {
 			
 			HttpSession s = request.getSession();
 			s.setAttribute("userLogoutMessage", "Logout Successfully");
+			System.out.println("User Logout");
 		}
 
 		// Redirect to the login or home page

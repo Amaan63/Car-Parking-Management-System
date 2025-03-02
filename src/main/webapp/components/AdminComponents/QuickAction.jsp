@@ -40,7 +40,7 @@
 			</div>
 			<div class="col-md-4 feature-card">
 				<div class="d-grid">
-					<button class="btn btn-warning p-4">
+					<button class="btn btn-warning p-4" onclick="window.location.href='../AdminPages/ManageVehicle.jsp'">
 						<!-- <i class="fas fa-map-marker-alt fa-2x mb-2"></i> -->
 						<img alt="Manage Vehicles"
 							src="/CarParkingManagementSystem/images/QuickActions/ManageVehicle.png"
