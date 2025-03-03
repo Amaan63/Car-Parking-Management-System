@@ -35,7 +35,7 @@ public class User {
 	@Column(length = 12, name = "user_phoneNumber")
 	private String userPhoneNumber;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Vehicle> vehicles;
 
 	// Constructors, getters, and setters

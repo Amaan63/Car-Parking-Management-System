@@ -19,7 +19,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class SlotAssignmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	Dotenv dotenv = Dotenv.load(); // Loads from .env file
+	// Dotenv dotenv = Dotenv.load(); // Loads from .env file
 
 	private ParkingSlotDao parkingSlotDao;
 
@@ -40,10 +40,11 @@ public class SlotAssignmentServlet extends HttpServlet {
 			e.printStackTrace();
 			System.err.println("Error during automatic slot assignment: " + e.getMessage());
 		}
-		String dbUrl = dotenv.get("DB_URL");
-        String dbUser = dotenv.get("DB_USER");
-
-        System.out.println("Database URL: " + dbUrl);
-        System.out.println("Database User: " + dbUser);
+		// Testing env file 
+//		String dbUrl = dotenv.get("DB_URL");
+//        String dbUser = dotenv.get("DB_USER");
+//
+//        System.out.println("Database URL: " + dbUrl);
+//        System.out.println("Database User: " + dbUser);
 	}
 }

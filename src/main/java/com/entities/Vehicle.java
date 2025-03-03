@@ -2,6 +2,7 @@ package com.entities;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,7 +53,7 @@ public class Vehicle {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "slot_id", referencedColumnName = "slotId", unique = true)
 	private Slot slot;
 

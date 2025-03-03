@@ -3,7 +3,7 @@
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.AdminDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +86,8 @@
 			<%@include file="../components/AdminComponents/AdminNavBar.jsp"%>
 			<!-- Main Content -->
 
-			<div class="page-header d-flex justify-content-between align-items-start mt-4 pt-3 pb-2 px-3 shadow-sm bg-warning rounded ">
+			<div
+				class="page-header d-flex justify-content-between align-items-start mt-4 pt-3 pb-2 px-3 shadow-sm bg-warning rounded ">
 				<h2 class="fw-bold text-dark">Manage Vehicles</h2>
 			</div>
 
@@ -115,18 +116,15 @@
 							for (Vehicle vehicle : vehicles) {
 						%>
 						<tr>
-							<td><%= vehicle.getVehicleCompany() != null ? vehicle.getVehicleCompany() : "N/A" %></td>
-							<td><%= vehicle.getVehicleName() != null ? vehicle.getVehicleName() : "N/A" %></td>
-							<td><%= vehicle.getVehicleNumberPlate() != null ? vehicle.getVehicleNumberPlate() : "N/A" %></td>
-							<td><%= vehicle.getVehicleType() != null ? vehicle.getVehicleType() : "N/A" %></td>
-							<td><%= vehicle.getBookingDate() != null ? vehicle.getBookingDate() : "N/A" %></td>
-							<td><%= vehicle.getTimeDuration() != null ? vehicle.getTimeDuration() : "N/A" %></td>
-							<td><%= vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A" %></td>
+							<td><%=vehicle.getVehicleCompany() != null ? vehicle.getVehicleCompany() : "N/A"%></td>
+							<td><%=vehicle.getVehicleName() != null ? vehicle.getVehicleName() : "N/A"%></td>
+							<td><%=vehicle.getVehicleNumberPlate() != null ? vehicle.getVehicleNumberPlate() : "N/A"%></td>
+							<td><%=vehicle.getVehicleType() != null ? vehicle.getVehicleType() : "N/A"%></td>
+							<td><%=vehicle.getBookingDate() != null ? vehicle.getBookingDate() : "N/A"%></td>
+							<td><%=vehicle.getTimeDuration() != null ? vehicle.getTimeDuration() : "N/A"%></td>
+							<td><%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%></td>
 							<td>
 								<div class="d-flex gap-2">
-									<button class="btn btn-action btn-edit">
-										<i class="fas fa-edit"></i>
-									</button>
 									<button class="btn btn-action btn-delete">
 										<i class="fas fa-trash"></i>
 									</button>
@@ -138,7 +136,8 @@
 						} else {
 						%>
 						<tr>
-							<td colspan="8" class="text-center alert alert-warning">No Vehicles Found</td>
+							<td colspan="8" class="text-center alert alert-warning">No
+								Vehicles Found</td>
 						</tr>
 						<%
 						}

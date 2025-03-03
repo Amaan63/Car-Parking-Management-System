@@ -105,7 +105,7 @@
 				<table class="table ">
 					<thead>
 						<tr>
-							<th>ID</th>
+
 							<th>Name</th>
 							<th>Email</th>
 							<th>Phone</th>
@@ -121,7 +121,7 @@
 						%>
 
 						<tr>
-							<td><%=user.getUserId()%></td>
+
 							<td><%=user.getUserFullName()%></td>
 							<td><%=user.getUserEmail()%></td>
 							<td>+91 <%=user.getUserPhoneNumber()%></td>
@@ -131,9 +131,19 @@
 									<!--   <button class="btn btn-action btn-edit">
 										<i class="fas fa-edit"></i>
 									</button> -->
-									<button class="btn btn-action btn-delete">
+									<button class="btn btn-action btn-delete"
+										onclick="confirmDelete('<%=user.getUserId()%>')">
 										<i class="fas fa-trash"></i>
 									</button>
+									<script>
+										function confirmDelete(userId) {
+											if (confirm("Are you sure you want to delete this user?")) {
+												window.location.href = "../DeleteUserByIdServlet?type=user&id="
+														+ userId;
+											}
+										}
+									</script>
+
 								</div>
 							</td>
 						</tr>
