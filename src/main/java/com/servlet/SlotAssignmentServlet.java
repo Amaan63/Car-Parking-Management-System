@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.ParkingSlotDao;
 import com.helper.FactoryProvider;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 @WebServlet(name = "SlotAssignmentServlet", urlPatterns = {}, loadOnStartup = 1)
 public class SlotAssignmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	Dotenv dotenv = Dotenv.load(); // Loads from .env file
 
 	private ParkingSlotDao parkingSlotDao;
 
@@ -24,6 +28,7 @@ public class SlotAssignmentServlet extends HttpServlet {
 
 		parkingSlotDao = new ParkingSlotDao(FactoryProvider.getFactory());
 		assignSlotsOnStartup();
+		
 	}
 
 	public void assignSlotsOnStartup() {
@@ -35,5 +40,10 @@ public class SlotAssignmentServlet extends HttpServlet {
 			e.printStackTrace();
 			System.err.println("Error during automatic slot assignment: " + e.getMessage());
 		}
+		String dbUrl = dotenv.get("DB_URL");
+        String dbUser = dotenv.get("DB_USER");
+
+        System.out.println("Database URL: " + dbUrl);
+        System.out.println("Database User: " + dbUser);
 	}
 }
