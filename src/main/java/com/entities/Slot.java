@@ -26,7 +26,7 @@ public class Slot {
 
 	@OneToOne()
 	@JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId", unique = true,nullable = true)
-	private Vehicle assignedVehicleId;
+	private Vehicle assignedVehicle;
 
 	
 	public int getSlotId() {
@@ -59,13 +59,13 @@ public class Slot {
 	}
 
 
-	public Vehicle getAssignedVehicleId() {
-		return assignedVehicleId;
+	public Vehicle getAssignedVehicle() {
+		return assignedVehicle;
 	}
 
 
-	public void setAssignedVehicleId(Vehicle assignedVehicleId) {
-		this.assignedVehicleId = assignedVehicleId;
+	public void setAssignedVehicle(Vehicle assignedVehicle) {
+		this.assignedVehicle = assignedVehicle;
 	}
 
 

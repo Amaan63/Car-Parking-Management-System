@@ -53,7 +53,7 @@ public class Vehicle {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne()
 	@JoinColumn(name = "slot_id", referencedColumnName = "slotId", unique = true)
 	private Slot slot;
 

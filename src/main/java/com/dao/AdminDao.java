@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.entities.Slot;
 import com.entities.User;
 import com.entities.Vehicle;
 
@@ -58,20 +59,96 @@ public class AdminDao {
 	public boolean deleteUserById(int userId) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
+//		try {
+//			transaction = session.beginTransaction();
+//			User user = session.get(User.class, userId);
+//			if (user != null) {
+//				session.delete(user);
+//				transaction.commit();
+//				return true;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			session.close();
+//		}
+//		return false;
+//	}
+
+//		try {
+//			transaction = session.beginTransaction();
+//
+//			// Fetch user's vehicles
+//			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
+//					.setParameter("userId", userId).getResultList();
+//
+//			for (Vehicle vehicle : vehicles) {
+//				// Update slot to remove the assigned vehicle reference
+//				Query slotQuery = session.createQuery(
+//						"UPDATE Slot s SET s.assignedVehicle = null WHERE s.assignedVehicle.vehicleId = :vehicleId");
+//				slotQuery.setParameter("vehicleId", vehicle.getVehicleId());
+//				slotQuery.executeUpdate();
+//
+//				// Delete the vehicle
+//				session.delete(vehicle);
+//			}
+//
+//			// Delete the user
+//			User user = session.get(User.class, userId);
+//			if (user != null) {
+//				session.delete(user);
+//			}
+//
+//			transaction.commit();
+//			return true;
+//
+//		} catch (Exception e) {
+//			if (transaction != null) {
+//				transaction.rollback();
+//			}
+//			e.printStackTrace();
+//			return false;
+//
+//		} finally {
+//			session.close();
+//		}
 		try {
 			transaction = session.beginTransaction();
+
+			// Fetch user's vehicles
+			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
+					.setParameter("userId", userId).getResultList();
+
+			for (Vehicle vehicle : vehicles) {
+				// Update slot to remove the assigned vehicle reference and set status to
+				// "AVAILABLE"
+				Query slotQuery = session.createQuery(
+						"UPDATE Slot s SET s.assignedVehicle = null, s.status = 'AVAILABLE' WHERE s.assignedVehicle.vehicleId = :vehicleId");
+				slotQuery.setParameter("vehicleId", vehicle.getVehicleId());
+				slotQuery.executeUpdate();
+
+				// Delete the vehicle
+				session.delete(vehicle);
+			}
+
+			// Delete the user
 			User user = session.get(User.class, userId);
 			if (user != null) {
 				session.delete(user);
-				transaction.commit();
-				return true;
 			}
+
+			transaction.commit();
+			return true;
+
 		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
+			return false;
+
 		} finally {
 			session.close();
 		}
-		return false;
 	}
-
 }
