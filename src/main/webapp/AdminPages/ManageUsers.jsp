@@ -162,5 +162,21 @@
 			</div>
 		</div>
 	</div>
+	<%
+	String deleteUserStatus = (String) session.getAttribute("deleteUserStatus");
+	if (deleteUserStatus != null && deleteUserStatus.equals("Successfully Deleted")) {
+	%>
+	<script type="text/javascript">
+		alert("User Deleted Successfully");
+	</script>
+	<%
+	}
+	if (deleteUserStatus != null && deleteUserStatus.equals("Error in Deleting the User")) {
+	%><script type="text/javascript">
+		alert("Error in deleting the User");
+	</script>
+	<%
+	}
+	%>
 </body>
 </html>

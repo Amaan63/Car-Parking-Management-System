@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.AdminDao;
 import com.helper.FactoryProvider;
@@ -22,7 +23,7 @@ public class DeleteUserByIdServlet extends HttpServlet {
 		// Retrieve user ID from request
         String userIdStr = request.getParameter("id");
         
-        
+        HttpSession session = request.getSession();
 
         if (userIdStr != null) {
             try {
@@ -34,20 +35,23 @@ public class DeleteUserByIdServlet extends HttpServlet {
                 
                 if (deleted) {
                     //response.sendRedirect("userList.jsp?msg=UserDeleted");
-                	
+                	session.setAttribute("deleteUserStatus", "Successfully Deleted");
                 	System.out.println("Deleted User Id");
                 } else {
                     //response.sendRedirect("userList.jsp?msg=ErrorDeletingUser");
+                	session.setAttribute("deleteUserStatus", "Error in Deleting the User");
                 	System.out.println("Error in Deleting User");
                 }
             } catch (NumberFormatException e) {
                 //response.sendRedirect("userList.jsp?msg=InvalidUserId");
+            	session.setAttribute("deleteUserStatus", "Invalid User");
             	System.out.println("Invalid User Id");
             }
         } else {
             //response.sendRedirect("userList.jsp?msg=UserIdMissing");
         	System.out.println("Missing User Id");
         }
+        response.sendRedirect("AdminPages/ManageUsers.jsp");
 		
 	}
 
