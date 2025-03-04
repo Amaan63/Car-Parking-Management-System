@@ -110,21 +110,48 @@
 	if (loginStatus != null) {
 		if ("Username is incorrect.".equals(loginStatus)) {
 	%>
-	<script type="text/javascript">
-            alert("<%=loginStatus%>");
-        </script>
+	<div class="modal fade" id="loginUserModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Username is Incorrect</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	} else if ("Password is incorrect.".equals(loginStatus)) {
 	%>
-	<script type="text/javascript">
-            alert("<%=loginStatus%>");
-        </script>
+	<div class="modal fade" id="loginUserModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Password is Incorrect</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	} else {
 	%>
-	<script type="text/javascript">
-            alert("Unexpected status: <%=loginStatus%>");
-	</script>
+	<div class="modal fade" id="loginUserModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Unexpected Error</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	}
 
@@ -134,5 +161,10 @@
 	%>
 	<script src="javascript/Registration_Validation.js"></script>
 	<script src="javascript/Login_Register_toggle.js"></script>
+	<script>
+		var deleteUserModal = new bootstrap.Modal(document
+				.getElementById('loginUserModal'));
+		deleteUserModal.show();
+	</script>
 </body>
 </html>

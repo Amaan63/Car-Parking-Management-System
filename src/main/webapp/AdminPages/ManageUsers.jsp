@@ -88,7 +88,9 @@
 						}
 						} else {
 						%>
-						<div class="alert alert-danger"><h1>No User Found</h1></div>
+						<div class="alert alert-danger">
+							<h1>No User Found</h1>
+						</div>
 						<%
 						}
 						%>
@@ -101,18 +103,44 @@
 	String deleteUserStatus = (String) session.getAttribute("deleteUserStatus");
 	if (deleteUserStatus != null && deleteUserStatus.equals("Successfully Deleted")) {
 	%>
-	<script type="text/javascript">
-		alert("User Deleted Successfully");
-	</script>
+	<!-- Bootstrap Modal -->
+	<div class="modal fade" id="deleteUserModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-success">User Is Deleted Successfully</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	}
 	if (deleteUserStatus != null && deleteUserStatus.equals("Error in Deleting the User")) {
-	%><script type="text/javascript">
-		alert("Error in deleting the User");
-	</script>
+	%><!-- Bootstrap Modal -->
+	<div class="modal fade" id="deleteUserModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Error in Deleting the User</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	}
 	session.removeAttribute("deleteUserStatus");
 	%>
+
+	<script>
+		var deleteUserModal = new bootstrap.Modal(document
+				.getElementById('deleteUserModal'));
+		deleteUserModal.show();
+	</script>
 </body>
 </html>
