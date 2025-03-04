@@ -2,7 +2,6 @@ package com.entities;
 
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,10 +56,24 @@ public class Vehicle {
 	@JoinColumn(name = "slot_id", referencedColumnName = "slotId", unique = true)
 	private Slot slot;
 
+	@Column(name = "total_cost", nullable = true)
+	private long totalCost; // Stored in paise
+
 	public Vehicle() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	public long getTotalCost() {
+		return totalCost;
+	}
+
+
+	public void setTotalCost(long totalCost) {
+		this.totalCost = totalCost;
+	}
+
 
 	public Vehicle(int vehicleId, String userName, String userEmailId, String vehicleCompany, String vehicleName,
 			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration,

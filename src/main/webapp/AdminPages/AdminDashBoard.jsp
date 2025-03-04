@@ -51,5 +51,19 @@
 	}
 	session.removeAttribute("creatingSlot");
 	%>
+	
+	<%String parkingRatesStatus = (String) session.getAttribute("parkingRatesStatus");
+	if (parkingRatesStatus != null && parkingRatesStatus.equals("Successfully created Parking Rates")) {
+	%>
+	<%@ include file="../components/popups/ParkingRatesSuccessPopup.jsp"%>
+	<%
+	session.removeAttribute("creatingSlot");
+	} else if (parkingRatesStatus != null && parkingRatesStatus.equals("Failed to Create Parking Rates")) {
+	%>
+	<%@ include file="../components/popups/ParkingRatesErrorPopup.jsp"%>
+	<%
+	}
+	session.removeAttribute("parkingRatesStatus"); %>
+	
 </body>
 </html>
