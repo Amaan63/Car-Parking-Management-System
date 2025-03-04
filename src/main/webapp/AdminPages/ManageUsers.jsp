@@ -12,72 +12,7 @@
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
-<style type="text/css">
-
-/* Main Content Styling */
-.main-content {
-	flex: 1;
-	padding: 32px;
-	background: #1a1a1a;
-	color: white;
-	overflow-y: auto;
-}
-
-/* Page Header */
-.page-header {
-	margin-bottom: 32px;
-	padding-bottom: 16px;
-	border-bottom: 1px solid #404040;
-	text-align: center;
-}
-
-/* Table Styling */
-.table {
-	color: #ffffff;
-	background: #2d2d2d;
-	border-radius: 12px;
-	overflow: hidden;
-}
-
-.table thead th {
-	background-color: #1db954;
-	color: white;
-	border: none;
-	padding: 16px;
-}
-
-.table tbody td {
-	border-color: #404040;
-	padding: 16px;
-}
-
-/* Action Buttons */
-.btn-action {
-	padding: 8px 16px;
-	border-radius: 6px;
-	transition: all 0.3s ease;
-}
-
-.btn-edit {
-	background: #ffc107;
-	color: #000;
-}
-
-.btn-delete {
-	background: #dc3545;
-	color: white;
-}
-
-.btn-edit:hover {
-	background: #e0a800;
-	transform: scale(1.05);
-}
-
-.btn-delete:hover {
-	background: #c82333;
-	transform: scale(1.05);
-}
-</style>
+<link rel="stylesheet" href="../css/Admin-Management.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -153,7 +88,7 @@
 						}
 						} else {
 						%>
-						<div class="alert alert-warning">No User Found</div>
+						<div class="alert alert-danger"><h1>No User Found</h1></div>
 						<%
 						}
 						%>
@@ -177,6 +112,7 @@
 	</script>
 	<%
 	}
+	session.removeAttribute("deleteUserStatus");
 	%>
 </body>
 </html>

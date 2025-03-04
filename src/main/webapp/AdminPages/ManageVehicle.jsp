@@ -12,72 +12,7 @@
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
-<style type="text/css">
-
-/* Main Content Styling */
-.main-content {
-	flex: 1;
-	padding: 32px;
-	background: #1a1a1a;
-	color: white;
-	overflow-y: auto;
-}
-
-/* Page Header */
-.page-header {
-	margin-bottom: 32px;
-	padding-bottom: 16px;
-	border-bottom: 1px solid #404040;
-	text-align: center;
-}
-
-/* Table Styling */
-.table {
-	color: #ffffff;
-	background: #2d2d2d;
-	border-radius: 12px;
-	overflow: hidden;
-}
-
-.table thead th {
-	background-color: #1db954;
-	color: white;
-	border: none;
-	padding: 16px;
-}
-
-.table tbody td {
-	border-color: #404040;
-	padding: 16px;
-}
-
-/* Action Buttons */
-.btn-action {
-	padding: 8px 16px;
-	border-radius: 6px;
-	transition: all 0.3s ease;
-}
-
-.btn-edit {
-	background: #ffc107;
-	color: #000;
-}
-
-.btn-delete {
-	background: #dc3545;
-	color: white;
-}
-
-.btn-edit:hover {
-	background: #e0a800;
-	transform: scale(1.05);
-}
-
-.btn-delete:hover {
-	background: #c82333;
-	transform: scale(1.05);
-}
-</style>
+<link rel="stylesheet" href="../css/Admin-Management.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -125,9 +60,18 @@
 							<td><%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%></td>
 							<td>
 								<div class="d-flex gap-2">
-									<button class="btn btn-action btn-delete">
+									<button class="btn btn-action btn-delete"
+										onclick="confirmDelete('<%=vehicle.getVehicleId()%>')">
 										<i class="fas fa-trash"></i>
 									</button>
+									<script>
+										function confirmDelete(vehicleId) {
+											if (confirm("Are you sure you want to delete this Vehicle?")) {
+												window.location.href = "../DeleteVehicleByIdServlet?type=vehicle&id="
+														+ vehicleId;
+											}
+										}
+									</script>
 								</div>
 							</td>
 						</tr>
@@ -136,8 +80,8 @@
 						} else {
 						%>
 						<tr>
-							<td colspan="8" class="text-center alert alert-warning">No
-								Vehicles Found</td>
+							<td colspan="8" class="text-center alert alert-danger"><h1>No
+								Vehicles Found</h1></td>
 						</tr>
 						<%
 						}
@@ -147,5 +91,22 @@
 			</div>
 		</div>
 	</div>
+	<%
+	String deleteVehicleStatus = (String) session.getAttribute("deleteVehicleStatus");
+	if (deleteVehicleStatus != null && deleteVehicleStatus.equals("Successfully Deleted")) {
+	%>
+	<script type="text/javascript">
+		alert("Vehicle Deleted Successfully");
+	</script>
+	<%
+	}
+	if (deleteVehicleStatus != null && deleteVehicleStatus.equals("Error in Deleting the User")) {
+	%><script type="text/javascript">
+		alert("Error in deleting the Vehicle");
+	</script>
+	<%
+	}
+	session.removeAttribute("deleteVehicleStatus");
+	%>
 </body>
 </html>

@@ -75,43 +75,6 @@ public class AdminDao {
 //		return false;
 //	}
 
-//		try {
-//			transaction = session.beginTransaction();
-//
-//			// Fetch user's vehicles
-//			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
-//					.setParameter("userId", userId).getResultList();
-//
-//			for (Vehicle vehicle : vehicles) {
-//				// Update slot to remove the assigned vehicle reference
-//				Query slotQuery = session.createQuery(
-//						"UPDATE Slot s SET s.assignedVehicle = null WHERE s.assignedVehicle.vehicleId = :vehicleId");
-//				slotQuery.setParameter("vehicleId", vehicle.getVehicleId());
-//				slotQuery.executeUpdate();
-//
-//				// Delete the vehicle
-//				session.delete(vehicle);
-//			}
-//
-//			// Delete the user
-//			User user = session.get(User.class, userId);
-//			if (user != null) {
-//				session.delete(user);
-//			}
-//
-//			transaction.commit();
-//			return true;
-//
-//		} catch (Exception e) {
-//			if (transaction != null) {
-//				transaction.rollback();
-//			}
-//			e.printStackTrace();
-//			return false;
-//
-//		} finally {
-//			session.close();
-//		}
 		try {
 			transaction = session.beginTransaction();
 
@@ -135,6 +98,43 @@ public class AdminDao {
 			User user = session.get(User.class, userId);
 			if (user != null) {
 				session.delete(user);
+			}
+
+			transaction.commit();
+			return true;
+
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return false;
+
+		} finally {
+			session.close();
+		}
+	}
+
+	public boolean deleteVehicleById(int vehicleId) {
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+
+			// Fetch the vehicle
+			Vehicle vehicle = session.get(Vehicle.class, vehicleId);
+
+			if (vehicle != null) {
+				// Update the associated slot to remove vehicle reference and set status to
+				// "AVAILABLE"
+				Query slotQuery = session.createQuery(
+						"UPDATE Slot s SET s.assignedVehicle = null, s.status = 'AVAILABLE' WHERE s.assignedVehicle.vehicleId = :vehicleId");
+				slotQuery.setParameter("vehicleId", vehicleId);
+				slotQuery.executeUpdate();
+
+				// Delete the vehicle
+				session.delete(vehicle);
 			}
 
 			transaction.commit();
