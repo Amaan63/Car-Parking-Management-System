@@ -12,7 +12,7 @@ import com.entities.Vehicle;
 
 public class ParkingSlotDao {
 	private SessionFactory factory;
-	VehicleDao vehicleDao;
+	private VehicleDao vehicleDao;
 
 	public ParkingSlotDao(SessionFactory factory) {
 		this.factory = factory;
@@ -84,7 +84,7 @@ public class ParkingSlotDao {
 
 				// Update slot status and associate vehicle
 				slot.setStatus("OCCUPIED");
-				slot.setAssignedVehicleId(vehicle);
+				slot.setAssignedVehicle(vehicle);
 
 				// Save the updated vehicle and slot data to the database
 				session.update(vehicle);
@@ -133,7 +133,7 @@ public class ParkingSlotDao {
 				// Set the slot for the vehicle and update slot status
 				vehicle.setSlot(slot);
 				slot.setStatus("OCCUPIED");
-				slot.setAssignedVehicleId(vehicle);
+				slot.setAssignedVehicle(vehicle);
 
 				session.update(vehicle);
 				session.update(slot);

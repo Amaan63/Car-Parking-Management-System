@@ -14,7 +14,8 @@ import com.entities.Vehicle;
 public class VehicleDao {
 
 	private SessionFactory factory;
-
+	private ParkingSlotDao parkingSlotDao;
+	
 	public VehicleDao(SessionFactory factory) {
 		this.factory = factory;
 	}
@@ -27,7 +28,14 @@ public class VehicleDao {
 			transaction = session.beginTransaction();
 			session.save(vehicle);
 			transaction.commit();
-			return true;
+			
+			 // After saving, allocate a slot to this vehicle if available
+	        List<Vehicle> unassignedVehicles = getUnassignedVehicles();
+	        if (!unassignedVehicles.isEmpty()) {
+	            ParkingSlotDao parkingSlotDao = new ParkingSlotDao(factory);
+	            parkingSlotDao.allocateSlotsToUnassignedVehicles(unassignedVehicles);
+	        }
+	        return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
