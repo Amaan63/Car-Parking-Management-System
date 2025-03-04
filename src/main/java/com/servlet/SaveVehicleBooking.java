@@ -57,6 +57,13 @@ public class SaveVehicleBooking extends HttpServlet {
 		
 		boolean status = vehicleDao.saveVehicle(vehicle);
 		if (status) {
+			// Ensure vehicle ID is generated (if using auto-increment)
+		    if (vehicle.getVehicleId() > 0) {
+		        vehicleDao.calculateAndUpdateCost(vehicle.getVehicleId());
+		        System.out.println(vehicle.getVehicleId());
+		    }else {
+		    	System.out.println("Cannot find the Vehicle Id");
+		    }
 			session.setAttribute("bookingStatus", "Successfully Booked the Parking Spot");
 			response.sendRedirect("UserPages/UserDashBoard.jsp");
 		} else {

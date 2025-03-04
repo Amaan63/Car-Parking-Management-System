@@ -80,7 +80,7 @@
 						} else {
 						%>
 						<tr>
-							<td colspan="8" class="text-center alert alert-danger"><h1>No
+							<td colspan="8" class="text-center alert text-danger"><h1>No
 									Vehicles Found</h1></td>
 						</tr>
 						<%

@@ -67,11 +67,11 @@
 	color: white;
 }
 
-
 .btn-delete:hover {
 	background: #c82333;
 	transform: scale(1.05);
-}</style>
+}
+</style>
 </head>
 <body>
 	<div class="container-fluid">
@@ -147,9 +147,11 @@
 						}
 						} else {
 						%>
-						<div class="alert alert-danger">
-							<h1>No User Found</h1>
-						</div>
+
+						<tr>
+							<td colspan="8" class="text-center alert text-danger"><h1>No
+									User Found</h1></td>
+						</tr>
 						<%
 						}
 						%>
@@ -168,7 +170,8 @@
 		<div class="modal-dialog ">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-success">User Is Deleted Successfully</h5>
+					<h5 class="modal-title text-success">User Is Deleted
+						Successfully</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>

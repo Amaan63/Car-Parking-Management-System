@@ -1,4 +1,3 @@
-<%@page import="com.helper.FactoryProvider"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -59,7 +58,7 @@
 	<%
 	// Remove the logout message from the session to prevent the popup from showing on reload
 	session.removeAttribute("notAuthenticated");
-	} 
+	}
 	%>
 </body>
 </html>

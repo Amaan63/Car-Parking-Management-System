@@ -15,7 +15,7 @@ public class VehicleDao {
 
 	private SessionFactory factory;
 	private ParkingSlotDao parkingSlotDao;
-	
+
 	public VehicleDao(SessionFactory factory) {
 		this.factory = factory;
 	}
@@ -26,21 +26,25 @@ public class VehicleDao {
 
 		try {
 			transaction = session.beginTransaction();
+
 			session.save(vehicle);
 			transaction.commit();
 			
-			 // After saving, allocate a slot to this vehicle if available
-	        List<Vehicle> unassignedVehicles = getUnassignedVehicles();
-	        if (!unassignedVehicles.isEmpty()) {
-	            ParkingSlotDao parkingSlotDao = new ParkingSlotDao(factory);
-	            parkingSlotDao.allocateSlotsToUnassignedVehicles(unassignedVehicles);
-	        }
-	        return true;
+			// After saving, allocate a slot to this vehicle if available
+			List<Vehicle> unassignedVehicles = getUnassignedVehicles();
+			if (!unassignedVehicles.isEmpty()) {
+				ParkingSlotDao parkingSlotDao = new ParkingSlotDao(factory);
+				parkingSlotDao.allocateSlotsToUnassignedVehicles(unassignedVehicles);
+			}
+			
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		} finally {
-			session.close();
+			if (session != null && session.isOpen()) {
+	            session.close();
+	        }
 		}
 	}
 
@@ -91,5 +95,73 @@ public class VehicleDao {
 			session.close();
 		}
 		return unassignedVehicles;
+	}
+
+	public long getRatePerHour() {
+		Session session = this.factory.openSession();
+		long ratePerHour = 0L;
+
+		try {
+			// Fetch the single rate per hour from the Rates table
+			// Ensure only one rate is fetched
+			ratePerHour = session.createQuery("SELECT r.ratePerHour FROM Rates r", Long.class).setMaxResults(1) 
+					.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ratePerHour;
+	}
+
+	/**
+	 * Extracts the numeric value from a time duration string (e.g., "3 Hours"or "3 hours").
+	 */
+	public int extractHours(String timeDuration) {
+	    if (timeDuration != null && timeDuration.matches("\\d+\\s*[Hh]ours?")) {
+	        return Integer.parseInt(timeDuration.replaceAll("[^0-9]", ""));
+	    }
+	    return 0; // Default to 0 if format is invalid
+	}
+
+	
+	// New Method to calculate and update total cost
+	public void calculateAndUpdateCost(int vehicleId) {
+	    Session session = this.factory.openSession();
+	    Transaction transaction = null;
+
+	    try {
+	        transaction = session.beginTransaction();
+
+	        // Step 3: Fetch the saved vehicle
+	        Vehicle savedVehicle = session.get(Vehicle.class, vehicleId);
+	        if (savedVehicle == null) {
+	            System.out.println("Vehicle not found after save!");
+	            return;
+	        }
+
+	        // Step 4: Calculate total cost
+	        long ratePerHour = getRatePerHour();
+	        System.out.println(ratePerHour);
+	        int totalHours = extractHours(savedVehicle.getTimeDuration());
+	        String Time = (String)savedVehicle.getTimeDuration();
+	        System.out.println(Time);
+	        System.out.println(totalHours);
+	        long totalCost = ratePerHour * totalHours;
+	        System.out.println(totalCost);
+
+	        // Step 5: Update vehicle with total cost
+	        savedVehicle.setTotalCost(totalCost);
+	        session.update(savedVehicle);
+	        transaction.commit();
+
+	        System.out.println("Total cost updated successfully: " + totalCost);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 }
