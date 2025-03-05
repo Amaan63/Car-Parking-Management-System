@@ -73,5 +73,19 @@ public class PaymentDao {
 //		}
 //		return false;
 //	}
+	public Payment getPaymentByTokenOrVehicle(String token, String vehicleNumber) {
+		Session session = this.factory.openSession();
+		Payment payment = null;
+        try {
+            String queryStr = "from Payment where parkingToken = :token or vehicleNumber = :vehicleNumber";
+            Query<Payment> query = session.createQuery(queryStr, Payment.class);
+            query.setParameter("token", token);
+            query.setParameter("vehicleNumber", vehicleNumber);
+            payment = query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return payment;
+    }
 	
 }

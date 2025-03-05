@@ -137,4 +137,18 @@
 .cost-highlight:hover {
     transform: scale(1.1); /* Increases size by 10% */
 }
+.paid-btn {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
+}
+.paid-btn:hover {
+    transform: scale(1.1); /* Increases size by 10% */
+}
 

@@ -1,3 +1,5 @@
+<%@page import="com.dao.PaymentDao"%>
+<%@page import="com.entities.Payment"%>
 <%@page import="java.util.Optional"%>
 <%@page import="com.dao.RatesDao"%>
 <%@page import="com.entities.Slot"%>
@@ -34,6 +36,10 @@ System.out.println(ratePerHour);
 			// Converting The Object into Long for TotalCost
 			long totalCostInPaise = Optional.ofNullable(vehicle.getTotalCost()).orElse(0L);
 			long totalCostInRupees = totalCostInPaise / 100; // Convert paise to rupees
+			PaymentDao paymentDao = new PaymentDao(FactoryProvider.getFactory());
+			Payment payment = paymentDao.getPaymentByTokenOrVehicle(vehicle.getParkingTokennumber(),
+			vehicle.getVehicleNumberPlate());
+			boolean isPaid = (payment != null && "SUCCESSFUL".equalsIgnoreCase(payment.getStatus()));
 	%>
 	<div class="card booking-card">
 		<div class="card-header">
@@ -97,10 +103,20 @@ System.out.println(ratePerHour);
 				<%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button class="cost-highlight" 
+				<%
+				if (isPaid) {
+				%>
+				<button class="paid-btn" disabled>Paid</button>
+				<%
+				} else {
+				%>
+				<button class="cost-highlight"
 					onclick="payNow('<%=totalCostInPaise%>', '<%=vehicle.getUserEmailId()%>','<%=vehicle.getVehicleNumberPlate()%>','<%=vehicle.getParkingTokennumber()%>')">
 					Pay Now: &#8377;<%=totalCostInRupees%>
 				</button>
+				<%
+				}
+				%>
 			</div>
 		</div>
 		<div class="footer">Booked with &#10084; by Park Ease</div>
