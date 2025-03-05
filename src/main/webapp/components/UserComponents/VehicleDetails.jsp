@@ -1,9 +1,18 @@
+<%@page import="java.util.Optional"%>
+<%@page import="com.dao.RatesDao"%>
 <%@page import="com.entities.Slot"%>
 <%@page import="java.util.List"%>
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.VehicleDao"%>
 <%@page import="com.entities.User"%>
 <%@page import="com.entities.Vehicle"%>
+
+<%
+// Fetch the single rate per hour (ID = 1)
+RatesDao ratesDao = new RatesDao(FactoryProvider.getFactory());
+double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to rupees
+System.out.println(ratePerHour);
+%>
 
 <link rel="stylesheet" href="../css/VehicleDetailCardStyle.css">
 
@@ -21,6 +30,10 @@
 	<%
 	if (vehicles != null && !vehicles.isEmpty()) {
 		for (Vehicle vehicle : vehicles) {
+
+			// Converting The Object into Long for TotalCost
+			long totalCostObjectInPaise = Optional.ofNullable(vehicle.getTotalCost()).orElse(0L); 
+			long totalCostInRupees = totalCostObjectInPaise / 100; // Convert paise to rupees 
 	%>
 	<div class="card booking-card">
 		<div class="card-header">
@@ -73,14 +86,26 @@
 				<div class="col-5">Duration:</div>
 				<div class="col-7"><%=vehicle.getTimeDuration() != null ? vehicle.getTimeDuration() : "N/A"%></div>
 			</div>
+			<div class="row">
+				<div class="col-5">Rate per Hour:</div>
+				<div class="col-7">
+					&#8377;
+					<%=ratePerHour%></div>
+			</div>
 			<div class="token-highlight">
-				<i class="bi bi-qr-code icon"></i> Parking Token:
+				<i class="bi bi-credit-card-2-front-fill"></i> Parking Token:
 				<%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%>
 			</div>
+			<div class="d-flex justify-content-center">
+				<button class="cost-highlight">
+					Pay Now: &#8377;<%=totalCostInRupees%>
+				</button>
+			</div>
 		</div>
-		<div class="footer">Booked with ❤️ by Park Ease</div>
+		<div class="footer">Booked with &#10084; by Park Ease</div>
 	</div>
 	<%
+	System.out.println(vehicle.getTotalCost());
 	}
 	} else {
 	%>

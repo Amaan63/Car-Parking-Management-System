@@ -51,4 +51,19 @@ public class RatesDao {
 			session.close();
 		}
 	}
+	
+	// Get the fixed rate per hour (ID = 1)
+    public double getFixedRatePerHour() {
+    	Session session = factory.openSession();
+    	double ratePerHour = 0.0;
+        try {
+            Rates rate = session.get(Rates.class, 1L); // Always fetch rate with ID = 1
+            if (rate != null) {
+                ratePerHour = rate.getRatePerHour();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ratePerHour;
+    }
 }

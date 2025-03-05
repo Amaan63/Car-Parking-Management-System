@@ -122,3 +122,19 @@
         width: 100%; /* Cards take full width on smaller screens */
     }
 }
+
+.cost-highlight {
+    background: linear-gradient(135deg, #9c27b0, #1e88e5);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
+}
+.cost-highlight:hover {
+    transform: scale(1.1); /* Increases size by 10% */
+}
+
