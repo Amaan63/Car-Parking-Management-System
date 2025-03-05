@@ -1,3 +1,4 @@
+<%@page import="com.entities.Slot"%>
 <%@page import="java.util.List"%>
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.VehicleDao"%>
@@ -23,7 +24,27 @@
 	%>
 	<div class="card booking-card">
 		<div class="card-header">
-			<span>Green Rides</span> <i class="bi bi-car-front-fill icon"></i>
+			<span>Park Ease</span>
+			<%
+			Slot slotObj = vehicle.getSlot();
+			int slotId = (slotObj != null) ? slotObj.getSlotId() : 0;
+
+			if (slotId > 0) {
+			%>
+			<!-- Smaller badge in the right corner for "Slot Allocated" -->
+			<span
+				class="badge bg-success position-absolute top-0 end-0 m-1 p-1 px-2 fs-6 ">Slot
+				Allocated</span>
+			<%
+			} else {
+			%>
+			<!-- Smaller badge in the right corner for "No Slot Allocated" -->
+			<span
+				class="badge bg-danger position-absolute top-0 end-0 m-1 p-1 px-2 fs-6">No
+				Slot Allocated</span>
+			<%
+			}
+			%>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -57,7 +78,7 @@
 				<%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%>
 			</div>
 		</div>
-		<div class="footer">Booked with ❤️ by Green Rides</div>
+		<div class="footer">Booked with ❤️ by Park Ease</div>
 	</div>
 	<%
 	}
