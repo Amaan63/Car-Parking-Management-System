@@ -29,6 +29,7 @@ public class UserLoginServlet extends HttpServlet {
 		try {
 			String emailAddress = request.getParameter("userEmail");
 			String password = request.getParameter("userPassword");
+			//System.out.println(emailAddress + password);
 
 			// Initialize session
 			HttpSession session = request.getSession();
@@ -47,7 +48,7 @@ public class UserLoginServlet extends HttpServlet {
 			// Check if the user exists
 			if (user == null) {
 				// Email does not exist
-				session.setAttribute("loginStatus", "Username is incorrect.");
+				session.setAttribute("loginStatus", "Email is incorrect.");
 				response.sendRedirect("User-Registration&Login.jsp");
 			} else {
 				// Email exists, now check the password

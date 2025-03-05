@@ -31,7 +31,7 @@ function payNow(amountInPaise, email) {
 					"description": "Parking Payment",
 					"order_id": data.orderId,
 					"handler": function(response) {
-						alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+						//alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
 						window.location.href = "../PaymentVerificationServlet?payment_id=" + response.razorpay_payment_id;
 					},
 					"prefill": {

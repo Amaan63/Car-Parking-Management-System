@@ -97,7 +97,7 @@ System.out.println(ratePerHour);
 				<%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button class="cost-highlight"
+				<button class="cost-highlight" 
 					onclick="payNow('<%=totalCostInPaise%>', '<%=vehicle.getUserEmailId()%>')">
 					Pay Now: &#8377;<%=totalCostInRupees%>
 				</button>

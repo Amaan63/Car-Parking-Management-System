@@ -108,14 +108,14 @@
 
 	// Check if the attribute is not null
 	if (loginStatus != null) {
-		if ("Username is incorrect.".equals(loginStatus)) {
+		if ("Email is incorrect.".equals(loginStatus)) {
 	%>
 	<div class="modal fade" id="loginUserModal" tabindex="-1"
 		aria-hidden="true">
 		<div class="modal-dialog ">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger">Username is Incorrect</h5>
+					<h5 class="modal-title text-danger">Email is Incorrect</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>

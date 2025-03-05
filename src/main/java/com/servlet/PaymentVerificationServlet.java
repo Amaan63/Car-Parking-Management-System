@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class PaymentVerificationServlet
@@ -26,14 +27,19 @@ public class PaymentVerificationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String paymentId = request.getParameter("payment_id");
+		
+		HttpSession session =  request.getSession();
+		//System.out.println(paymentId);
 
 		if (paymentId != null) {
 			// Here, you can update the database for payment success
-			//response.sendRedirect("success.jsp?paymentId=" + paymentId);
-			System.out.print("Successfull Payment");
+			session.setAttribute("paymentStatus", "done");
+			response.sendRedirect("UserPages/ParkingHistory.jsp");
+			//System.out.print("Successfull Payment");
 		} else {
-			//response.sendRedirect("error.jsp");
-			System.out.print("Error or Failed Payment");
+			session.setAttribute("paymentStatus", "failed");
+			response.sendRedirect("UserPages/ParkingHistory.jsp");
+			//System.out.print("Error or Failed Payment");
 		}
 	}
 
