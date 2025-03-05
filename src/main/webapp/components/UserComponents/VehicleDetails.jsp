@@ -98,7 +98,7 @@ System.out.println(ratePerHour);
 			</div>
 			<div class="d-flex justify-content-center">
 				<button class="cost-highlight" 
-					onclick="payNow('<%=totalCostInPaise%>', '<%=vehicle.getUserEmailId()%>')">
+					onclick="payNow('<%=totalCostInPaise%>', '<%=vehicle.getUserEmailId()%>','<%=vehicle.getVehicleNumberPlate()%>','<%=vehicle.getParkingTokennumber()%>')">
 					Pay Now: &#8377;<%=totalCostInRupees%>
 				</button>
 			</div>

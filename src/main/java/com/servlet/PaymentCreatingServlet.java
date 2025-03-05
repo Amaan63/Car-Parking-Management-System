@@ -2,15 +2,20 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
+import com.dao.PaymentDao;
+import com.helper.FactoryProvider;
 import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
 
@@ -41,6 +46,13 @@ public class PaymentCreatingServlet extends HttpServlet {
 		try {
 			long amountInPaise = Long.parseLong(request.getParameter("amount")); // Amount in paise
 			String email = request.getParameter("email"); // Fetch user email
+			String vehicleNumber = request.getParameter("vehicleNumber");
+			String parkingToken = request.getParameter("parkingToken");
+
+			
+			
+			System.out.println(vehicleNumber+" "+parkingToken+" "+amountInPaise+" "+email+" ");
+			
 
 			// Initialize Razorpay Client
 			RazorpayClient razorpay = new RazorpayClient(RAZORPAY_KEY_ID, RAZORPAY_SECRET_ID);
@@ -53,6 +65,16 @@ public class PaymentCreatingServlet extends HttpServlet {
 
 			// Create Order
 			Order order = razorpay.orders.create(orderRequest);
+			String orderId = order.get("id");
+
+			// Sending the data to Verification Servlet to Verify
+			HttpSession session = request.getSession();
+			session.setAttribute("paymentEmail", email);
+			session.setAttribute("payingVehicleNumber", vehicleNumber);
+			session.setAttribute("parkingToken", parkingToken);
+			session.setAttribute("amount", amountInPaise);
+			session.setAttribute("order_id", orderId);
+			
 
 			// Send Order Details to Front-End
 			JSONObject jsonResponse = new JSONObject();
@@ -60,7 +82,7 @@ public class PaymentCreatingServlet extends HttpServlet {
 			jsonResponse.put("key", RAZORPAY_KEY_ID);
 			jsonResponse.put("amount", amountInPaise);
 			// System.out.println(order.get("id").getClass().getName());
-			jsonResponse.put("orderId", (String) order.get("id"));
+			jsonResponse.put("orderId", orderId);
 			// System.out.println("Finished Payment");
 
 			out.print(jsonResponse.toString());

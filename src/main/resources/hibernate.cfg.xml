@@ -19,5 +19,6 @@
 		<mapping class="com.entities.Vehicle" />
 		<mapping class="com.entities.Slot" />
 		<mapping class="com.entities.Rates" />
+		<mapping class="com.entities.Payment" />
 	</session-factory>
 </hibernate-configuration>

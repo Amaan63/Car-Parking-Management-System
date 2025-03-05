@@ -2,6 +2,9 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.dao.PaymentDao;
+import com.helper.FactoryProvider;
 
 /**
  * Servlet implementation class PaymentVerificationServlet
@@ -22,25 +28,162 @@ public class PaymentVerificationServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		PrintWriter out = response.getWriter();
+//		String paymentId = request.getParameter("payment_id");
+//
+//		HttpSession session = request.getSession(false); // false prevents creating a new session if it doesn't exist
+//
+//		// Declare variables before the if block
+//		String paymentEmail = null;
+//		String vehicleNumber = null;
+//		String parkingToken = null;
+//		long amount = 0L;
+//
+//		// Get current date-time as a formatted String
+//		LocalDateTime now = LocalDateTime.now();
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//		String paymentDate = now.format(formatter);
+//
+//		if (session != null) {
+//			paymentEmail = (String) session.getAttribute("paymentEmail");
+//			vehicleNumber = (String) session.getAttribute("payingVehicleNumber");
+//			parkingToken = (String) session.getAttribute("parkingToken");
+//			Object amountObj = session.getAttribute("amount");
+//			amount = (amountObj != null) ? (long) amountObj : 0L;
+//
+//			System.out.println(paymentId + paymentEmail + vehicleNumber + parkingToken + paymentDate + amount);
+//		}
+//
+//		String status;
+//
+//		if (paymentId != null) {
+//			System.out.println("Payment Not Null");
+//			status = "SUCCESSFUL";
+//		} else {
+//			System.out.println("Failed");
+//			status = "FAILED";
+//			paymentId = "N/A"; // Store "N/A" for failed transactions
+//		}
+//
+//		// **Update payment status in the database**
+//		PaymentDao paymentDao = new PaymentDao(FactoryProvider.getFactory());
+//		boolean isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate,
+//				parkingToken, paymentId);
+//
+//		System.out.println("Before Payment Updation");
+//		System.out.println(paymentId + paymentEmail + vehicleNumber + parkingToken + paymentDate + amount);
+//		if (isUpdated) {
+//			System.out.println("Done Payment");
+//			session.setAttribute("paymentStatus", "done");
+//			response.sendRedirect("UserPages/ParkingHistory.jsp");
+//		} else {
+//			System.out.println("Failed Payment ");
+//			System.out.println(isUpdated);
+//			session.setAttribute("paymentStatus", "failed");
+//			response.sendRedirect("UserPages/ParkingHistory.jsp");
+//		}
+//	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String paymentId = request.getParameter("payment_id");
-		
-		HttpSession session =  request.getSession();
-		//System.out.println(paymentId);
 
-		if (paymentId != null) {
-			// Here, you can update the database for payment success
-			session.setAttribute("paymentStatus", "done");
-			response.sendRedirect("UserPages/ParkingHistory.jsp");
-			//System.out.print("Successfull Payment");
+		// Debugging: Print full query string
+		System.out.println("Query String: " + request.getQueryString());
+
+		
+		
+		String paymentId = request.getParameter("payment_id");
+		System.out.println("Received Payment ID: " + paymentId); // Debugging Payment ID
+
+		HttpSession session = request.getSession(false); // false prevents creating a new session if it doesn't exist
+
+		// Declare variables before the if block
+		String paymentEmail = null;
+		String vehicleNumber = null;
+		String parkingToken = null;
+		String orderId = null;
+		long amount = 0L;
+
+		// Get current date-time as a formatted String
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String paymentDate = now.format(formatter);
+
+		if (session != null) {
+			// Debugging: Print all session attributes
+			Enumeration<String> attributeNames = session.getAttributeNames();
+			System.out.println("Session Attributes:");
+			while (attributeNames.hasMoreElements()) {
+				String attributeName = attributeNames.nextElement();
+				System.out.println(attributeName + " = " + session.getAttribute(attributeName));
+			}
+
+			// Fetch session attributes
+			paymentEmail = (String) session.getAttribute("paymentEmail");
+			vehicleNumber = (String) session.getAttribute("payingVehicleNumber");
+			parkingToken = (String) session.getAttribute("parkingToken");
+			orderId = (String) session.getAttribute("order_id");
+			
+			
+			// Fix type casting issue for amount
+			Object amountObj = session.getAttribute("amount");
+			if (amountObj instanceof Number) {
+				amount = ((Number) amountObj).longValue();
+			} else {
+				amount = 0L;
+			}
+
+			System.out.println("Extracted Session Data: " + paymentEmail + " " + vehicleNumber + " " + parkingToken
+					+ " " + paymentDate + " " + amount);
+			System.out.println("Order  ID: " + orderId); // Debugging OrderId ID 
 		} else {
-			session.setAttribute("paymentStatus", "failed");
-			response.sendRedirect("UserPages/ParkingHistory.jsp");
-			//System.out.print("Error or Failed Payment");
+			System.out.println("Session is null or expired.");
 		}
+
+		String status;
+		if (paymentId != null && !paymentId.trim().isEmpty()) {
+			System.out.println("Payment Not Null");
+			status = "SUCCESSFUL";
+		} else {
+			System.out.println("Payment Failed");
+			status = "FAILED";
+			paymentId = "N/A"; // Store "N/A" for failed transactions
+		}
+
+		// **Update payment status in the database**
+		PaymentDao paymentDao = new PaymentDao(FactoryProvider.getFactory());
+		boolean isUpdated = false;
+
+		try {
+			if (paymentEmail == null || paymentEmail.isEmpty()) {
+			    System.out.println("Error: Email is null before inserting into the database.");
+			} else {
+			    System.out.println("Email before insertion: " + paymentEmail);
+			    isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate, parkingToken,
+						paymentId);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error in PaymentDao.storePayment:");
+			e.printStackTrace(); // Print SQL Exception
+		}
+
+		System.out.println("Before Payment Updation");
+		System.out.println(paymentId + " " + paymentEmail + " " + vehicleNumber + " " + parkingToken + " " + paymentDate
+				+ " " + amount);
+
+		if (isUpdated) {
+			System.out.println("Payment Successfully Stored in DB");
+			session.setAttribute("paymentStatus", "done");
+		} else {
+			System.out.println("Payment Storage Failed");
+			session.setAttribute("paymentStatus", "failed");
+		}
+
+		response.sendRedirect("UserPages/ParkingHistory.jsp");
 	}
 
 }

@@ -71,7 +71,7 @@ public class VehicleDao {
 			vehicles = query.list();
 
 			if (vehicles != null && !vehicles.isEmpty()) {
-				System.out.println("Vehicles found: " + vehicles.size());
+				//System.out.println("Vehicles found: " + vehicles.size());
 			}
 		} catch (Exception e) {
 			e.printStackTrace(); // Print the exception for debugging

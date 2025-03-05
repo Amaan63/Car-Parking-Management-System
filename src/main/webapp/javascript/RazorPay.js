@@ -1,8 +1,9 @@
-function payNow(amountInPaise, email) {
+function payNow(amountInPaise, email,vehicleNumber,parkingToken) {
+	console.log(email,vehicleNumber,parkingToken,amountInPaise);
 	fetch('../PaymentServlet', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: `amount=${amountInPaise}&email=${email}`
+		body: `amount=${amountInPaise}&email=${email}&vehicleNumber=${vehicleNumber}&parkingToken=${parkingToken}`
 	})
 		.then(response => response.json())
 		.then(data => {
@@ -32,7 +33,7 @@ function payNow(amountInPaise, email) {
 					"order_id": data.orderId,
 					"handler": function(response) {
 						//alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-						window.location.href = "../PaymentVerificationServlet?payment_id=" + response.razorpay_payment_id;
+						window.location.href = "../PaymentVerificationServlet?payment_id=" + response.razorpay_payment_id ;
 					},
 					"prefill": {
 						"email": email // Prefill customer email
