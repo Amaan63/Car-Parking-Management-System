@@ -32,8 +32,8 @@ System.out.println(ratePerHour);
 		for (Vehicle vehicle : vehicles) {
 
 			// Converting The Object into Long for TotalCost
-			long totalCostObjectInPaise = Optional.ofNullable(vehicle.getTotalCost()).orElse(0L); 
-			long totalCostInRupees = totalCostObjectInPaise / 100; // Convert paise to rupees 
+			long totalCostInPaise = Optional.ofNullable(vehicle.getTotalCost()).orElse(0L);
+			long totalCostInRupees = totalCostInPaise / 100; // Convert paise to rupees
 	%>
 	<div class="card booking-card">
 		<div class="card-header">
@@ -97,7 +97,8 @@ System.out.println(ratePerHour);
 				<%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button class="cost-highlight">
+				<button class="cost-highlight"
+					onclick="payNow('<%=totalCostInPaise%>', '<%=vehicle.getUserEmailId()%>')">
 					Pay Now: &#8377;<%=totalCostInRupees%>
 				</button>
 			</div>
@@ -105,7 +106,6 @@ System.out.println(ratePerHour);
 		<div class="footer">Booked with &#10084; by Park Ease</div>
 	</div>
 	<%
-	System.out.println(vehicle.getTotalCost());
 	}
 	} else {
 	%>
@@ -114,3 +114,6 @@ System.out.println(ratePerHour);
 	}
 	%>
 </div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="../javascript/RazorPay.js"></script>
+

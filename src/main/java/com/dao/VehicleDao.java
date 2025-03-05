@@ -142,20 +142,20 @@ public class VehicleDao {
 
 	        // Step 4: Calculate total cost
 	        long ratePerHour = getRatePerHour();
-	        System.out.println(ratePerHour);
+	        //System.out.println(ratePerHour);
 	        int totalHours = extractHours(savedVehicle.getTimeDuration());
 	        String Time = (String)savedVehicle.getTimeDuration();
-	        System.out.println(Time);
-	        System.out.println(totalHours);
+	        //System.out.println(Time);
+	        //System.out.println(totalHours);
 	        long totalCost = ratePerHour * totalHours;
-	        System.out.println(totalCost);
+	        //System.out.println(totalCost);
 
 	        // Step 5: Update vehicle with total cost
 	        savedVehicle.setTotalCost(totalCost);
 	        session.update(savedVehicle);
 	        transaction.commit();
 
-	        System.out.println("Total cost updated successfully: " + totalCost);
+	       // System.out.println("Total cost updated successfully: " + totalCost);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
