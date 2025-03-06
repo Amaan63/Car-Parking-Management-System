@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.dao.VehicleDao"%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 <!-- Charts Row -->
@@ -76,8 +79,14 @@
 			},
 		},
 	});
-
-	// Occupancy Chart - Current parking space distribution
+</script>
+<script>
+	
+<%// Call DAO directly inside JSP
+VehicleDao vehicleDAO = new VehicleDao(FactoryProvider.getFactory());
+List<Object[]> vehicleCounts = vehicleDAO.getVehicleCounts();%>
+	//Occupancy Chart - Current parking space distribution
+	/*
 	const occupancyCtx = document.getElementById("occupancyChart").getContext(
 			"2d");
 	new Chart(occupancyCtx, {
@@ -116,5 +125,55 @@
 			},
 			cutout : "65%",
 		},
-	});
+	}); */
+	document.addEventListener("DOMContentLoaded", function () {
+        const vehicleData = [
+            <%if (vehicleCounts != null) {
+	for (Object[] row : vehicleCounts) {
+		String vehicleType = (String) row[0];
+		long count = (Long) row[1];%>
+                        { label: "<%=vehicleType%>", value: <%=count%> },
+            <%}
+}%>
+        ];
+
+        const labels = vehicleData.map(item => item.label);
+        const dataValues = vehicleData.map(item => item.value);
+
+        const occupancyCtx = document.getElementById("occupancyChart").getContext("2d");
+        new Chart(occupancyCtx, {
+            type: "doughnut",
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataValues,
+                    backgroundColor: ["#198754", "#dc3545", "#ffc107", "#0d6efd", "#6f42c1", "#fd7e14", "#20c997", "#6610f2"],
+                    borderWidth: 0,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            color: "#ffffff80",
+                            padding: 10,
+                            usePointStyle: true,
+                            pointStyle: "circle",
+                        },
+                    },
+                    tooltip: {
+                        backgroundColor: "rgba(0, 0, 0, 0.8)",
+                        titleColor: "#fff",
+                        bodyColor: "#fff",
+                        borderColor: "rgba(255, 255, 255, 0.1)",
+                        borderWidth: 1,
+                    },
+                },
+                cutout: "65%",
+            },
+        });
+    });
 </script>
