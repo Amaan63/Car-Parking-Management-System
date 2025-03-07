@@ -25,9 +25,14 @@ function validateForm() {
 	}
 
 	// Vehicle number plate validation
-	const numberPlate = document.getElementById('numberPlate').value;
+	const numberPlate = document.getElementById('numberPlate').value.trim();
+	const regex = /^[A-Z]{2}[-\s]?\d{1,2}[-\s]?[A-Z]{1,2}[-\s]?\d{4}$/; // Accepts spaces or hyphens
+
 	if (numberPlate === '') {
 		alert('Please enter the vehicle number plate.');
+		isValid = false;
+	} else if (!regex.test(numberPlate)) {
+		alert('Invalid vehicle number plate. Please enter a valid Indian vehicle number plate.');
 		isValid = false;
 	}
 
