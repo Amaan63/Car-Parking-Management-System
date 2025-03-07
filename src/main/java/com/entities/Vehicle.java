@@ -24,7 +24,7 @@ public class Vehicle {
 	@Column(length = 100, name = "user_name")
 	private String userName;
 
-	@Column(length = 100, name = "user_email")
+	@Column(length = 100, name = "user_email",unique = true)
 	private String userEmailId;
 
 	@Column(length = 100, name = "vehicle_company")
@@ -33,7 +33,7 @@ public class Vehicle {
 	@Column(length = 1000, name = "vehicle_name")
 	private String vehicleName;
 
-	@Column(length = 1000, name = "vehicle_numberplate")
+	@Column(length = 1000, name = "vehicle_numberplate",unique = true)
 	private String vehicleNumberPlate;
 
 	@Column(length = 100, name = "vehicle_vehicletype")

@@ -192,6 +192,26 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 			</form>
 		</div>
 	</div>
+	
+	
+	<%
+	// Retrieve the session attribute
+	String bookingStatus = (String) session.getAttribute("bookingStatus");
+
+	// Check if the attribute is null
+	if (bookingStatus != null) {
+		if ("Vehicle number already exists.".equals(bookingStatus)) {
+			
+	%>
+	<%@include file="../components/popups/VehicleDuplicateValuePopup.jsp"%>
+	<%
+	}
+	// Remove the attribute to prevent the message from appearing again
+	session.removeAttribute("bookingStatus");
+	}
+	%>
+	
+	
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const otherOption = document.getElementById('carCompany');

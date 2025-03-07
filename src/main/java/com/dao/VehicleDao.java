@@ -207,4 +207,29 @@ public class VehicleDao {
 		}
 		return vehicleCounts;
 	}
+	
+	// This check whether the Vehicle Already Exist or Not
+	// Method in VehicleDao to check if a vehicle number exists
+	public boolean isVehicleNumberExists(String vehicleNumber) {
+	    Session session = null;
+	    boolean exists = false;
+	    try {
+	        session = this.factory.openSession();
+	        Query query = session.createQuery("SELECT COUNT(v) FROM Vehicle v WHERE v.vehicleNumberPlate = :vNumber");
+	        query.setParameter("vNumber", vehicleNumber);
+	        Long count = (Long) query.uniqueResult();
+	        
+	        System.out.println("Checking vehicleNumber: " + vehicleNumber + ", Found count: " + count);
+	        
+	        exists = (count != null && count > 0);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	    return exists;
+	}
+
 }

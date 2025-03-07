@@ -20,7 +20,7 @@ public class SaveVehicleBooking extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String userName = request.getParameter("userName");
 		String userEmail = request.getParameter("userEmail");
@@ -34,40 +34,40 @@ public class SaveVehicleBooking extends HttpServlet {
 		String vehicleType = request.getParameter("vehicleType");
 		String bookingDate = request.getParameter("bookingDate");
 		String timeDuration = request.getParameter("timeDuration");
-//		out.println("Booking Details");
-//		out.println(userName);
-//		out.println(userEmail);
-//		out.println(vehicleCompany);
-//		out.println(vehicleName);
-//		out.println(vehicleNumber);
-//		out.println(vehicleType);
-//		out.println(bookingDate);
-//		out.println(timeDuration);
-		
-		
-		HttpSession session = request.getSession();
-		
-		Vehicle vehicle = new Vehicle(userName, userEmail, vehicleCompany, vehicleName, vehicleNumber, vehicleType, bookingDate, timeDuration);
-		
+
 		VehicleDao vehicleDao = new VehicleDao(FactoryProvider.getFactory());
-		User user =  vehicleDao.getUserById(userId);
+		HttpSession session = request.getSession();
+
+		// Validate if vehicle number already exists
+		System.out.println("Checking vehicle: " + vehicleNumber);
+		if (vehicleDao.isVehicleNumberExists(vehicleNumber)) {
+			System.out.println("Duplicate found: " + vehicleNumber);
+			session.setAttribute("bookingStatus", "Vehicle number already exists.");
+			response.sendRedirect("UserPages/BookingForm.jsp");
+			return;
+		}
+
+		Vehicle vehicle = new Vehicle(userName, userEmail, vehicleCompany, vehicleName, vehicleNumber, vehicleType,
+				bookingDate, timeDuration);
+
+		User user = vehicleDao.getUserById(userId);
 		vehicle.setUser(user);
-		
+
 		boolean status = vehicleDao.saveVehicle(vehicle);
 		if (status) {
 			// Ensure vehicle ID is generated (if using auto-increment)
-		    if (vehicle.getVehicleId() > 0) {
-		        vehicleDao.calculateAndUpdateCost(vehicle.getVehicleId());
-		        System.out.println(vehicle.getVehicleId());
-		    }else {
-		    	System.out.println("Cannot find the Vehicle Id");
-		    }
+			if (vehicle.getVehicleId() > 0) {
+				vehicleDao.calculateAndUpdateCost(vehicle.getVehicleId());
+				System.out.println(vehicle.getVehicleId());
+			} else {
+				System.out.println("Cannot find the Vehicle Id");
+			}
 			session.setAttribute("bookingStatus", "Successfully Booked the Parking Spot");
 			response.sendRedirect("UserPages/UserDashBoard.jsp");
 		} else {
 			session.setAttribute("bookingStatus", "Failed Booking");
 			response.sendRedirect("UserPages/UserDashBoard.jsp");
 		}
-		
+
 	}
 }
