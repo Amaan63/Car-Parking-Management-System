@@ -2,8 +2,6 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
-import com.dao.PaymentDao;
-import com.helper.FactoryProvider;
 import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
 

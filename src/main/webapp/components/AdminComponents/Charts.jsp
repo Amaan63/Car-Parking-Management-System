@@ -18,7 +18,7 @@
 	<div class="col-md-4">
 		<div class="card bg-dark text-light border border-secondary">
 			<div class="card-header border-secondary">
-				<h5 class="card-title mb-0">Occupancy Rate</h5>
+				<h5 class="card-title mb-0">Vehicle Types Occupancy </h5>
 			</div>
 			<div class="card-body">
 				<canvas id="occupancyChart" height="200"></canvas>

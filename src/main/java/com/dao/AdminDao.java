@@ -6,8 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import com.entities.Slot;
 import com.entities.User;
 import com.entities.Vehicle;
 
@@ -151,6 +149,5 @@ public class AdminDao {
 			session.close();
 		}
 	}
-	
-	
+
 }

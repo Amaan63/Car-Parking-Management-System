@@ -14,7 +14,7 @@ import com.entities.Vehicle;
 public class VehicleDao {
 
 	private SessionFactory factory;
-	private ParkingSlotDao parkingSlotDao;
+	
 
 	public VehicleDao(SessionFactory factory) {
 		this.factory = factory;
@@ -80,6 +80,26 @@ public class VehicleDao {
 		}
 		return vehicles;
 	}
+	
+	// To get all the vehicle to update the Rates
+	public List<Vehicle> getAllVehicles() {
+	    List<Vehicle> vehicles = new ArrayList<>();
+	    Session session = null;
+
+	    try {
+	        session = this.factory.openSession();
+	        Query<Vehicle> query = session.createQuery("FROM Vehicle", Vehicle.class);
+	        vehicles = query.list();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+
+	    return vehicles;
+	}
 
 	public List<Vehicle> getUnassignedVehicles() {
 		Session session = this.factory.openSession();
@@ -144,7 +164,7 @@ public class VehicleDao {
 			long ratePerHour = getRatePerHour();
 			// System.out.println(ratePerHour);
 			int totalHours = extractHours(savedVehicle.getTimeDuration());
-			String Time = (String) savedVehicle.getTimeDuration();
+			//String Time = (String) savedVehicle.getTimeDuration();
 			// System.out.println(Time);
 			// System.out.println(totalHours);
 			long totalCost = ratePerHour * totalHours;
@@ -165,6 +185,8 @@ public class VehicleDao {
 		}
 	}
 
+	
+	// This for Pie Chart in Admin Panel
 	public List<Object[]> getVehicleCounts() {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;

@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.entities.Rates;
+import com.entities.Vehicle;
 
 public class RatesDao {
 	private SessionFactory factory;
@@ -29,6 +31,20 @@ public class RatesDao {
 			Query<Rates> query = session.createQuery("FROM Rates r WHERE r.id = 1", Rates.class);
 			Rates existingRate = query.uniqueResult();
 
+//			if (existingRate != null) {
+//				// Update existing rate
+//				existingRate.setRatePerHour(rate.getRatePerHour());
+//				session.update(existingRate);
+//			} else {
+//				// Save new rate
+//				session.save(rate);
+//			}
+//
+//			transaction.commit();
+//			// **Recalculate costs for all vehicles after updating the rate**
+//			VehicleDao vehicleDao = new VehicleDao(this.factory);
+//			int ratePerHour = (int) rate.getRatePerHour();
+//	        vehicleDao.calculateAndUpdateCost(ratePerHour);
 			if (existingRate != null) {
 				// Update existing rate
 				existingRate.setRatePerHour(rate.getRatePerHour());
@@ -39,6 +55,15 @@ public class RatesDao {
 			}
 
 			transaction.commit();
+			session.close(); // Close session before recalculating costs
+
+			// **Trigger recalculation of all vehicle costs**
+			VehicleDao vehicleDao = new VehicleDao(this.factory);
+			List<Vehicle> vehicles = vehicleDao.getAllVehicles(); // Fetch all vehicles
+
+			for (Vehicle vehicle : vehicles) {
+				vehicleDao.calculateAndUpdateCost(vehicle.getVehicleId()); // Update cost
+			}
 			return true;
 
 		} catch (Exception e) {
@@ -51,19 +76,19 @@ public class RatesDao {
 			session.close();
 		}
 	}
-	
+
 	// Get the fixed rate per hour (ID = 1)
-    public double getFixedRatePerHour() {
-    	Session session = factory.openSession();
-    	double ratePerHour = 0.0;
-        try {
-            Rates rate = session.get(Rates.class, 1L); // Always fetch rate with ID = 1
-            if (rate != null) {
-                ratePerHour = rate.getRatePerHour();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ratePerHour;
-    }
+	public double getFixedRatePerHour() {
+		Session session = factory.openSession();
+		double ratePerHour = 0.0;
+		try {
+			Rates rate = session.get(Rates.class, 1L); // Always fetch rate with ID = 1
+			if (rate != null) {
+				ratePerHour = rate.getRatePerHour();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ratePerHour;
+	}
 }

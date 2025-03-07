@@ -1,7 +1,6 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +34,6 @@ public class SaveOrUpdateRatesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		/// Get rate from form input (in rupees)
-		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
         double rateInRupees = Double.parseDouble(request.getParameter("ratePerHour"));
         

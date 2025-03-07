@@ -1,7 +1,6 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Enumeration;
@@ -88,7 +87,6 @@ public class PaymentVerificationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 
 		// Debugging: Print full query string
 		System.out.println("Query String: " + request.getQueryString());
