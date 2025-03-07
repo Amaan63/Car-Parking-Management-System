@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import com.entities.Slot;
 import com.entities.User;
 import com.entities.Vehicle;
 
@@ -58,44 +60,6 @@ public class AdminDao {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
 
-//		try {
-//			transaction = session.beginTransaction();
-//
-//			// Fetch user's vehicles
-//			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
-//					.setParameter("userId", userId).getResultList();
-//
-//			for (Vehicle vehicle : vehicles) {
-//				// Update slot to remove the assigned vehicle reference and set status to
-//				// "AVAILABLE"
-//				Query slotQuery = session.createQuery(
-//						"UPDATE Slot s SET s.assignedVehicle = null, s.status = 'AVAILABLE' WHERE s.assignedVehicle.vehicleId = :vehicleId");
-//				slotQuery.setParameter("vehicleId", vehicle.getVehicleId());
-//				slotQuery.executeUpdate();
-//
-//				// Delete the vehicle
-//				session.delete(vehicle);
-//			}
-//
-//			// Delete the user
-//			User user = session.get(User.class, userId);
-//			if (user != null) {
-//				session.delete(user);
-//			}
-//
-//			transaction.commit();
-//			return true;
-//
-//		} catch (Exception e) {
-//			if (transaction != null) {
-//				transaction.rollback();
-//			}
-//			e.printStackTrace();
-//			return false;
-//
-//		} finally {
-//			session.close();
-//		}
 		try {
 			transaction = session.beginTransaction();
 
@@ -186,6 +150,54 @@ public class AdminDao {
 			session.close();
 		}
 
+	}
+
+	// Deleting Slot by Id
+	public boolean deleteSlotById(int slotId) {
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+		boolean isDeleted = false;
+
+		try {
+			transaction = session.beginTransaction();
+
+			// Fetch the slot
+			Slot slot = session.get(Slot.class, slotId);
+			if (slot != null) {
+				// Check if a vehicle is assigned to this slot
+				if (slot.getAssignedVehicle() != null) {
+					Vehicle vehicle = slot.getAssignedVehicle();
+
+					// Unlink the slot from the vehicle
+					vehicle.setSlot(null); // Assuming you have a slot field in the Vehicle entity
+					session.update(vehicle); // Update the vehicle in the database
+
+					// Unlink the vehicle from the slot
+					slot.setAssignedVehicle(null);
+					session.update(slot);
+				}
+
+				// Delete the slot
+				session.delete(slot);
+				isDeleted = true;
+			}
+
+			transaction.commit();
+			// Allocate slots after deletion
+			if (isDeleted) {
+				ParkingSlotDao parkingSlotDao =  new ParkingSlotDao(this.factory);
+				parkingSlotDao.allocateSlotsAutomatically(); // Call method to allocate available slots
+			}
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return isDeleted;
 	}
 
 }

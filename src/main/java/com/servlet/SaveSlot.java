@@ -2,7 +2,6 @@ package com.servlet;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,18 +30,22 @@ public class SaveSlot extends HttpServlet {
 		String slotName = request.getParameter("slotName");
 		String slotStatus = request.getParameter("slotStatus");
 
-		HttpSession session =  request.getSession();
-		Slot slot = new Slot(slotName, slotStatus);
+		HttpSession session = request.getSession();
 		ParkingSlotDao parkingSlotDao = new ParkingSlotDao(FactoryProvider.getFactory());
-		
+		if (parkingSlotDao.isSlotNameExists(slotName)) {
+			session.setAttribute("creatingSlot", "Duplicate");
+			response.sendRedirect("AdminPages/AdminDashBoard.jsp");
+			return;
+		}
+		Slot slot = new Slot(slotName, slotStatus);
+
 		boolean status;
-		
+
 		status = parkingSlotDao.addSlot(slot);
-		if(status) {
+		if (status) {
 			session.setAttribute("creatingSlot", "Successful");
 			response.sendRedirect("AdminPages/AdminDashBoard.jsp");
-		}
-		else {
+		} else {
 			session.setAttribute("creatingSlot", "Rejected");
 			response.sendRedirect("AdminPages/AdminDashBoard.jsp");
 		}

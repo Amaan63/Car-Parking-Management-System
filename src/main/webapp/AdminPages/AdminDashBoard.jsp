@@ -48,11 +48,36 @@
 	%>
 	<%@ include file="../components/popups/SlotRejectedPopup.jsp"%>
 	<%
-	}
-	session.removeAttribute("creatingSlot");
+	} else if (slotStatus != null && slotStatus.equals("Duplicate")) {
 	%>
-	
-	<%String parkingRatesStatus = (String) session.getAttribute("parkingRatesStatus");
+	<!-- Bootstrap Modal -->
+	<div class="modal fade" id="DuplicateSlotRecordedModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Slot Is Already Exist
+						Please Use Different Name for a SLot</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var DuplicateSlotRecordedModal = new bootstrap.Modal(document
+				.getElementById('DuplicateSlotRecordedModal'));
+		DuplicateSlotRecordedModal.show();
+	</script>
+
+	<%
+	session.removeAttribute("creatingSlot");
+	}
+	%>
+
+	<%
+	String parkingRatesStatus = (String) session.getAttribute("parkingRatesStatus");
 	if (parkingRatesStatus != null && parkingRatesStatus.equals("Successfully created Parking Rates")) {
 	%>
 	<%@ include file="../components/popups/ParkingRatesSuccessPopup.jsp"%>
@@ -63,7 +88,8 @@
 	<%@ include file="../components/popups/ParkingRatesErrorPopup.jsp"%>
 	<%
 	}
-	session.removeAttribute("parkingRatesStatus"); %>
-	
+	session.removeAttribute("parkingRatesStatus");
+	%>
+
 </body>
 </html>

@@ -70,20 +70,22 @@
 			</div>
 			<div class="col-md-4 feature-card">
 				<div class="d-grid">
+					<button class="btn btn-primary p-4"
+						onclick="window.location.href='../AdminPages/ManageSlots.jsp'">
+						<img alt="Manage Parking Rates"
+							src="/CarParkingManagementSystem/images/QuickActions/ManageSlot.png"
+							class="mb-2 custom-img"> <br /> <b> Manage Slot </b>
+					</button>
+				</div>
+			</div>
+			<div class="col-md-4 feature-card">
+				<div class="d-grid">
 					<button class="btn btn-info p-4">
 						<!--   <i class="fas fa-receipt fa-2x mb-2"></i><br /> -->
 						<img alt="View FeedBack and Complaints"
 							src="/CarParkingManagementSystem/images/QuickActions/Feedback&Review.png"
 							class="mb-2 custom-img"> <br /> <b> View Feedback and
 							Complaint </b>
-					</button>
-				</div>
-			</div>
-			<div class="col-md-4 feature-card">
-				<div class="d-grid">
-					<button class="btn btn-primary p-4">
-						<i class="fas fa-info-circle fa-2x mb-2 custom-img"></i><br /> <b>
-							Help & Support </b>
 					</button>
 				</div>
 			</div>

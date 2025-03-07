@@ -42,6 +42,33 @@ public class ParkingSlotDao {
 		}
 	}
 
+	// Method to check if slot name already exists
+	public boolean isSlotNameExists(String slotName) {
+		Session session = this.factory.openSession();
+		boolean exists = false;
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			Query<Long> query = session.createQuery("SELECT COUNT(s) FROM Slot s WHERE s.slotName = :slotName",
+					Long.class);
+			query.setParameter("slotName", slotName);
+
+			Long count = query.uniqueResult();
+			exists = count != null && count > 0;
+
+			if (exists) {
+				System.out.println("Slot name already exists in the database.");
+			}
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null)
+				transaction.rollback();
+			e.printStackTrace();
+		}
+		return exists;
+	}
+
 	public String allocateSlotsAutomatically() {
 		// Open a Hibernate session to interact with the database
 		Session session = this.factory.openSession();
@@ -122,7 +149,7 @@ public class ParkingSlotDao {
 					.getResultList();
 
 			// Use an iterator to track slots
-			Iterator<Slot> slotIterator = availableSlots.iterator(); 
+			Iterator<Slot> slotIterator = availableSlots.iterator();
 
 			for (Vehicle vehicle : unassignedVehicles) {
 				if (!slotIterator.hasNext()) {
@@ -150,28 +177,28 @@ public class ParkingSlotDao {
 			session.close();
 		}
 	}
-	
+
 	// Getting Slot to make A parking Map
 	public List<Slot> getAllSlots() {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
-        List<Slot> slots = null;
+		List<Slot> slots = null;
 
-        try  {
-            transaction = session.beginTransaction();
+		try {
+			transaction = session.beginTransaction();
 
-            Query<Slot> query = session.createQuery("FROM Slot", Slot.class);
-            slots = query.list();
+			Query<Slot> query = session.createQuery("FROM Slot", Slot.class);
+			slots = query.list();
 
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
 
-        return slots;
-    }
+		return slots;
+	}
 
 }

@@ -21,10 +21,11 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 	<div class="container mt-5">
 		<div class="form-container">
 			<h2 class="text-center mb-4 highlight">Vehicle Booking Form</h2>
-			<form action="../SaveVehicleBooking"
-				method="post" onsubmit="return validateForm()">
-				
-				<input type="hidden" name="userId" value="<%=userDetailForBooking.getUserId()%>">
+			<form action="../SaveVehicleBooking" method="post"
+				onsubmit="return validateForm()">
+
+				<input type="hidden" name="userId"
+					value="<%=userDetailForBooking.getUserId()%>">
 				<!-- Customer Name -->
 				<div class="form-group m-3">
 					<label for="customerName" class="form-label h3">Customer
@@ -181,9 +182,6 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 						</select>
 					</div>
 				</div>
-
-
-
 				<!-- Submit Button -->
 				<div class="btn col-md-12 mt-3 m-3">
 					<button type="submit" class="btn btn-success col-md-12">Book
@@ -192,8 +190,6 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 			</form>
 		</div>
 	</div>
-	
-	
 	<%
 	// Retrieve the session attribute
 	String bookingStatus = (String) session.getAttribute("bookingStatus");
@@ -201,7 +197,6 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 	// Check if the attribute is null
 	if (bookingStatus != null) {
 		if ("Vehicle number already exists.".equals(bookingStatus)) {
-			
 	%>
 	<%@include file="../components/popups/VehicleDuplicateValuePopup.jsp"%>
 	<%
@@ -210,8 +205,6 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 	session.removeAttribute("bookingStatus");
 	}
 	%>
-	
-	
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const otherOption = document.getElementById('carCompany');
