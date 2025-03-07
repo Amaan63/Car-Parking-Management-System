@@ -31,20 +31,6 @@ public class RatesDao {
 			Query<Rates> query = session.createQuery("FROM Rates r WHERE r.id = 1", Rates.class);
 			Rates existingRate = query.uniqueResult();
 
-//			if (existingRate != null) {
-//				// Update existing rate
-//				existingRate.setRatePerHour(rate.getRatePerHour());
-//				session.update(existingRate);
-//			} else {
-//				// Save new rate
-//				session.save(rate);
-//			}
-//
-//			transaction.commit();
-//			// **Recalculate costs for all vehicles after updating the rate**
-//			VehicleDao vehicleDao = new VehicleDao(this.factory);
-//			int ratePerHour = (int) rate.getRatePerHour();
-//	        vehicleDao.calculateAndUpdateCost(ratePerHour);
 			if (existingRate != null) {
 				// Update existing rate
 				existingRate.setRatePerHour(rate.getRatePerHour());

@@ -149,7 +149,6 @@ public class VehicleDao {
 	public void calculateAndUpdateCost(int vehicleId) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
-
 		try {
 			transaction = session.beginTransaction();
 
