@@ -57,24 +57,53 @@ public class AdminDao {
 	public boolean deleteUserById(int userId) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
+
 //		try {
 //			transaction = session.beginTransaction();
+//
+//			// Fetch user's vehicles
+//			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
+//					.setParameter("userId", userId).getResultList();
+//
+//			for (Vehicle vehicle : vehicles) {
+//				// Update slot to remove the assigned vehicle reference and set status to
+//				// "AVAILABLE"
+//				Query slotQuery = session.createQuery(
+//						"UPDATE Slot s SET s.assignedVehicle = null, s.status = 'AVAILABLE' WHERE s.assignedVehicle.vehicleId = :vehicleId");
+//				slotQuery.setParameter("vehicleId", vehicle.getVehicleId());
+//				slotQuery.executeUpdate();
+//
+//				// Delete the vehicle
+//				session.delete(vehicle);
+//			}
+//
+//			// Delete the user
 //			User user = session.get(User.class, userId);
 //			if (user != null) {
 //				session.delete(user);
-//				transaction.commit();
-//				return true;
 //			}
+//
+//			transaction.commit();
+//			return true;
+//
 //		} catch (Exception e) {
+//			if (transaction != null) {
+//				transaction.rollback();
+//			}
 //			e.printStackTrace();
+//			return false;
+//
 //		} finally {
 //			session.close();
 //		}
-//		return false;
-//	}
-
 		try {
 			transaction = session.beginTransaction();
+
+			// Delete payment records associated with the user
+			Query query = session.createQuery(
+					"DELETE FROM Payment p WHERE p.email IN (SELECT u.userEmail FROM User u WHERE u.id = :userId)");
+			query.setParameter("userId", userId);
+			query.executeUpdate();
 
 			// Fetch user's vehicles
 			List<Vehicle> vehicles = session.createQuery("FROM Vehicle WHERE user.id = :userId", Vehicle.class)
@@ -111,6 +140,7 @@ public class AdminDao {
 		} finally {
 			session.close();
 		}
+
 	}
 
 	public boolean deleteVehicleById(int vehicleId) {
@@ -124,6 +154,13 @@ public class AdminDao {
 			Vehicle vehicle = session.get(Vehicle.class, vehicleId);
 
 			if (vehicle != null) {
+				String vehicleNumber = vehicle.getVehicleNumberPlate(); // Get vehicle number
+
+				// Delete payments related to the vehicle using vehicle number
+				Query paymentQuery = session.createQuery("DELETE FROM Payment WHERE vehicleNumber = :vehicleNumber");
+				paymentQuery.setParameter("vehicleNumber", vehicleNumber);
+				paymentQuery.executeUpdate();
+
 				// Update the associated slot to remove vehicle reference and set status to
 				// "AVAILABLE"
 				Query slotQuery = session.createQuery(
@@ -148,6 +185,7 @@ public class AdminDao {
 		} finally {
 			session.close();
 		}
+
 	}
 
 }

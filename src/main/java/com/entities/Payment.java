@@ -15,6 +15,9 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "order_id", unique = true)
+	private String orderId; // To store the actual order ID from Razorpay
+	
 	@Column(name = "razorpay_payment_id", unique = true)
 	private String razorpayPaymentId; // To store the actual payment ID from Razorpay
 
@@ -40,7 +43,7 @@ public class Payment {
 	public Payment() {
 	}
 
-	public Payment(String email,long amount, String status, String paymentDate, String vehicleNumber, String parkingToken,String paymentId) {
+	public Payment(String email,long amount, String status, String paymentDate, String vehicleNumber, String parkingToken,String paymentId,String orderId) {
 		super();
 		this.email=email;
 		this.amount = amount;
@@ -49,8 +52,19 @@ public class Payment {
 		this.vehicleNumber = vehicleNumber;
 		this.parkingToken = parkingToken;
 		this.razorpayPaymentId = paymentId;
+		this.orderId = orderId;
 	}
 
+	
+	
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
 	public String getParkingToken() {
 		return parkingToken;

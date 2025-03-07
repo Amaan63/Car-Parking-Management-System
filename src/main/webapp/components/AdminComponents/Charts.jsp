@@ -18,9 +18,9 @@
 	<div class="col-md-4">
 		<div class="card bg-dark text-light border border-secondary">
 			<div class="card-header border-secondary">
-				<h5 class="card-title mb-0">Vehicle Types Occupancy </h5>
+				<h5 class="card-title mb-0">Vehicle Types Occupancy</h5>
 			</div>
-			<div class="card-body">
+			<div class="card-body occupancyChartContainer">
 				<canvas id="occupancyChart" height="200"></canvas>
 			</div>
 		</div>
@@ -85,58 +85,26 @@
 <%// Call DAO directly inside JSP
 VehicleDao vehicleDAO = new VehicleDao(FactoryProvider.getFactory());
 List<Object[]> vehicleCounts = vehicleDAO.getVehicleCounts();%>
-	//Occupancy Chart - Current parking space distribution
-	/*
-	const occupancyCtx = document.getElementById("occupancyChart").getContext(
-			"2d");
-	new Chart(occupancyCtx, {
-		type : "doughnut",
-		data : {
-			labels : [ "Available", "Occupied", "Reserved" ],
-			datasets : [ {
-				data : [ 65, 25, 10 ],
-				backgroundColor : [ "#198754", // success
-				"#dc3545", // danger
-				"#ffc107", // warning
-				],
-				borderWidth : 0,
-			}, ],
-		},
-		options : {
-			responsive : true,
-			maintainAspectRatio : false,
-			plugins : {
-				legend : {
-					position : "bottom",
-					labels : {
-						color : "#ffffff80",
-						padding : 10,
-						usePointStyle : true,
-						pointStyle : "circle",
-					},
-				},
-				tooltip : {
-					backgroundColor : "rgba(0, 0, 0, 0.8)",
-					titleColor : "#fff",
-					bodyColor : "#fff",
-					borderColor : "rgba(255, 255, 255, 0.1)",
-					borderWidth : 1,
-				},
-			},
-			cutout : "65%",
-		},
-	}); */
-	document.addEventListener("DOMContentLoaded", function () {
-        const vehicleData = [
-            <%if (vehicleCounts != null) {
+
+document.addEventListener("DOMContentLoaded", function () {
+    const vehicleData = [
+        <%if (vehicleCounts != null && !vehicleCounts.isEmpty()) {
 	for (Object[] row : vehicleCounts) {
 		String vehicleType = (String) row[0];
 		long count = (Long) row[1];%>
-                        { label: "<%=vehicleType%>", value: <%=count%> },
-            <%}
+                { label: "<%=vehicleType%>", value: <%=count%> },
+        <%}
 }%>
-        ];
+    ];
 
+    const chartContainer = document.querySelector(".occupancyChartContainer");
+
+    if (vehicleData.length === 0) {
+        // Remove the chart and show the message
+        chartContainer.innerHTML = 
+            "<p style='color: white; text-align: center; font-size: 16px;'>No vehicles added yet.</p>";
+    } else {
+        // Render the chart if data is available
         const labels = vehicleData.map(item => item.label);
         const dataValues = vehicleData.map(item => item.value);
 
@@ -175,5 +143,8 @@ List<Object[]> vehicleCounts = vehicleDAO.getVehicleCounts();%>
                 cutout: "65%",
             },
         });
-    });
+    }
+});
+
+
 </script>

@@ -18,7 +18,7 @@ public class PaymentDao {
 
 	// Store payment when order is created
 	public boolean storePayment(String email, long amount, String status, String vehicleNumber, String paymentDate,
-			String parkingToken,String paymentId) {
+			String parkingToken,String paymentId,String orderId) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
 		System.out.println("Dao Start Here");
@@ -28,11 +28,11 @@ public class PaymentDao {
 			    throw new RuntimeException("Payment email is null. Cannot proceed with database insertion.");
 			}
 
-			Payment payment = new Payment(email,amount, status,  paymentDate,vehicleNumber, parkingToken,paymentId);
+			Payment payment = new Payment(email,amount, status,  paymentDate,vehicleNumber, parkingToken,paymentId,orderId);
 			session.save(payment);
 
 			transaction.commit();
-			System.out.println("Dao End Here syccessfully ");
+			System.out.println("Dao End Here successfully ");
 			return true;
 		} catch (Exception e) {
 			if (transaction != null)

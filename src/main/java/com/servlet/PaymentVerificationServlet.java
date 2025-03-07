@@ -27,72 +27,12 @@ public class PaymentVerificationServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		PrintWriter out = response.getWriter();
-//		String paymentId = request.getParameter("payment_id");
-//
-//		HttpSession session = request.getSession(false); // false prevents creating a new session if it doesn't exist
-//
-//		// Declare variables before the if block
-//		String paymentEmail = null;
-//		String vehicleNumber = null;
-//		String parkingToken = null;
-//		long amount = 0L;
-//
-//		// Get current date-time as a formatted String
-//		LocalDateTime now = LocalDateTime.now();
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//		String paymentDate = now.format(formatter);
-//
-//		if (session != null) {
-//			paymentEmail = (String) session.getAttribute("paymentEmail");
-//			vehicleNumber = (String) session.getAttribute("payingVehicleNumber");
-//			parkingToken = (String) session.getAttribute("parkingToken");
-//			Object amountObj = session.getAttribute("amount");
-//			amount = (amountObj != null) ? (long) amountObj : 0L;
-//
-//			System.out.println(paymentId + paymentEmail + vehicleNumber + parkingToken + paymentDate + amount);
-//		}
-//
-//		String status;
-//
-//		if (paymentId != null) {
-//			System.out.println("Payment Not Null");
-//			status = "SUCCESSFUL";
-//		} else {
-//			System.out.println("Failed");
-//			status = "FAILED";
-//			paymentId = "N/A"; // Store "N/A" for failed transactions
-//		}
-//
-//		// **Update payment status in the database**
-//		PaymentDao paymentDao = new PaymentDao(FactoryProvider.getFactory());
-//		boolean isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate,
-//				parkingToken, paymentId);
-//
-//		System.out.println("Before Payment Updation");
-//		System.out.println(paymentId + paymentEmail + vehicleNumber + parkingToken + paymentDate + amount);
-//		if (isUpdated) {
-//			System.out.println("Done Payment");
-//			session.setAttribute("paymentStatus", "done");
-//			response.sendRedirect("UserPages/ParkingHistory.jsp");
-//		} else {
-//			System.out.println("Failed Payment ");
-//			System.out.println(isUpdated);
-//			session.setAttribute("paymentStatus", "failed");
-//			response.sendRedirect("UserPages/ParkingHistory.jsp");
-//		}
-//	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		// Debugging: Print full query string
 		System.out.println("Query String: " + request.getQueryString());
 
-		
-		
 		String paymentId = request.getParameter("payment_id");
 		System.out.println("Received Payment ID: " + paymentId); // Debugging Payment ID
 
@@ -124,8 +64,7 @@ public class PaymentVerificationServlet extends HttpServlet {
 			vehicleNumber = (String) session.getAttribute("payingVehicleNumber");
 			parkingToken = (String) session.getAttribute("parkingToken");
 			orderId = (String) session.getAttribute("order_id");
-			
-			
+
 			// Fix type casting issue for amount
 			Object amountObj = session.getAttribute("amount");
 			if (amountObj instanceof Number) {
@@ -136,7 +75,7 @@ public class PaymentVerificationServlet extends HttpServlet {
 
 			System.out.println("Extracted Session Data: " + paymentEmail + " " + vehicleNumber + " " + parkingToken
 					+ " " + paymentDate + " " + amount);
-			System.out.println("Order  ID: " + orderId); // Debugging OrderId ID 
+			System.out.println("Order  ID: " + orderId); // Debugging OrderId ID
 		} else {
 			System.out.println("Session is null or expired.");
 		}
@@ -157,13 +96,13 @@ public class PaymentVerificationServlet extends HttpServlet {
 
 		try {
 			if (paymentEmail == null || paymentEmail.isEmpty()) {
-			    System.out.println("Error: Email is null before inserting into the database.");
+				System.out.println("Error: Email is null before inserting into the database.");
 			} else {
-			    System.out.println("Email before insertion: " + paymentEmail);
-			    isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate, parkingToken,
-						paymentId);
+				System.out.println("Email before insertion: " + paymentEmail);
+				isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate,
+						parkingToken, paymentId, orderId);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("Error in PaymentDao.storePayment:");
 			e.printStackTrace(); // Print SQL Exception
