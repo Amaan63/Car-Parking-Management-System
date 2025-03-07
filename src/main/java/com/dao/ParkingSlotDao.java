@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.entities.Slot;
 import com.entities.Vehicle;
@@ -149,5 +150,28 @@ public class ParkingSlotDao {
 			session.close();
 		}
 	}
+	
+	// Getting Slot to make A parking Map
+	public List<Slot> getAllSlots() {
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+        List<Slot> slots = null;
+
+        try  {
+            transaction = session.beginTransaction();
+
+            Query<Slot> query = session.createQuery("FROM Slot", Slot.class);
+            slots = query.list();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        return slots;
+    }
 
 }
