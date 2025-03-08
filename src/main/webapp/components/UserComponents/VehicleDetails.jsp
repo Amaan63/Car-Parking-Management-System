@@ -119,7 +119,7 @@ System.out.println(ratePerHour);
 				%>
 			</div>
 		</div>
-		<div class="footer">Booked with &#10084; by Park Ease</div>
+		<div class="footer">Booked with <span style="color: red;">&#10084;</span> by Park Ease</div>
 	</div>
 	<%
 	}
