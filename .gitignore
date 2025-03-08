@@ -1,7 +1,7 @@
 # Ignore build and Eclipse-related files
 /target/
 /bin/
-src/main/webapp/WEB-INF/web.xml
+
 
 
 # Eclipse specific files  
