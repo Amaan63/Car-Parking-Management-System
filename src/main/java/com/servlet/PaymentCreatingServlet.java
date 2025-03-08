@@ -39,6 +39,13 @@ public class PaymentCreatingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setHeader("Access-Control-Allow-Origin", "*");
+	    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+	    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	    
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+
 		try {
 			long amountInPaise = Long.parseLong(request.getParameter("amount")); // Amount in paise
 			String email = request.getParameter("email"); // Fetch user email
@@ -82,14 +89,23 @@ public class PaymentCreatingServlet extends HttpServlet {
 			// System.out.println("Finished Payment");
 
 			out.print(jsonResponse.toString());
+			
+	        
+	    
+
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			// System.out.println("Error in Payment");
 			out.print("{\"success\": false}");
+
 		}
 
 	}
+	// Optional: Override doGet to show a clear message instead of 405
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Use POST instead of GET");
+    }
 
 }

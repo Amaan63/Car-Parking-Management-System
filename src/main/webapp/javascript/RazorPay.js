@@ -1,12 +1,14 @@
-function payNow(amountInPaise, email,vehicleNumber,parkingToken) {
-	console.log(email,vehicleNumber,parkingToken,amountInPaise);
+function payNow(amountInPaise, email, vehicleNumber, parkingToken) {
+	console.log(email, vehicleNumber, parkingToken, amountInPaise);
 	fetch('../PaymentServlet', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: `amount=${amountInPaise}&email=${email}&vehicleNumber=${vehicleNumber}&parkingToken=${parkingToken}`
-	})
-		.then(response => response.json())
-		.then(data => {
+	}).then(response => response.text()) // Convert to text first
+		.then(text => {
+			console.log("Raw Response Text:", text); // Log the response
+			let data = JSON.parse(text); // ✅ Correct JSON parsing
+
 			if (data.success) {
 				/* var options = {
 					"key": data.key,
@@ -24,6 +26,7 @@ function payNow(amountInPaise, email,vehicleNumber,parkingToken) {
 					},
 					"theme": { "color": "#1db954" }
 				}; */
+
 				var options = {
 					"key": data.key,
 					"amount": data.amount,
@@ -33,7 +36,7 @@ function payNow(amountInPaise, email,vehicleNumber,parkingToken) {
 					"order_id": data.orderId,
 					"handler": function(response) {
 						//alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-						window.location.href = "../PaymentVerificationServlet?payment_id=" + response.razorpay_payment_id ;
+						window.location.href = "../PaymentVerificationServlet?payment_id=" + response.razorpay_payment_id;
 					},
 					"prefill": {
 						"email": email // Prefill customer email
@@ -52,5 +55,5 @@ function payNow(amountInPaise, email,vehicleNumber,parkingToken) {
 				alert("Payment failed! Please try again.");
 			}
 		})
-		.catch(error => console.log('Error:', error));
+		.catch(error => console.log('Error:', error)); // ✅ Proper error handling
 }
