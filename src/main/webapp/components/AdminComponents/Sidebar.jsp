@@ -54,7 +54,7 @@
 			href="../AdminPages/ManageUsers.jsp"> <i
 				class="fas fa-users me-2"></i> Users
 		</a></li>
-		<li class="nav-item"><a class="nav-link"> <i
+		<li class="nav-item"><a class="nav-link" href="../AdminPages/ManageSlots.jsp"> <i
 				class="fas fa-car me-2"></i> Parking Slots
 		</a></li>
 		<li class="nav-item"><a class="nav-link"

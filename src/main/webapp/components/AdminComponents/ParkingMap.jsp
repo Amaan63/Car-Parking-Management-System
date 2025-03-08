@@ -52,15 +52,15 @@
                 <div class="parking-slot <%= bgColor %>"><%= slot.getSlotName() %></div>
             <%  } 
             } else { %>
-                <p class="text-center text-warning">No slots have been added yet.</p>
+                <p class="text-center fs-2 text-warning">No slots have been added yet.</p>
             <% } %>
         </div>
-
-        <div class="mt-3 text-center">
+		<div class="mt-3 text-center">
             <span class="badge bg-success me-2">Available</span> 
             <span class="badge bg-danger me-2">Occupied</span> 
             <span class="badge bg-warning">Reserved</span>
         </div>
+        
     </div>
 </div>
 
