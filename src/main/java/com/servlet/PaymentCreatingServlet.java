@@ -23,11 +23,21 @@ public class PaymentCreatingServlet extends HttpServlet {
 
 	// Load dotenv File
 	private static final Dotenv dotenv = Dotenv.load();
-	private static final String RAZORPAY_KEY_ID = 
-	        System.getenv("RAZORPAY_KEY_ID") != null ? System.getenv("RAZORPAY_KEY_ID") : dotenv.get("RAZORPAY_KEY_ID");
+    private static final String RAZORPAY_KEY_ID;
+    private static final String RAZORPAY_SECRET_ID;
 
-	    private static final String RAZORPAY_SECRET_ID = 
-	        System.getenv("RAZORPAY_SECRET_KEY") != null ? System.getenv("RAZORPAY_SECRET_KEY") : dotenv.get("RAZORPAY_SECRET_KEY");
+    static {
+        if (System.getenv("RENDER") != null) {
+            // Running on Render, use system environment variables
+            RAZORPAY_KEY_ID = System.getenv("RAZORPAY_KEY_ID");
+            RAZORPAY_SECRET_ID = System.getenv("RAZORPAY_SECRET_KEY");
+        } else {
+            // Running locally, load from .env
+            Dotenv dotenv = Dotenv.load();
+            RAZORPAY_KEY_ID = dotenv.get("RAZORPAY_KEY_ID");
+            RAZORPAY_SECRET_ID = dotenv.get("RAZORPAY_SECRET_KEY");
+        }
+    }
 
 	public PaymentCreatingServlet() {
 		super();
