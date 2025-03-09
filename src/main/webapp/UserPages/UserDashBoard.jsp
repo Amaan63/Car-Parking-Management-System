@@ -17,8 +17,16 @@
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 	<%@include file="../components/UserComponents/WelcomeBanner.jsp"%>
 	<%@include file="../components/UserComponents/UserMainContent.jsp"%>
+	<div class="row m-4 p-5">
+		<%@include file="../components/UserComponents/RecentActivity.jsp"%>
+		<%@include file="../components/UserComponents/QuickStats.jsp"%>
+	</div>
+	<%@include file="../components/UserComponents/UpcomingReservation.jsp"%>
+	<%@include file="../components/UserComponents/ParkingRateCard.jsp"%>
+	
+	
 	<%
-	// For Logged In COmponent
+	// For Logged In Component
 	// Retrieve the session attribute
 	String loginStatus = (String) session.getAttribute("loginStatus");
 
