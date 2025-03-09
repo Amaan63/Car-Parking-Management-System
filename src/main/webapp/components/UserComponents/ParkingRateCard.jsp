@@ -1,3 +1,12 @@
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.dao.RatesDao"%>
+<%
+// Fetch the single rate per hour (ID = 1)
+RatesDao ratesDao = new RatesDao(FactoryProvider.getFactory());
+double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to rupees
+System.out.println(ratePerHour);
+%>
+
 <!-- Parking Rate Card -->
 <div class="container py-5">
 	<div class="row g-4">
@@ -13,8 +22,8 @@
 						<div class="col-md-4">
 							<div
 								class="border rounded p-3 text-center bg-dark text-white h-100">
-								<h5 class="text-primary mb-3">Hourly Rate</h5>
-								<div class="display-6 mb-2">$2.00</div>
+								<h5 class="highlight mb-3">Hourly Rate</h5>
+								<div class="display-6 mb-2">&#8377;<%=ratePerHour %></div>
 								<div class="small text-muted">Charged per hour</div>
 							</div>
 						</div>
@@ -22,8 +31,8 @@
 						<!-- Operating Hours -->
 						<div class="col-md-4">
 							<div class="border rounded p-3 bg-dark text-white h-100">
-								<h5 class="text-primary mb-3">
-									<i class="fas fa-clock me-1"></i> Operating Hours
+								<h5 class="highlight mb-3">
+									<i class="text-light fas fa-clock me-1"></i> Operating Hours
 								</h5>
 								<ul class="list-unstyled mb-0">
 									<li><strong>Mon - Fri:</strong> 6:00 AM - 10:00 PM</li>
@@ -35,8 +44,8 @@
 						<!-- Security & Services -->
 						<div class="col-md-4">
 							<div class="border rounded p-3 bg-dark text-white h-100">
-								<h5 class="text-primary mb-3">
-									<i class="fas fa-shield-alt me-1"></i> Security & Services
+								<h5 class="highlight mb-3">
+									<i class="text-light fas fa-shield-alt me-1"></i> Security & Services
 								</h5>
 								<ul class="list-unstyled mb-0">
 									<li><i class="fas fa-video me-1"></i> 24/7 Surveillance</li>
