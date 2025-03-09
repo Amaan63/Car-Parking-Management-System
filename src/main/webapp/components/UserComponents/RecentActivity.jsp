@@ -1,8 +1,8 @@
 <!-- Recent Activity and Stats -->
 <div class="col-md-8 ">
-	<div class="card p-3 shadow-sm bg-dark text-light">
-		<div class="card-header bg-dark text-light">
-			<h5 class="card-title mb-0">Recent Activity</h5>
+	<div class="card  shadow-none border-0">
+		<div class="card-header bg-danger ">
+			<h5 class="card-title mb-0 ">Recent Activity</h5>
 		</div>
 		<div class="card-body bg-dark text-light">
 			<div class="list-group list-group-flush">

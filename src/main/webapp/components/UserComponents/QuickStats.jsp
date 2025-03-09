@@ -1,6 +1,6 @@
 <div class="col-md-4">
-    <div class="card p-3 shadow-sm bg-dark">
-        <div class="card-header ">
+    <div class="card shadow-sm bg-dark">
+        <div class="card-header bg-primary">
             <h5 class="card-title mb-0 ">Quick Stats</h5>
         </div>
         <div class="card-body">

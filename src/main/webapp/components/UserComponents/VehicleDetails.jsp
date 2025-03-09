@@ -13,7 +13,7 @@
 // Fetch the single rate per hour (ID = 1)
 RatesDao ratesDao = new RatesDao(FactoryProvider.getFactory());
 double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to rupees
-System.out.println(ratePerHour);
+//System.out.println(ratePerHour);
 %>
 
 <link rel="stylesheet" href="../css/VehicleDetailCardStyle.css">

@@ -13,7 +13,7 @@ if (userNameForBanner != null) {
 <div class=" text-white py-4" style="background-color: #1db954">
 	<div class="container">
 		<h1 class="h3">
-			Welcome back,
+			Welcome,
 			<%=userNameForTitle%>!
 		</h1>
 		<p class="mb-0">Manage your parking needs easily and efficiently</p>
