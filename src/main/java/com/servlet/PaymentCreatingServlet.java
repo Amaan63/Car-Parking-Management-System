@@ -23,13 +23,11 @@ public class PaymentCreatingServlet extends HttpServlet {
 
 	// Load dotenv File
 	private static final Dotenv dotenv = Dotenv.load();
-	private static final String RAZORPAY_KEY_ID;
-	private static final String RAZORPAY_SECRET_ID;
+	private static final String RAZORPAY_KEY_ID = 
+	        System.getenv("RAZORPAY_KEY_ID") != null ? System.getenv("RAZORPAY_KEY_ID") : dotenv.get("RAZORPAY_KEY_ID");
 
-	static {
-		RAZORPAY_KEY_ID = dotenv.get("RAZORPAY_KEY_ID");
-		RAZORPAY_SECRET_ID = dotenv.get("RAZORPAY_SECRET_KEY");
-	}
+	    private static final String RAZORPAY_SECRET_ID = 
+	        System.getenv("RAZORPAY_SECRET_KEY") != null ? System.getenv("RAZORPAY_SECRET_KEY") : dotenv.get("RAZORPAY_SECRET_KEY");
 
 	public PaymentCreatingServlet() {
 		super();
@@ -45,6 +43,7 @@ public class PaymentCreatingServlet extends HttpServlet {
 	    
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
+	    System.out.println("Using Razorpay Key: " + RAZORPAY_KEY_ID);
 
 		try {
 			long amountInPaise = Long.parseLong(request.getParameter("amount")); // Amount in paise
