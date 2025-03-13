@@ -9,13 +9,15 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Booking Form</title>
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 <link rel="stylesheet" href="../css/BookingFormDesign.css" />
 </head>
-<body>
+<body class="min-vh-100">
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 
 	<div class="container mt-5">
@@ -164,15 +166,15 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 					</div>
 				</div>
 
-				<div class="row ">
-					<div class="form-group m-3 flex-1  col ">
+				<div class="row">
+					<div class="form-group col-md-3 col-6 mb-4">
 						<label for="bookingDate" class="form-label">Booking Date</label> <input
 							type="date" class="form-control" id="bookingDate"
 							name="bookingDate" required />
 					</div>
-					<div class="col m-3 ">
+					<div class="col-md-3 col-6 mb-4">
 						<label for="inputState" class="form-label">Time Duration</label> <select
-							id="inputState" class="form-select " name="timeDuration" required>
+							id="inputState" class="form-select" name="timeDuration" required>
 							<option selected>Choose...</option>
 							<option value="1 hour">1 hour</option>
 							<option value="2 hour">2 hours</option>
@@ -182,9 +184,10 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 						</select>
 					</div>
 				</div>
+
 				<!-- Submit Button -->
-				<div class="btn col-md-12 mt-3 m-3">
-					<button type="submit" class="btn btn-success col-md-12">Book
+				<div class="col-12 col-md-12 mt-3">
+					<button type="submit" class="btn btn-success w-100">Book
 						Vehicle</button>
 				</div>
 			</form>

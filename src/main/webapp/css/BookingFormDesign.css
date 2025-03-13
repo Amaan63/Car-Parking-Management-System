@@ -2,12 +2,14 @@
 
 .toggle {
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 	margin-bottom: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .toggle button {
-	padding: 8px 30px;
+	padding: 10px 20px;
 	border: 1px solid #1db954;
 	background-color: transparent;
 	color: #1db954;
@@ -18,25 +20,25 @@
 }
 
 .toggle button.active {
-	background-color: #1db954;
-	color: #ffffff;
+	background-color: #1db954 !important;
+	color: #ffffff !important;
 }
 
 .container {
-	width: 1200px;
-	height: auto;
+	max-width: 80%;
+	margin: auto;
 	background-color: rgba(255, 255, 255, 0.05);
 	border-radius: 15px;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-	position: relative;
+	overflow: visible;
 	padding: 20px;
 }
 
 .form-container {
 	display: flex;
 	flex-direction: column;
-	width: auto;
+	align-items: center;
+	width: 100%;
 	height: auto;
 }
 
@@ -44,12 +46,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
 	width: 100%;
+	text-align: center;
 }
 
 .form-wrapper img {
-	width: 45%;
+	width: 100%;
+	max-width: 400px;
 	height: auto;
 	border-radius: 10px;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -63,10 +66,13 @@
 .form h2 {
 	margin-bottom: 20px;
 	color: #1db954;
+	text-align: center;
 }
 
 .form .form-label {
 	color: #ffffff;
+	text-align: left;
+	display: block;
 }
 
 .form .btn {
@@ -74,11 +80,21 @@
 	background: #1db954;
 	color: #ffffff;
 	border: none;
+	padding: 12px;
+	font-size: 16px;
 	transition: background 0.3s ease;
+	border-radius: 8px;
+	cursor: pointer;
 }
 
 .form .btn:hover {
 	background: #17a74b;
+}
+
+.radio-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .radio-item label {
@@ -88,8 +104,10 @@
 }
 
 .radio-item img {
-	width: 180px; /* Adjust the size */
-	height: auto;
+	width: 100%;
+	max-width: 180px;
+	height: 120px;
+	object-fit: cover;
 	border: 2px solid #ddd;
 	border-radius: 8px;
 	transition: transform 0.2s ease-in-out;
@@ -97,7 +115,7 @@
 
 .radio-item img:hover {
 	transform: scale(1.05);
-	border: 7px solid #1db954;
+	border: 4px solid #1db954;
 }
 
 .radio-item span {
@@ -105,4 +123,50 @@
 	margin-top: 8px;
 	font-weight: 500;
 	color: #fff;
+}
+
+/* ---- Responsive Design ---- */
+
+/* Tablets & Small Screens */
+@media (max-width: 768px) {
+	.container {
+		max-width: 80%;
+		padding: 15px;
+	}
+	.form-wrapper img {
+		max-width: 300px;
+	}
+	.radio-item img {
+		max-width: 150px;
+		height: 100px;
+	}
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+	.toggle {
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+	}
+
+	.toggle button {
+		width: 100%;
+		padding: 12px;
+		font-size: 14px;
+	}
+
+	.container {
+		max-width: 80%;
+		padding: 10px;
+	}
+
+	.form-wrapper img {
+		max-width: 250px;
+	}
+
+	.radio-item img {
+		max-width: 120px;
+		height: 80px;
+	}
 }
