@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 const formContainer = document.getElementById("formContainer");
 const loginToggle = document.getElementById("loginToggle");
 const registerToggle = document.getElementById("registerToggle");

@@ -17,7 +17,7 @@
 		<button id="loginToggle" class="btn active">Login</button>
 		<button id="registerToggle" class="btn">Register</button>
 
-	</div>
+	</div> 
 
 	<!-- Form Container -->
 	<div class="container">
@@ -80,6 +80,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 	<%
 	// Retrieve the session attribute
@@ -162,9 +165,9 @@
 	<script src="javascript/Registration_Validation.js"></script>
 	<script src="javascript/Login_Register_toggle.js"></script>
 	<script>
-		var deleteUserModal = new bootstrap.Modal(document
+		var loginUserModal = new bootstrap.Modal(document
 				.getElementById('loginUserModal'));
-		deleteUserModal.show();
+		loginUserModal.show();
 	</script>
 </body>
 </html>
