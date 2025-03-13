@@ -1,4 +1,5 @@
 <style>
+/* Popup background */
 .popup {
 	display: none;
 	position: fixed;
@@ -7,34 +8,59 @@
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
+	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 20px;
+	z-index: 3;
 }
 
+/* Popup container */
 .popup-content {
 	background-color: white;
-	padding: 30px;
-	border-radius: 8px;
+	padding: 25px;
+	border-radius: 10px;
 	text-align: center;
 	max-width: 500px;
-	width: 100%;
+	width: 90%;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	position: relative;
 }
 
-.popup-image {
-	max-width: 100px;
-	margin-bottom: 20px;
-}
-
+/* Close button */
 .popup-close {
-	font-size: 30px;
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #aaa;
-	float: right;
 	cursor: pointer;
+	transition: color 0.3s ease;
 }
 
 .popup-close:hover {
 	color: red;
+}
+
+/* Image styling */
+.popup-image {
+	max-width: 80px;
+	margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media ( max-width : 480px) {
+	.popup-content {
+		padding: 20px;
+		width: 95%;
+	}
+	.popup-image {
+		max-width: 60px;
+	}
+	.popup-close {
+		font-size: 22px;
+	}
 }
 </style>
 
@@ -43,26 +69,23 @@
 		<span class="popup-close" id="popupClose">&times;</span> <img
 			src="../videos/AnimatedLogo/Login.gif" alt="Successfully Logged In"
 			class="popup-image">
-		<h3  style="color: green;">Successfully Logged In</h3>
+		<h3 style="color: green;">Successfully Logged In</h3>
 		<p style="color: black;">You have Logged In Successfully</p>
 	</div>
 </div>
+
 <script>
-	// Show the popup when the message is displayed
 	document.getElementById('popupMessage').style.display = 'flex';
 
 	// Close the popup when the close button is clicked
 	document.getElementById('popupClose').addEventListener('click', function() {
-		document.getElementById('popupMessage').style.display = 'none'; // Hide the popup
+		document.getElementById('popupMessage').style.display = 'none';
 	});
 
-	// Close the popup when clicking outside the popup content
+	// Close the popup when clicking outside the content
 	window.onclick = function(event) {
-		if (event.target == document.getElementById('popupMessage')) {
-			document.getElementById('popupMessage').style.display = 'none'; // Hide popup if clicked outside
+		if (event.target === document.getElementById('popupMessage')) {
+			document.getElementById('popupMessage').style.display = 'none';
 		}
-	}
+	};
 </script>
-
-
-
