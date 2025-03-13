@@ -7,13 +7,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>UserDashBoard</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 
 </head>
-<body>
+<body class="min-vh-100">
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 	<%@include file="../components/UserComponents/WelcomeBanner.jsp"%>
 	<%@include file="../components/UserComponents/UserMainContent.jsp"%>
