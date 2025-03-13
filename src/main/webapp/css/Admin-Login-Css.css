@@ -1,88 +1,187 @@
 @charset "ISO-8859-1";
 
+/* Main body styling */
 body {
-	background-color: #121212;
-	color: #ffffff;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	margin: 0;
-	font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark theme background */
+  color: #ffffff; /* White text for contrast */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+  font-family: Arial, sans-serif; /* Standard font */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-.container {
-	width: 1200px;
-	height: 600px;
-	background-color: rgba(255, 255, 255, 0.05);
-	border-radius: 15px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-	position: relative;
-}
-
-.form-wrapper {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 40px;
-}
-
-.form-wrapper img {
-	width: 45%;
-	height: auto;
-	border-radius: 10px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.form {
-	width: 50%;
-	padding: 20px;
-}
-
-.form h2 {
-	margin-bottom: 20px;
-	color: #1db954;
-}
-
-.form .form-label {
-	color: #ffffff;
-}
-
-.form .btn {
-	width: 100%;
-	background: #1db954;
-	color: #ffffff;
-	border: none;
-	transition: background 0.3s ease;
-}
-
-.form .btn:hover {
-	background: #17a74b;
-}
-
+/* Admin header styling */
 .admin-header {
-	color: #1db954;
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 20px;
+  color: #1db954; /* Spotify green color */
+  font-size: 2rem; /* Responsive font size */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center; /* Center text */
+  width: 100%; /* Full width */
 }
 
-.forgot-password {
-	text-align: right;
-	margin-top: 10px;
+/* Main container for the login form */
+.container {
+  width: 90%; /* Take 90% of available width */
+  max-width: 1200px; /* Maximum width for large screens */
+  min-height: 600px; /* Taller on desktop for better form display */
+  background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  overflow: hidden; /* Hide overflow content */
+  position: relative;
+  padding: 20px; /* Overall padding */
+  margin: 0 auto; /* Center horizontally */
 }
 
-.forgot-password a {
-	color: #1db954;
-	text-decoration: none;
-	font-size: 14px;
+/* Form wrapper - contains image and form */
+.form-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px; /* Padding inside the wrapper */
 }
 
-.forgot-password a:hover {
-	color: #17a74b;
-	text-decoration: underline;
+/* Image styling */
+.form-wrapper img {
+  width: 45%; /* Take 45% of the wrapper width */
+  max-height: 500px; /* Limit height for very large screens */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  margin-right: 20px; /* Space between image and form */
+  object-fit: contain; /* Maintain aspect ratio without cropping */
+}
+
+/* Form styling */
+.form {
+  width: 50%; /* Take 50% of the wrapper width */
+  padding: 20px;
+}
+
+/* Form heading */
+.form h2 {
+  margin-bottom: 20px;
+  color: #1db954; /* Green heading */
+  font-size: 1.75rem; /* Responsive heading size */
+}
+
+/* Form labels */
+.form .form-label {
+  color: #ffffff; /* White text for labels */
+  font-size: 1rem; /* Standard font size */
+}
+
+/* Form inputs */
+.form .form-control {
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent inputs */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  color: #ffffff; /* White text */
+}
+
+.form .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.15); /* Slightly lighter when focused */
+  border-color: #1db954; /* Green border when focused */
+  box-shadow: 0 0 0 0.25rem rgba(29, 185, 84, 0.25); /* Green glow */
+  color: #ffffff;
+}
+
+/* Form submit button */
+.form .btn {
+  width: 100%; /* Full-width button */
+  background: #1db954; /* Green background */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 10px 0; /* Vertical padding */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold;
+  transition: background 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for submit button */
+.form .btn:hover {
+  background: #17a74b; /* Slightly darker green on hover */
+}
+
+/* Responsive design for different screen sizes */
+/* Large tablets and smaller desktop screens */
+@media (max-width: 1200px) {
+  .container {
+    min-height: 500px; /* Slightly smaller height */
+  }
+}
+
+/* Medium tablets */
+@media (max-width: 992px) {
+  .container {
+    min-height: auto; /* Let height adjust to content */
+    padding: 15px;
+  }
+  
+  /* Stack form and image vertically */
+  .form-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  /* Adjust image size for vertical layout */
+  .form-wrapper img {
+    width: 70%; /* Wider image when stacked */
+    max-height: 250px; /* Shorter image when stacked */
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 20px; /* Add bottom margin instead */
+  }
+  
+  /* Full-width form when stacked */
+  .form {
+    width: 100%;
+    max-width: 500px; /* Limit max width for readability */
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  .admin-header {
+    font-size: 1.75rem; /* Smaller font on small devices */
+  }
+  
+  .container {
+    width: 95%;
+  }
+  
+  .form-wrapper img {
+    width: 80%;
+    max-height: 200px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .admin-header {
+    font-size: 1.5rem; /* Even smaller font on tiny devices */
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .form-wrapper {
+    padding: 10px;
+  }
+  
+  .form-wrapper img {
+    width: 85%;
+    max-height: 180px;
+  }
+  
+  .form h2 {
+    font-size: 1.5rem;
+  }
 }
