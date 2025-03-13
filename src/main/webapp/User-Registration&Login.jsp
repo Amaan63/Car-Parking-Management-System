@@ -4,24 +4,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>User Registration and Login</title>
 <%@include file="css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="css/User-Register&Login-Css.css">
 <link rel="stylesheet" href="css/global.css">
 <link rel="icon" type="image/x-icon" href="images/Logo/Logo2.png">
+
 </head>
-<body>
+<body class=" min-vh-100">
+
 
 	<!-- Toggle Buttons -->
-	<div class="toggle">
+	<div class="toggle mt-3">
 		<button id="loginToggle" class="btn active">Login</button>
 		<button id="registerToggle" class="btn">Register</button>
 
-	</div> 
+	</div>
 
 	<!-- Form Container -->
-	<div class="container">
-		<div class="form-container" id="formContainer">
+	<div class="container custom-container m-3 ">
+		<div class="form-container w-70" id="formContainer">
 			<!-- Login Form -->
 			<div class="form-wrapper">
 				<img src="images/Login&Registration/UserLogin.svg" alt="Login Image" />
@@ -44,6 +47,7 @@
 			<div class="form-wrapper">
 				<img src="images/Login&Registration/UserRegistration.svg"
 					alt="Register Image" />
+
 				<form class="form" onsubmit="return validateForm();" novalidate
 					action="UserRegistrationServlet" method="post">
 					<h2>Register</h2>
@@ -80,9 +84,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
 
 	<%
 	// Retrieve the session attribute

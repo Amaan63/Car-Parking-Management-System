@@ -16,4 +16,5 @@ registerToggle.addEventListener("click", () => {
 	formContainer.style.transform = "translateX(-50%)";
 	registerToggle.classList.add("active");
 	loginToggle.classList.remove("active");
-});
+}); 
+
