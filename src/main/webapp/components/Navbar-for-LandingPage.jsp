@@ -1,27 +1,30 @@
-
+<style>
+    @media (min-width: 768px) { /* Apply styles for tablets and larger screens */
+        .navbar-brand i {
+            font-size: 1.5rem; /* Bigger icon */
+        }
+        .navbar-brand span {
+            font-size: 1.25rem; /* Bigger text */
+        }
+        .btn-custom {
+            font-size: 1rem; /* Increase button text size */
+            padding: 6px 12px; /* More padding */
+        }
+    }
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-	<div class="container-fluid">
-		<a class="navbar-brand d-flex align-items-center" href="#"> <i
-			class="fas fa-parking fs-4 text-success me-2"></i> <span class="fs-4">ParkEase</span>
-		</a>
+    <div class="container-fluid d-flex flex-nowrap justify-content-between align-items-center">
+        <!-- Brand Logo and Name -->
+        <a class="navbar-brand d-flex align-items-center flex-shrink-0" href="#"> 
+            <i class="fas fa-parking text-success" style="font-size: 1.2rem;"></i> 
+            <span class="fs-6 fw-bold ms-1">ParkEase</span>
+        </a>
 
-		<!-- Navbar Toggler for Mobile -->
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<!-- Navbar Links -->
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ms-auto">
-				<li class="nav-item btn "><a class="nav-link"
-					href="User-Registration&Login.jsp">Sign In (User)</a></li>
-				<li class="nav-item btn "><a class="nav-link" href="Admin-Login.jsp">Sign
-						In (Admin)</a></li>
-			</ul>
-		</div>
-	</div>
+        <!-- Sign In Buttons -->
+        <div class="d-flex gap-1 flex-shrink-0">
+            <a class="btn btn-outline-light btn-sm btn-custom text-nowrap" href="User-Registration&Login.jsp">User</a>
+            <a class="btn btn-outline-light btn-sm btn-custom text-nowrap" href="Admin-Login.jsp">Admin</a>
+        </div>
+    </div>
 </nav>
-
