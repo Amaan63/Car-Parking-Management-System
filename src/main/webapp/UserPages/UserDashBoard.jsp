@@ -23,7 +23,7 @@
 	</div>
 	<%@include file="../components/UserComponents/UpcomingReservation.jsp"%>
 	<%@include file="../components/UserComponents/ParkingRateCard.jsp"%>
-
+	<%@include file="../components/Footer.jsp"%>
 
 	<%
 	// For Logged In Component

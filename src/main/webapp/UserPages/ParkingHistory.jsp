@@ -11,16 +11,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Parking History</title>
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 </head>
-<body>
+<body class="min-vh-100">
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 
 	<%@include file="../components/UserComponents/VehicleDetails.jsp"%>
-
+	
 	<%
 	String paymentStatus = (String) session.getAttribute("paymentStatus"); // Use session
 	if (paymentStatus != null) {
@@ -37,6 +39,5 @@
 	session.removeAttribute("paymentStatus");
 	}
 	%>
-
 </body>
 </html>
