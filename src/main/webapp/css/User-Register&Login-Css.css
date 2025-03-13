@@ -21,7 +21,7 @@ body {
   display: flex;
   gap: 20px; /* Space between buttons */
   margin-bottom: 20px;
-  z-index: 10; /* Keep buttons above other elements */
+  z-index: 0; /* Keep buttons above other elements */
   position: relative;
 }
 
