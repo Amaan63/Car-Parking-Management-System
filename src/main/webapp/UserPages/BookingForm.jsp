@@ -167,12 +167,12 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 				</div>
 
 				<div class="row">
-					<div class="form-group col-md-3 col-6 mb-4">
+					<div class="form-group col-md-6 col-6 mb-4">
 						<label for="bookingDate" class="form-label">Booking Date</label> <input
 							type="date" class="form-control" id="bookingDate"
 							name="bookingDate" required />
 					</div>
-					<div class="col-md-3 col-6 mb-4">
+					<div class="col-md-6 col-6 mb-4">
 						<label for="inputState" class="form-label">Time Duration</label> <select
 							id="inputState" class="form-select" name="timeDuration" required>
 							<option selected>Choose...</option>
