@@ -1,3 +1,11 @@
+<style>
+/* Change hover effect for dropdown items */
+.dropdown-menu .dropdown-item:hover {
+	background-color: black !important; /* Your custom color */
+	color:  #1db954 !important; /* Ensure text is visible */
+}
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 	<div class="container-fluid">
 		<!-- Brand logo and name -->
@@ -39,11 +47,11 @@
 						aria-labelledby="navbarDropdown">
 						<li><a class="dropdown-item text-light"
 							href="../components/UserComponents/UserProfile.jsp"
-							data-bs-toggle="offcanvas" data-bs-target="#userProfileOffcanvas">Profile</a>
-						</li>
+							data-bs-toggle="offcanvas" data-bs-target="#userProfileOffcanvas">
+								Profile </a></li>
 						<li><hr class="dropdown-divider bg-secondary"></li>
-						<li><a class="dropdown-item text-light" href="../UserLogout">Logout</a>
-						</li>
+						<li><a class="dropdown-item text-light" href="../UserLogout">
+								Logout </a></li>
 					</ul></li>
 			</ul>
 		</div>
