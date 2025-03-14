@@ -1,5 +1,7 @@
 package com.entities;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -24,7 +26,7 @@ public class Vehicle {
 	@Column(length = 100, name = "user_name")
 	private String userName;
 
-	@Column(length = 100, name = "user_email",unique = true)
+	@Column(length = 100, name = "user_email", unique = true)
 	private String userEmailId;
 
 	@Column(length = 100, name = "vehicle_company")
@@ -33,7 +35,7 @@ public class Vehicle {
 	@Column(length = 1000, name = "vehicle_name")
 	private String vehicleName;
 
-	@Column(length = 1000, name = "vehicle_numberplate",unique = true)
+	@Column(length = 1000, name = "vehicle_numberplate", unique = true)
 	private String vehicleNumberPlate;
 
 	@Column(length = 100, name = "vehicle_vehicletype")
@@ -59,21 +61,13 @@ public class Vehicle {
 	@Column(name = "total_cost", nullable = true)
 	private long totalCost; // Stored in paise
 
+	@Column(length = 20, name = "status")
+	private String status;
+
 	public Vehicle() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	public long getTotalCost() {
-		return totalCost;
-	}
-
-
-	public void setTotalCost(long totalCost) {
-		this.totalCost = totalCost;
-	}
-
 
 	public Vehicle(int vehicleId, String userName, String userEmailId, String vehicleCompany, String vehicleName,
 			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration,
@@ -201,8 +195,37 @@ public class Vehicle {
 		this.slot = slot;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public long getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(long totalCost) {
+		this.totalCost = totalCost;
+	}
+
+	// Update status based on the booking date
+	public void updateStatus(LocalDate referenceDate) {
+		LocalDate bookingDateObj = LocalDate.parse(this.BookingDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+		if (bookingDateObj.isAfter(referenceDate)) {
+			this.status = "Upcoming";
+		} else if (bookingDateObj.isEqual(referenceDate)) {
+			this.status = "Active";
+		} else {
+			this.status = "Completed";
+		}
+	}
+
 	// Generate the token before Saving the entity in to DB
-	@PrePersist // this annotation is used to genrate the token before saving the data to
+	@PrePersist // this annotation is used to generate the token before saving the data to
 				// database
 	public void generateParkingToken() {
 		this.parkingTokennumber = UUID.randomUUID().toString().replace("-", "").substring(0, 8).toUpperCase();

@@ -44,12 +44,28 @@ function validateForm() {
 	}
 
 	// Booking date validation - should not be before today
+	/*
 	const bookingDate = new Date(document.getElementById('bookingDate').value);
 	const today = new Date();
 	if (bookingDate < today) {
 		alert('Booking date cannot be before today.');
 		isValid = false;
+	}*/
+	// Get the selected booking date from the input field
+	const bookingDate = new Date(document.getElementById('bookingDate').value);
+
+	// Get today's date
+	const today = new Date();
+
+	// Reset the time of today's date to midnight (00:00:00) to ensure only the date part is compared
+	today.setHours(0, 0, 0, 0);
+
+	// Validate that the selected booking date is not before today
+	if (bookingDate < today) {
+		alert('Booking date cannot be before today.'); // Show an error message if the date is invalid
+		isValid = false; // Set validation flag to false
 	}
+
 
 	// Time duration validation
 	const timeDuration = document.getElementById('inputState').value;

@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,6 @@ import com.entities.Vehicle;
 public class VehicleDao {
 
 	private SessionFactory factory;
-	
 
 	public VehicleDao(SessionFactory factory) {
 		this.factory = factory;
@@ -23,11 +23,13 @@ public class VehicleDao {
 	public boolean saveVehicle(Vehicle vehicle) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
+		LocalDate today = LocalDate.now();
 
 		try {
 			transaction = session.beginTransaction();
 
 			session.save(vehicle);
+			vehicle.updateStatus(today);
 			transaction.commit();
 
 			// After saving, allocate a slot to this vehicle if available
@@ -80,25 +82,40 @@ public class VehicleDao {
 		}
 		return vehicles;
 	}
-	
+
 	// To get all the vehicle to update the Rates
 	public List<Vehicle> getAllVehicles() {
-	    List<Vehicle> vehicles = new ArrayList<>();
-	    Session session = null;
+		List<Vehicle> vehicles = new ArrayList<>();
+		Session session = null;
 
-	    try {
-	        session = this.factory.openSession();
-	        Query<Vehicle> query = session.createQuery("FROM Vehicle", Vehicle.class);
-	        vehicles = query.list();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        if (session != null && session.isOpen()) {
-	            session.close();
-	        }
-	    }
+		try {
+			session = this.factory.openSession();
+			Transaction transaction = session.beginTransaction();
 
-	    return vehicles;
+			Query<Vehicle> query = session.createQuery("FROM Vehicle", Vehicle.class);
+			vehicles = query.list();
+
+			LocalDate today = LocalDate.now();
+
+			for (Vehicle vehicle : vehicles) {
+				String oldStatus = vehicle.getStatus(); // Store old status
+				vehicle.updateStatus(today); // Update status dynamically
+
+				if (!oldStatus.equals(vehicle.getStatus())) {
+					session.update(vehicle); // Only update if status changed
+				}
+			}
+
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+		return vehicles;
 	}
 
 	public List<Vehicle> getUnassignedVehicles() {
@@ -163,7 +180,7 @@ public class VehicleDao {
 			long ratePerHour = getRatePerHour();
 			// System.out.println(ratePerHour);
 			int totalHours = extractHours(savedVehicle.getTimeDuration());
-			//String Time = (String) savedVehicle.getTimeDuration();
+			// String Time = (String) savedVehicle.getTimeDuration();
 			// System.out.println(Time);
 			// System.out.println(totalHours);
 			long totalCost = ratePerHour * totalHours;
@@ -184,7 +201,6 @@ public class VehicleDao {
 		}
 	}
 
-	
 	// This for Pie Chart in Admin Panel
 	public List<Object[]> getVehicleCounts() {
 		Session session = this.factory.openSession();
@@ -207,29 +223,62 @@ public class VehicleDao {
 		}
 		return vehicleCounts;
 	}
-	
+
 	// This check whether the Vehicle Already Exist or Not
 	// Method in VehicleDao to check if a vehicle number exists
 	public boolean isVehicleNumberExists(String vehicleNumber) {
-	    Session session = null;
-	    boolean exists = false;
-	    try {
-	        session = this.factory.openSession();
-	        Query query = session.createQuery("SELECT COUNT(v) FROM Vehicle v WHERE v.vehicleNumberPlate = :vNumber");
-	        query.setParameter("vNumber", vehicleNumber);
-	        Long count = (Long) query.uniqueResult();
-	        
-	        System.out.println("Checking vehicleNumber: " + vehicleNumber + ", Found count: " + count);
-	        
-	        exists = (count != null && count > 0);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        if (session != null) {
-	            session.close();
-	        }
-	    }
-	    return exists;
+		Session session = null;
+		boolean exists = false;
+		try {
+			session = this.factory.openSession();
+			Query query = session.createQuery("SELECT COUNT(v) FROM Vehicle v WHERE v.vehicleNumberPlate = :vNumber");
+			query.setParameter("vNumber", vehicleNumber);
+			Long count = (Long) query.uniqueResult();
+
+			System.out.println("Checking vehicleNumber: " + vehicleNumber + ", Found count: " + count);
+
+			exists = (count != null && count > 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return exists;
+	}
+
+	// Manually update all vehicle statuses (Optional: Call this on a button click)
+	public String updateAllVehicleStatuses() {
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+		int updatedCount = 0;
+		try {
+			transaction = session.beginTransaction();
+
+			List<Vehicle> vehicles = session.createQuery("FROM Vehicle", Vehicle.class).list();
+			LocalDate today = LocalDate.now();
+
+			for (Vehicle vehicle : vehicles) {
+				String oldStatus = vehicle.getStatus();
+				vehicle.updateStatus(today);
+
+				if (!oldStatus.equals(vehicle.getStatus())) {
+					session.update(vehicle);
+					updatedCount++;
+				}
+			}
+
+			transaction.commit();
+			return "✅ Updated " + updatedCount + " vehicle statuses successfully.";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "❌ Error updating vehicle statuses: " + e.getMessage();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 	}
 
 }
