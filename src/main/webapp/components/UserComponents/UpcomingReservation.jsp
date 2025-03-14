@@ -1,57 +1,79 @@
+<%@page import="com.entities.Vehicle"%>
+<%@page import="java.util.List"%>
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.dao.VehicleDao"%>
+<%
+int userId = (Integer) session.getAttribute("userIdForUpcomingReservation"); // Get logged-in user's ID
+VehicleDao vehicleDao = new VehicleDao(FactoryProvider.getFactory());
+List<Vehicle> upcomingReservations = vehicleDao.getUpcomingReservations(userId);
+%>
+
+
+
 <!-- Upcoming Reservations -->
-<div class="container py-5">
+<div class="container py-5 m-2">
 	<div class="row g-4">
 		<div class="col-md-12 mx-auto">
-			<!-- Adjust width like feature cards -->
 			<div class="card bg-dark text-white">
 				<div class="card-header bg-info">
-					<h5 class="card-title mb-0 text-dark fs-3">Upcoming Reservations</h5>
+					<h5 class="card-title mb-0 text-dark fs-3">Upcoming
+						Reservations</h5>
 				</div>
 				<div class="card-body">
 					<div class="row g-4">
-						<!-- Next Booking -->
+						<%
+						if (upcomingReservations != null && !upcomingReservations.isEmpty()) {
+						%>
+						<%
+						for (Vehicle v : upcomingReservations) {
+						%>
 						<div class="col-md-6">
 							<div class="border rounded p-3 bg-dark text-white h-100">
-								<h6 class="mb-2">Tomorrow, 9:00 AM - 11:00 AM</h6>
+								<h6 class="mb-2">
+									<%=v.getBookingDate()%>, Time Duration
+									<%=v.getTimeDuration()%>
+								</h6>
 								<div class="small text-muted">
-									<i class="fas fa-map-marker-alt me-1"></i> Block A, Slot A4
+									Slot Allocated is <i class="fas fa-map-marker-alt me-1"></i> <span
+										class="text-light"> <%
+ if (v.getSlot() != null && v.getSlot().getSlotName() != null) {
+ %>
+										<%=v.getSlot().getSlotName()%> <%
+ } else {
+ %> Slot not
+										allocated yet <%
+ }
+ %>
+									</span>
 								</div>
 								<div class="mt-2">
-									<span class="badge bg-success">Confirmed</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- Future Booking -->
-						<div class="col-md-6">
-							<div class="border rounded p-3 bg-dark text-white h-100">
-								<h6 class="mb-2">Friday, 2:00 PM - 4:00 PM</h6>
-								<div class="small text-muted">
-									<i class="fas fa-map-marker-alt me-1"></i> Block B, Slot B3
-								</div>
-								<div class="mt-2">
+									<%
+									if ("Upcoming".equals(v.getStatus())) {
+									%>
+									<span class="badge bg-success">Upcoming</span>
+									<%
+									} else {
+									%>
 									<span class="badge bg-warning">Pending</span>
+									<%
+									}
+									%>
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- Quick Actions -->
-					<div class="row mt-3 g-4">
-						<div class="col-md-6">
-							<button class="btn btn-primary w-100">
-								<i class="fas fa-plus me-1"></i> New Reservation
-							</button>
-						</div>
-						<div class="col-md-6">
-							<button class="btn btn-outline-light w-100">
-								<i class="fas fa-history me-1"></i> Booking History
-							</button>
-						</div>
+						<%
+						}
+						%>
+						<%
+						} else {
+						%>
+						<p class="text-center text-muted">No upcoming reservations.</p>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

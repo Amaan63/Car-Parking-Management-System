@@ -52,6 +52,7 @@ public class UserLoginServlet extends HttpServlet {
 				// Email exists, now check the password
 				if (user.getUserPassword().equals(password)) {
 					// Password is correct
+					int userId = (Integer)user.getUserId();
 					session.setAttribute("loginStatus", "Successfully Logged In");
 					session.setAttribute("userForBanner", user); // Store the user object in session
 					session.setAttribute("userForProfile", user); // For Profile
@@ -59,6 +60,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userForFetchingVehicleByEmail", user); // FOr Fetching user Booked Vehicle
 					session.setAttribute("currentUserForValidations", user); //For user Logout
 					session.setAttribute("userForAuthentication", user); // For Security
+					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 					System.out.println("User session set: " + session.getAttribute("currentUserForValidations"));
 

@@ -268,7 +268,6 @@ public class VehicleDao {
 					updatedCount++;
 				}
 			}
-
 			transaction.commit();
 			return "✅ Updated " + updatedCount + " vehicle statuses successfully.";
 		} catch (Exception e) {
@@ -279,6 +278,35 @@ public class VehicleDao {
 				session.close();
 			}
 		}
+	}
+
+	public List<Vehicle> getUpcomingReservations(int userId) {
+		List<Vehicle> reservations = null;
+		Session session = this.factory.openSession();
+		Transaction tx = null;
+
+		try  {
+			tx = session.beginTransaction();
+
+			// Fetch only the logged-in user's upcoming reservations (limit 6)
+			Query<Vehicle> query = session.createQuery(
+					"FROM Vehicle v LEFT JOIN FETCH v.slot WHERE v.status = :status AND v.user.id = :userId ORDER BY v.BookingDate ASC",
+					Vehicle.class);
+			query.setParameter("status", "Upcoming");
+			query.setParameter("userId", userId);
+			query.setMaxResults(6); // Limit to top 6 upcoming reservations
+
+			reservations = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+		return reservations;
 	}
 
 }
