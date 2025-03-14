@@ -3,10 +3,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px; /* Space between cards */
-    justify-content: center; /* Center align the cards */
-    max-width: 90%;
+    justify-content: space-between; /* Center align the cards */
+    max-width: 100%;
     margin: auto; /* Centering the container */
-    padding: 20px; /* Add some padding to prevent sticking to edges */
+    padding: 10px; /* Add some padding to prevent sticking to edges */
 }
 
 /* Styling for each individual card */
