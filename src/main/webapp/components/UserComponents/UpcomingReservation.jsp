@@ -11,9 +11,11 @@ List<Vehicle> upcomingReservations = vehicleDao.getUpcomingReservations(userId);
 
 
 <!-- Upcoming Reservations -->
-<div class="container py-5 m-2">
-	<div class="row g-4">
-		<div class="col-md-12 mx-auto">
+<div class="container py-2 m-5">
+	<div class="row g-3">
+		<div class="col-md-12 ms-5" >
+
+
 			<div class="card bg-dark text-white">
 				<div class="card-header bg-info">
 					<h5 class="card-title mb-0 text-dark fs-3">Upcoming
@@ -37,11 +39,9 @@ List<Vehicle> upcomingReservations = vehicleDao.getUpcomingReservations(userId);
 									Slot Allocated is <i class="fas fa-map-marker-alt me-1"></i> <span
 										class="text-light"> <%
  if (v.getSlot() != null && v.getSlot().getSlotName() != null) {
- %>
-										<%=v.getSlot().getSlotName()%> <%
+ %> <%=v.getSlot().getSlotName()%> <%
  } else {
- %> Slot not
-										allocated yet <%
+ %> Slot not allocated yet <%
  }
  %>
 									</span>
