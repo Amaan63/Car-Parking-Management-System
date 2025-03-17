@@ -119,13 +119,22 @@ double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to
 				%>
 			</div>
 		</div>
-		<div class="footer">Booked with <span style="color: red;">&#10084;</span> by Park Ease</div>
+		<div class="footer">
+			Booked with <span style="color: red;">&#10084;</span> by Park Ease
+		</div>
 	</div>
 	<%
 	}
 	} else {
 	%>
-	<div class="alert alert-info">No vehicles found for this user.</div>
+	<div class="container d-flex justify-content-center">
+		<div class="alert alert-danger mt-3 mb-0 col-md-10 text-center">
+			<i class="fas fa-info-circle me-1"></i> No Vehicle found for this
+			user
+		</div>
+	</div>
+
+
 	<%
 	}
 	%>

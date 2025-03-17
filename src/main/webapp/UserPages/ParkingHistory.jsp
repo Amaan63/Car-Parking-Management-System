@@ -23,21 +23,6 @@
 
 	<%@include file="../components/UserComponents/VehicleDetails.jsp"%>
 	
-	<%
-	String paymentStatus = (String) session.getAttribute("paymentStatus"); // Use session
-	if (paymentStatus != null) {
-		if ("done".equals(paymentStatus)) {
-	%>
-	<%@include file="../components/popups/PaymentSuccessfulPopup.jsp"%>
-	<%
-	} else if ("failed".equals(paymentStatus)) {
-	%>
-	<%@include file="../components/popups/PaymentRejectedPopup.jsp"%>
-	<%
-	}
-	// Remove after displaying
-	session.removeAttribute("paymentStatus");
-	}
-	%>
+	
 </body>
 </html>
