@@ -49,7 +49,7 @@
 			</div>
 		</div>
 
-		<!-- My Vehicles -->
+<!-- My Vehicles -->
 		<div class="col-md-6 col-lg-3">
 			<div class="card h-100 feature-card bg-dark text-white">
 				<div class="card-body text-center">
@@ -62,6 +62,7 @@
 				</div>
 			</div>
 		</div>
+		
 
 		<!-- Payment History -->
 		<div class="col-md-6 col-lg-3">
