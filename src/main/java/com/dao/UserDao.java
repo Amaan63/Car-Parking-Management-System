@@ -27,7 +27,7 @@ public class UserDao {
 			e.printStackTrace();
 			return false; // Return false if there was an error
 		} finally {
-			session.close(); 
+			session.close();
 		}
 	}
 
@@ -47,33 +47,44 @@ public class UserDao {
 			session.close();
 		}
 	}
-	
-	public boolean updateUserById(int userId, String name, String phoneNumber, String address, String password, String email) {
-	    Transaction transaction = null;
-	    try (Session session = this.factory.openSession()) {
-	        transaction = session.beginTransaction();
-	        
-	        // Fetch user by ID
-	        User user = session.get(User.class, userId);
-	        if (user != null) {
-	            // Update user details
-	            user.setUserFullName(name);
-	            user.setUserPhoneNumber(phoneNumber);
-	            user.setUserAddress(address);
-	            user.setUserPassword(password);
-	            user.setUserEmail(email);
-	            
-	            session.update(user);
-	            transaction.commit();
-	            return true;
-	        }
-	        return false; // User not found
-	    } catch (Exception e) {
-	        if (transaction != null) {
-	            transaction.rollback();
-	        }
-	        e.printStackTrace();
-	        return false;
-	    }
+
+	public boolean updateUserById(int userId, String name, String phoneNumber, String address, String password,
+			String email) {
+		Transaction transaction = null;
+		try (Session session = this.factory.openSession()) {
+			transaction = session.beginTransaction();
+
+			// Fetch user by ID
+			User user = session.get(User.class, userId);
+			if (user != null) {
+				// Update user details
+				user.setUserFullName(name);
+				user.setUserPhoneNumber(phoneNumber);
+				user.setUserAddress(address);
+				user.setUserPassword(password);
+				user.setUserEmail(email);
+
+				session.update(user);
+				transaction.commit();
+				return true; // Update successful
+			}
+			return false; // User not found
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return false;
+		}
 	}
+
+	public User getUserById(int userId) {
+		try (Session session = this.factory.openSession()) {
+			return session.get(User.class, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

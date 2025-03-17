@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         inputs.forEach(input => input.setAttribute("readonly", true)); // Disable editing
         updateBtn.classList.add("d-none"); // Hide update button
         editBtn.classList.remove("d-none"); // Show edit button
-        alert("Details Updated! (You can replace this with an actual update logic)");
+        alert("Are you sure you want to Update the Details");
     });
 });
 </script>
