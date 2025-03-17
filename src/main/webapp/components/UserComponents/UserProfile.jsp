@@ -19,6 +19,65 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 		</button>
 	</div>
 	<div class="offcanvas-body">
+
+
+		<%
+		String updateStatus = (String) session.getAttribute("updateStatus");
+		if (updateStatus != null && updateStatus.equals("Updated Successfully")) {
+		%>
+
+		<!-- Updation Details Alert -->
+		<div class="container d-flex justify-content-center">
+			<div id="alertBox"
+				class="alert alert-success alert-dismissible fade show mt-3 mb-0 col-md-10 text-center"
+				role="alert">
+				<i class="fas fa-info-circle me-1"></i> Details are updated 
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
+		</div>
+
+		<script>
+    // Auto-hide alert after 3 seconds
+    setTimeout(function () {
+        let alertBox = document.getElementById("alertBox");
+        if (alertBox) {
+            let bsAlert = new bootstrap.Alert(alertBox);
+            bsAlert.close();
+        }
+    }, 5000); // Alert disappears after 3 seconds
+</script>
+		<%
+		session.removeAttribute("updateStatus");
+		} else if (updateStatus != null && !updateStatus.equals("Updation Failed")) {
+		%>
+
+		<!-- Updation Details Alert -->
+		<div class="container d-flex justify-content-center">
+			<div id="alertBox"
+				class="alert alert-danger alert-dismissible fade show mt-3 mb-0 col-md-10 text-center"
+				role="alert">
+				<i class="fas fa-info-circle me-1"></i> Details are updated now
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
+		</div>
+
+		<script>
+    // Auto-hide alert after 3 seconds
+    setTimeout(function () {
+        let alertBox = document.getElementById("alertBox");
+        if (alertBox) {
+            let bsAlert = new bootstrap.Alert(alertBox);
+            bsAlert.close();
+        }
+    }, 5000); // Alert disappears after 3 seconds
+</script>
+		<%
+		session.removeAttribute("updateStatus");
+		}
+		%>
+
 		<div class="profile-card">
 			<%
 			if (userDetailsForProfile != null) {
@@ -36,15 +95,14 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 			<p>Manage your car parking details here</p>
 
 			<form action="../UpdateUserByIdServlet" method="post">
-			<div class="profile-info">
-					 <input
-						type="hidden" class="form-control" id="userId" name="userId" value="<%=userId%>"
-						readonly />
+				<div class="profile-info">
+					<input type="hidden" class="form-control" id="userId" name="userId"
+						value="<%=userId%>" readonly />
 				</div>
 				<div class="profile-info">
 					<label for="name" class="form-label">Full Name</label> <input
-						type="text" class="form-control" id="name" name="userName" value="<%=userName%>"
-						readonly />
+						type="text" class="form-control" id="name" name="userName"
+						value="<%=userName%>" readonly />
 				</div>
 
 				<div class="profile-info">
@@ -52,11 +110,11 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 						type="email" class="form-control " id="email" name="userEmail"
 						value="<%=userEmail%>" readonly />
 				</div>
-				
+
 				<div class="profile-info">
 					<label for="email" class="form-label">Password</label> <input
-						type="password" class="form-control " id="password" name="userPassword"
-						value="<%=userPassword%>" readonly />
+						type="password" class="form-control " id="password"
+						name="userPassword" value="<%=userPassword%>" readonly />
 				</div>
 
 				<div class="profile-info">
@@ -67,7 +125,8 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 
 				<div class="profile-info">
 					<label for="userAddress" class="form-label">Address</label>
-					<textarea class="form-control" id="userAddress" rows="3" name="userAddress" readonly><%=userAddress%></textarea>
+					<textarea class="form-control" id="userAddress" rows="3"
+						name="userAddress" readonly><%=userAddress%></textarea>
 				</div>
 				<%
 				}
