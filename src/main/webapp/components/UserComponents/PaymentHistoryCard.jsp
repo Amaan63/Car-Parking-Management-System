@@ -44,7 +44,7 @@ if (userEmailForPaymentHistory != null) {
 						class="fas fa-check-circle me-1"></i>SUCCESS</span>
 				</div>
 				<div class="card-body p-4">
-				<div class="payment-detail">
+					<div class="payment-detail">
 						<span class="detail-label"><i class="fa-solid fa-envelope"></i>
 							Email Id</span> <span class="detail-value"><%=payment.getEmail()%></span>
 					</div>
@@ -83,9 +83,14 @@ if (userEmailForPaymentHistory != null) {
 		}
 		} else {
 		%>
-		<div class="col-12 text-center">
-			<p>No payment history found.</p>
+		<!-- Info Alert -->
+		<div class="container d-flex justify-content-center">
+			<div class="alert alert-danger mt-3 mb-0 col-md-10 text-center">
+				<i class="fas fa-info-circle me-1"></i> No Payment have done till
+				now
+			</div>
 		</div>
+
 		<%
 		}
 		%>

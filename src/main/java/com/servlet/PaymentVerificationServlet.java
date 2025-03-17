@@ -30,11 +30,7 @@ public class PaymentVerificationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Debugging: Print full query string
-		System.out.println("Query String: " + request.getQueryString());
-
 		String paymentId = request.getParameter("payment_id");
-		System.out.println("Received Payment ID: " + paymentId); // Debugging Payment ID
 
 		HttpSession session = request.getSession(false); // false prevents creating a new session if it doesn't exist
 
@@ -53,7 +49,6 @@ public class PaymentVerificationServlet extends HttpServlet {
 		if (session != null) {
 			// Debugging: Print all session attributes
 			Enumeration<String> attributeNames = session.getAttributeNames();
-			System.out.println("Session Attributes:");
 			while (attributeNames.hasMoreElements()) {
 				String attributeName = attributeNames.nextElement();
 				System.out.println(attributeName + " = " + session.getAttribute(attributeName));
@@ -72,10 +67,6 @@ public class PaymentVerificationServlet extends HttpServlet {
 			} else {
 				amount = 0L;
 			}
-
-			System.out.println("Extracted Session Data: " + paymentEmail + " " + vehicleNumber + " " + parkingToken
-					+ " " + paymentDate + " " + amount);
-			System.out.println("Order  ID: " + orderId); // Debugging OrderId ID
 		} else {
 			System.out.println("Session is null or expired.");
 		}
@@ -104,23 +95,19 @@ public class PaymentVerificationServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Error in PaymentDao.storePayment:");
+
 			e.printStackTrace(); // Print SQL Exception
 		}
 
-		System.out.println("Before Payment Updation");
-		System.out.println(paymentId + " " + paymentEmail + " " + vehicleNumber + " " + parkingToken + " " + paymentDate
-				+ " " + amount);
-
 		if (isUpdated) {
-			System.out.println("Payment Successfully Stored in DB");
+
 			session.setAttribute("paymentStatus", "done");
 		} else {
-			System.out.println("Payment Storage Failed");
+
 			session.setAttribute("paymentStatus", "failed");
 		}
 
-		response.sendRedirect("UserPages/ParkingHistory.jsp");
+		response.sendRedirect("UserPages/PaymentHistory.jsp");
 	}
 
 }
