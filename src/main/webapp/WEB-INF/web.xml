@@ -17,6 +17,7 @@
 		<description></description>
 		<servlet-class>com.servlet.AdminLogout</servlet-class>
 	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>UserLogout</servlet-name>
@@ -26,5 +27,6 @@
 		<servlet-name>AdminLogout</servlet-name>
 		<url-pattern>/AdminLogout</url-pattern>
 	</servlet-mapping>
+	
 
 </web-app>

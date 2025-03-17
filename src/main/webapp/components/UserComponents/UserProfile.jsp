@@ -1,6 +1,5 @@
 <%@page import="com.entities.User"%>
 <%
-// Retrieve the user object from the session
 User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 %>
 
@@ -22,49 +21,86 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 	<div class="offcanvas-body">
 		<div class="profile-card">
 			<%
-			// Check if the user is logged in
 			if (userDetailsForProfile != null) {
-				// Display the user's name (assuming 'getName()' is a method that retrieves the user's name)
+				int userId = userDetailsForProfile.getUserId();
 				String userName = userDetailsForProfile.getUserFullName();
 				String userEmail = userDetailsForProfile.getUserEmail();
+				String userPassword = userDetailsForProfile.getUserPassword();
 				String phoneNumber = userDetailsForProfile.getUserPhoneNumber();
 				String userAddress = userDetailsForProfile.getUserAddress();
 			%>
 			<h2>
 				Welcome,
-				<%=userName%></h2>
+				<%=userName%>
+			</h2>
 			<p>Manage your car parking details here</p>
 
+			<form action="../UpdateUserByIdServlet" method="post">
 			<div class="profile-info">
-				<label for="name" class="form-label">Full Name</label> <input
-					type="text" class="form-control" id="name" value="<%=userName%>"
-					readonly />
-			</div>
+					 <input
+						type="hidden" class="form-control" id="userId" name="userId" value="<%=userId%>"
+						readonly />
+				</div>
+				<div class="profile-info">
+					<label for="name" class="form-label">Full Name</label> <input
+						type="text" class="form-control" id="name" name="userName" value="<%=userName%>"
+						readonly />
+				</div>
 
-			<div class="profile-info">
-				<label for="email" class="form-label">Email Address</label> <input
-					type="email" class="form-control custom-form-control" id="email"
-					value="<%=userEmail%>" readonly />
-			</div>
+				<div class="profile-info">
+					<label for="email" class="form-label">Email Address</label> <input
+						type="email" class="form-control " id="email" name="userEmail"
+						value="<%=userEmail%>" readonly />
+				</div>
+				
+				<div class="profile-info">
+					<label for="email" class="form-label">Password</label> <input
+						type="password" class="form-control " id="password" name="userPassword"
+						value="<%=userPassword%>" readonly />
+				</div>
 
-			<div class="profile-info">
-				<label for="phone" class="form-label">Phone Number</label> <input
-					type="tel" class="form-control" id="phone" value="<%=phoneNumber%>"
-					readonly />
-			</div>
+				<div class="profile-info">
+					<label for="phone" class="form-label">Phone Number</label> <input
+						type="tel" class="form-control" id="phone" name="userPhoneNumber"
+						value="<%=phoneNumber%>" readonly />
+				</div>
 
-			<div class="profile-info">
-				<label for="userAddress" class="form-label">Address</label>
-				<textarea class="form-control" id="userAddress" rows="3" readonly><%=userAddress%></textarea>
-			</div>
-			<%
-			}
-			%>
-			<div class="actions-btns mt-4">
-				<button type="button" class="btn btn-success">Edit
-					Information</button>
-			</div>
+				<div class="profile-info">
+					<label for="userAddress" class="form-label">Address</label>
+					<textarea class="form-control" id="userAddress" rows="3" name="userAddress" readonly><%=userAddress%></textarea>
+				</div>
+				<%
+				}
+				%>
+
+				<div class="actions-btns mt-4">
+					<button type="button" class="btn btn-success" id="editBtn">Edit
+						Information</button>
+					<button type="submit" class="btn btn-primary d-none" id="updateBtn">Update
+						Details</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const editBtn = document.getElementById("editBtn");
+    const updateBtn = document.getElementById("updateBtn");
+    const inputs = document.querySelectorAll("#name, #email, #phone, #userAddress");
+
+    editBtn.addEventListener("click", function () {
+        inputs.forEach(input => input.removeAttribute("readonly")); // Enable editing
+        editBtn.classList.add("d-none"); // Hide edit button
+        updateBtn.classList.remove("d-none"); // Show update button
+    });
+
+    updateBtn.addEventListener("click", function () {
+        inputs.forEach(input => input.setAttribute("readonly", true)); // Disable editing
+        updateBtn.classList.add("d-none"); // Hide update button
+        editBtn.classList.remove("d-none"); // Show edit button
+        alert("Details Updated! (You can replace this with an actual update logic)");
+    });
+});
+</script>
