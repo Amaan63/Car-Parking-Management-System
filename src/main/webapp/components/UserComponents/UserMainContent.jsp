@@ -73,7 +73,7 @@
 					</div>
 					<h5 class="card-title">Payment History</h5>
 					<p class="card-text">View your payment history</p>
-					<a href="#" class="btn btn-warning text-white">View History</a>
+					<a href="../UserPages/PaymentHistory.jsp" class="btn btn-warning text-white">View History</a>
 				</div>
 			</div>
 		</div>
