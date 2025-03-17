@@ -61,6 +61,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("currentUserForValidations", user); //For user Logout
 					session.setAttribute("userForAuthentication", user); // For Security
 					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
+					session.setAttribute("userForPaymentHistory",user); // For Fetching Payment History for particular user
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 					System.out.println("User session set: " + session.getAttribute("currentUserForValidations"));
 

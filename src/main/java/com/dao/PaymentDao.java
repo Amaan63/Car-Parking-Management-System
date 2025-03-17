@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -44,35 +46,6 @@ public class PaymentDao {
 		
 	}
 
-	// Update payment status after verification
-//	public  boolean updatePaymentStatus(String orderId, String status, String razorpayPaymentId) {
-//		Session session = this.factory.openSession();
-//		Transaction transaction = null;
-//		
-//		try  {
-//			transaction = session.beginTransaction();
-//			System.out.println("Dao Begins Here");
-//			Payment payment = session.createQuery("FROM Payment WHERE orderId = :orderId", Payment.class)
-//					.setParameter("orderId", orderId).uniqueResult();
-//			System.out.println("Matching Order Id");
-//			if (payment != null) {
-//				System.out.println("Order id Matched");
-//				payment.setStatus(status);
-//				payment.setRazorpayPaymentId(razorpayPaymentId); // Store Razorpay Payment ID
-//				System.out.println("Saving Payment");
-//				session.saveOrUpdate(payment);
-//				transaction.commit();
-//				System.out.println("Saved Payment");
-//				return true;
-//			}
-//		} catch (Exception e) {
-//			if (transaction != null)
-//				transaction.rollback();
-//			System.out.println("Wrong in Dao");
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
 	public Payment getPaymentByTokenOrVehicle(String token, String vehicleNumber) {
 		Session session = this.factory.openSession();
 		Payment payment = null;
@@ -87,5 +60,32 @@ public class PaymentDao {
         }
         return payment;
     }
+	
+	
+	public List<Payment> getPaymentsByEmail(String email) {
+        List<Payment> payments = null;
+        Session session = this.factory.openSession();
+        Transaction transaction = null;
+        try  {
+            transaction = session.beginTransaction();
+
+            String hql = "FROM Payment WHERE email = :email";
+            Query<Payment> query = session.createQuery(hql, Payment.class);
+            query.setParameter("email", email);
+            
+            payments = query.getResultList();
+
+            transaction.commit();
+        } catch (Exception e) {
+           
+            e.printStackTrace();
+        }
+        finally {
+			session.clear();
+			session.close();
+		}
+        return payments;
+    }
+	
 	
 }
