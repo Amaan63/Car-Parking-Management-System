@@ -4,6 +4,18 @@
 	background-color: black !important; /* Your custom color */
 	color:  #1db954 !important; /* Ensure text is visible */
 }
+/* Hover effect for collapsible navigation links */
+.navbar-nav .nav-item .nav-link {
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    transform: scale(1.1); /* Slightly increase size */
+    background-color: black !important; /* Change background */
+    color: #1db954 !important; /* Ensure text is visible */
+}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -30,8 +42,7 @@
 					href="../UserPages/BookingForm.jsp">Book Parking</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="../UserPages/ParkingHistory.jsp">Parking History</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Available
-						Parking</a></li>
+				<li class="nav-item"><a class="nav-link" href="../UserPages/PaymentHistory.jsp">Payment History</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Change
 						Password</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Help &
