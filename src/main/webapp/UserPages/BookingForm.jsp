@@ -60,6 +60,9 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 						<option value="Hyundai">Hyundai</option>
 						<option value="Kia">Kia</option>
 						<option value="Volkswagen">Volkswagen</option>
+						<option value="Maruti Suzuki">Maruti Suzuki</option>
+						<option value="Royal Enfield">Royal Enfield</option>
+						<option value="Yamaha">Yamaha</option>
 						<option value="Other">Other</option>
 					</select>
 
@@ -180,7 +183,17 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 							<option value="2 hour">2 hours</option>
 							<option value="3 hour">3 hours</option>
 							<option value="4 hour">4 hours</option>
+							<option value="5 hour">5 hours</option>
 							<option value="6 hour">6 hours</option>
+							<option value="7 hour">7 hours</option>
+							<option value="8 hour">8 hours</option>
+							<option value="9 hour">9 hours</option>
+							<option value="10 hour">10 hours</option>
+							<option value="11 hour">11 hours</option>
+							<option value="12 hour">12 hours</option>
+							<option value="24 hour">24 hours</option>
+							<option value="48 hour">48 hours</option>
+							
 						</select>
 					</div>
 				</div>
