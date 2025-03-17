@@ -1,6 +1,11 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.VehicleDao"%>
+<%
+//Fetch data from DAO
+VehicleDao vehicleDAO = new VehicleDao(FactoryProvider.getFactory());
+%>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 <!-- Charts Row -->
@@ -8,7 +13,7 @@
 	<div class="col-md-8">
 		<div class="card bg-dark text-light border border-secondary">
 			<div class="card-header border-secondary">
-				<h5 class="card-title mb-0">Parking Usage Analytics</h5>
+				<h5 class="card-title mb-0">Vehicle Booking Hour Analytics</h5>
 			</div>
 			<div class="card-body">
 				<canvas id="usageChart" height="200"></canvas>
@@ -26,64 +31,87 @@
 		</div>
 	</div>
 </div>
+<%
+Map<String, Long> vehicleCount = vehicleDAO.getVehicleCountByTimeDuration();
+%>
 <script>
-	const usageCtx = document.getElementById("usageChart").getContext("2d");
-	new Chart(usageCtx, {
-		type : "line",
-		data : {
-			labels : [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ],
-			datasets : [ {
-				label : "Weekly Usage",
-				data : [ 65, 59, 80, 81, 56, 55, 40 ],
-				fill : true,
-				borderColor : "#0d6efd",
-				backgroundColor : "rgba(13, 110, 253, 0.1)",
-				tension : 0.4,
-			}, ],
-		},
-		options : {
-			responsive : true,
-			maintainAspectRatio : false,
-			plugins : {
-				legend : {
-					display : false,
-				},
-				tooltip : {
-					mode : "index",
-					intersect : false,
-					backgroundColor : "rgba(0, 0, 0, 0.8)",
-					titleColor : "#fff",
-					bodyColor : "#fff",
-					borderColor : "rgba(255, 255, 255, 0.1)",
-					borderWidth : 1,
-				},
-			},
-			scales : {
-				y : {
-					beginAtZero : true,
-					grid : {
-						color : "rgba(255, 255, 255, 0.1)",
-					},
-					ticks : {
-						color : "#ffffff80",
-					},
-				},
-				x : {
-					grid : {
-						color : "rgba(255, 255, 255, 0.1)",
-					},
-					ticks : {
-						color : "#ffffff80",
-					},
-				},
-			},
-		},
-	});
+document.addEventListener("DOMContentLoaded", function () {
+    const chartContainer = document.getElementById("usageChart").parentElement;
+
+    if (!chartContainer) {
+        console.error("Chart container not found!");
+        return;
+    }
+
+    const vehicleData = [
+        <%if (vehicleCount != null && !vehicleCount.isEmpty()) {
+	for (Map.Entry<String, Long> entry : vehicleCount.entrySet()) {
+		String duration = entry.getKey();
+		long count = entry.getValue();%>
+                { label: "<%=duration%>", value: <%=count%> },
+        <%}
+}%>
+    ];
+
+    if (vehicleData.length === 0) {
+        chartContainer.innerHTML = 
+            "<p style='color: white; text-align: center; font-size: 16px;'>No vehicles added yet.</p>";
+        return;
+    }
+
+    const labels = vehicleData.map(item => item.label);
+    const dataValues = vehicleData.map(item => item.value);
+    const barColors = ["#0d6efd", "#dc3545", "#ffc107", "#28a745", "#6610f2", "#fd7e14", "#20c997", "#6610f2"];
+
+    const usageCtx = document.getElementById("usageChart")?.getContext("2d");
+    if (!usageCtx) {
+        console.error("Chart canvas not found!");
+        return;
+    }
+
+    new Chart(usageCtx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Number of Vehicles",
+                data: dataValues,
+                backgroundColor: barColors.slice(0, labels.length)
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    titleColor: "#fff",
+                    bodyColor: "#fff",
+                    borderColor: "rgba(255, 255, 255, 0.1)",
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { stepSize: 1 },
+                    grid: { color: "rgba(255, 255, 255, 0.2)" }
+                },
+                x: { 
+                    grid: { display: true, color: "rgba(255, 255, 255, 0.2)" }
+                }
+            }
+        }
+    });
+});
 </script>
+
+
+
 <script>
 	
 <%// Call DAO directly inside JSP
-VehicleDao vehicleDAO = new VehicleDao(FactoryProvider.getFactory());
 List<Object[]> vehicleCounts = vehicleDAO.getVehicleCounts();%>
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -2,7 +2,9 @@ package com.dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -308,5 +310,31 @@ public class VehicleDao {
 
 		return reservations;
 	}
+	
+	 /**
+     * Retrieves the count of vehicles based on their time duration.
+     * @return A map where keys are time durations and values are vehicle counts.
+     */
+    public Map<String, Long> getVehicleCountByTimeDuration() {
+        Map<String, Long> durationMap = new HashMap<>();
+        
+        // Open a Hibernate session
+        try (Session session = this.factory.openSession()) {
+
+            // HQL query to count vehicles for each time duration
+            String hql = "SELECT v.timeDuration, COUNT(v) FROM Vehicle v GROUP BY v.timeDuration ORDER BY v.timeDuration";
+            Query<Object[]> query = session.createQuery(hql, Object[].class);
+            
+            // Process the query result
+            for (Object[] row : query.getResultList()) {
+                durationMap.put((String) row[0], (Long) row[1]); // Store data in the map
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Print any errors
+        }
+        
+        return durationMap; // Return the final map
+    }
 
 }
