@@ -50,8 +50,9 @@ public class UserDao {
 
 	public boolean updateUserById(int userId, String name, String phoneNumber, String address, String password,
 			String email) {
+		Session session = this.factory.openSession();
 		Transaction transaction = null;
-		try (Session session = this.factory.openSession()) {
+		try {
 			transaction = session.beginTransaction();
 
 			// Fetch user by ID
@@ -79,7 +80,8 @@ public class UserDao {
 	}
 
 	public User getUserById(int userId) {
-		try (Session session = this.factory.openSession()) {
+		Session session = this.factory.openSession();
+		try {
 			return session.get(User.class, userId);
 		} catch (Exception e) {
 			e.printStackTrace();
