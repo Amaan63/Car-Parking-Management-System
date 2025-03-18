@@ -18,7 +18,7 @@
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
-						<h6 class="card-title">Available</h6>
+						<h6 class="card-title">Total Vehicle</h6>
 						<h2 class="mb-0">65</h2>
 					</div>
 					<i class="fas fa-check-circle fa-2x opacity-50"></i>
@@ -31,7 +31,7 @@
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
-						<h6 class="card-title">Active Users</h6>
+						<h6 class="card-title">Total Users</h6>
 						<h2 class="mb-0">42</h2>
 					</div>
 					<i class="fas fa-users fa-2x opacity-50"></i>
