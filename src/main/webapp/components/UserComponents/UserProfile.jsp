@@ -31,7 +31,7 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 			<div id="alertBox"
 				class="alert alert-success alert-dismissible fade show mt-3 mb-0 col-md-10 text-center"
 				role="alert">
-				<i class="fas fa-info-circle me-1"></i> Details are updated 
+				<i class="fas fa-info-circle me-1"></i> Details are updated
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
@@ -112,7 +112,7 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 				</div>
 
 				<div class="profile-info">
-					<label for="email" class="form-label">Password</label> <input
+					<label for="password" class="form-label">Password</label> <input
 						type="password" class="form-control " id="password"
 						name="userPassword" value="<%=userPassword%>" readonly />
 				</div>
@@ -145,21 +145,69 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const editBtn = document.getElementById("editBtn");
-    const updateBtn = document.getElementById("updateBtn");
-    const inputs = document.querySelectorAll("#name, #email, #phone, #userAddress");
+    let editBtn = document.getElementById("editBtn");
+    let updateBtn = document.getElementById("updateBtn");
 
     editBtn.addEventListener("click", function () {
-        inputs.forEach(input => input.removeAttribute("readonly")); // Enable editing
-        editBtn.classList.add("d-none"); // Hide edit button
-        updateBtn.classList.remove("d-none"); // Show update button
+        // Make all fields editable except userId
+        document.querySelectorAll(".form-control").forEach(input => {
+            if (input.id !== "userId") {
+                input.removeAttribute("readonly");
+            }
+        });
+
+        // Show update button and hide edit button
+        updateBtn.classList.remove("d-none");
+        editBtn.classList.add("d-none");
     });
 
-    updateBtn.addEventListener("click", function () {
-        inputs.forEach(input => input.setAttribute("readonly", true)); // Disable editing
-        updateBtn.classList.add("d-none"); // Hide update button
-        editBtn.classList.remove("d-none"); // Show edit button
-        alert("Are you sure you want to Update the Details");
+    document.querySelector("form").addEventListener("submit", function (event) {
+        if (!validateForm()) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
     });
 });
+
+function validateForm() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let phoneNumber = document.getElementById("phone").value;
+    let username = document.getElementById("name").value;
+    let address = document.getElementById("userAddress").value;
+
+    // Validate Username (should not be empty)
+    if (username.trim() === "") {
+        alert("Full Name is required!");
+        return false;
+    }
+
+    // Validate Address (should not be empty)
+    if (address.trim() === "") {
+        alert("Address is required!");
+        return false;
+    }
+
+    // Validate Email Format
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address!");
+        return false;
+    }
+
+    // Validate Password Length
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long!");
+        return false;
+    }
+
+    // Validate Phone Number (10-digit numeric)
+    let phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phoneNumber)) {
+        alert("Please enter a valid 10-digit phone number!");
+        return false;
+    }
+
+    return true; // Allow form submission if all validations pass
+}
+
 </script>
