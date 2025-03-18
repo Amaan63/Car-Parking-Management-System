@@ -44,13 +44,21 @@ public class UpdateUserByIdServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			UserDao userDao = new UserDao(FactoryProvider.getFactory());
-			boolean isUpdated = userDao.updateUserById(userId, userName, userPhoneNumber, userAddress, userPassword, userEmail);
+			boolean isUpdated = userDao.updateUserById(userId, userName, userPhoneNumber, userAddress, userPassword,
+					userEmail);
 
 			if (isUpdated) {
-			    // Fetch updated user again
-			    User updatedUser = userDao.getUserById(userId);
-			    session.setAttribute("userForProfile", updatedUser);
-			    session.setAttribute("currentUserForValidations", updatedUser);
+				// Fetch updated user again
+				User updatedUser = userDao.getUserById(userId);
+
+				// Remove old attributes to force update
+				session.removeAttribute("userForBanner");
+				session.removeAttribute("currentUserForValidations");
+				session.removeAttribute("userForProfile");
+
+				session.setAttribute("userForProfile", updatedUser);
+				session.setAttribute("currentUserForValidations", updatedUser);
+				session.setAttribute("userForBanner", updatedUser); // Ensure this is updated
 				session.setAttribute("updateStatus", "Updated Successfully");
 				response.sendRedirect(request.getContextPath() + "/UserPages/UserDashBoard.jsp");
 			} else {
