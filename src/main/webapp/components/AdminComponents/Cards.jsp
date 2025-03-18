@@ -1,3 +1,13 @@
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.dao.StatisticsDao"%>
+<%
+StatisticsDao statisticsDao = new StatisticsDao(FactoryProvider.getFactory());
+int totalSlots = statisticsDao.getTotalSlots();
+int totalVehicles = statisticsDao.getTotalVehicles();
+int totalUsers = statisticsDao.getTotalUsers();
+String totalRevenue = statisticsDao.getTotalRevenue(); // Now returns a formatted string
+%>
+
 <!-- Statistics Cards -->
 <div class="row g-4 mb-4">
 	<div class="col-md-3">
@@ -6,7 +16,7 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 						<h6 class="card-title">Total Slots</h6>
-						<h2 class="mb-0">100</h2>
+						<h2 class="mb-0"><%=totalSlots%></h2>
 					</div>
 					<i class="fas fa-parking fa-2x opacity-50"></i>
 				</div>
@@ -18,10 +28,10 @@
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
-						<h6 class="card-title">Total Vehicle</h6>
-						<h2 class="mb-0">65</h2>
+						<h6 class="card-title">Total Vehicles</h6>
+						<h2 class="mb-0"><%=totalVehicles%></h2>
 					</div>
-					<i class="fas fa-check-circle fa-2x opacity-50"></i>
+					<i class="fa-solid fa-car fa-2x opacity-50"></i>
 				</div>
 			</div>
 		</div>
@@ -32,7 +42,7 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 						<h6 class="card-title">Total Users</h6>
-						<h2 class="mb-0">42</h2>
+						<h2 class="mb-0"><%=totalUsers%></h2>
 					</div>
 					<i class="fas fa-users fa-2x opacity-50"></i>
 				</div>
@@ -45,9 +55,10 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 						<h6 class="card-title">Revenue</h6>
-						<h2 class="mb-0">$1.2k</h2>
+						<h2 class="mb-0"><%=totalRevenue%></h2>
+						<!-- Now correctly displays ₹K, ₹M -->
 					</div>
-					<i class="fas fa-dollar-sign fa-2x opacity-50"></i>
+					<i class="fa-solid fa-indian-rupee-sign fa-2x opacity-50"></i>
 				</div>
 			</div>
 		</div>
