@@ -12,6 +12,7 @@
 	transform: translateY(-10px);
 }
 </style>
+
 <div class="card bg-dark text-light border border-secondary mb-3">
 	<div class="card-header border-secondary">
 		<h5 class="card-title mb-0 text-center">
