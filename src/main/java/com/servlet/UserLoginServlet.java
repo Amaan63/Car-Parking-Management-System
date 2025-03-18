@@ -57,7 +57,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userForBanner", user); // Store the user object in session
 					session.setAttribute("userForProfile", user); // For Profile
 					session.setAttribute("userDetailForBooking", user); // For Booking Form Details
-					session.setAttribute("userForFetchingVehicleByEmail", user); // FOr Fetching user Booked Vehicle
+					session.setAttribute("userForFetchingVehicleByEmail", user); // For Fetching user Booked Vehicle
 					session.setAttribute("currentUserForValidations", user); //For user Logout
 					session.setAttribute("userForAuthentication", user); // For Security
 					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
