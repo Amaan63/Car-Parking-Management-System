@@ -20,12 +20,11 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 	</div>
 	<div class="offcanvas-body">
 
-
 		<%
 		String updateStatus = (String) session.getAttribute("updateStatus");
+		System.out.println("🔍 Debug: updateStatus = " + updateStatus); // Check in Tomcat logs
 		if (updateStatus != null && updateStatus.equals("Updated Successfully")) {
 		%>
-
 		<!-- Updation Details Alert -->
 		<div class="container d-flex justify-content-center">
 			<div id="alertBox"
@@ -78,6 +77,8 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 		}
 		%>
 
+
+
 		<div class="profile-card">
 			<%
 			if (userDetailsForProfile != null) {
@@ -94,7 +95,8 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 			</h2>
 			<p>Manage your car parking details here</p>
 
-			<form action="../UpdateUserByIdServlet" method="post">
+			<form action="../UpdateUserByIdServlet" method="post"
+				id="updateProfileForm">
 				<div class="profile-info">
 					<input type="hidden" class="form-control" id="userId" name="userId"
 						value="<%=userId%>" readonly />
@@ -144,6 +146,8 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 </div>
 
 <script>
+
+// When the editbtn is clicked all the read only input can nbecaome editable and Update detail btn will be shown instaed of edit btn
 document.addEventListener("DOMContentLoaded", function () {
     let editBtn = document.getElementById("editBtn");
     let updateBtn = document.getElementById("updateBtn");
