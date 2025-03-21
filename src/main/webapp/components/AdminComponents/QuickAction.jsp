@@ -28,7 +28,7 @@
 						data-bs-target="#SlotCreatingModal">
 						<!--  <i class="fas fa-car-side fa-2x mb-2"></i> -->
 						<img alt="Slot Icon"
-							src="/CarParkingManagementSystem/images/QuickActions/ParkingSlot.png"
+							src="../images/QuickActions/ParkingSlot.png"
 							class="mb-2 custom-img"><br /> <b> Slot Creating </b>
 					</button>
 				</div>
@@ -39,7 +39,7 @@
 						onclick="window.location.href='../AdminPages/ManageUsers.jsp'">
 						<!--   <i class="fas fa-clock fa-2x mb-2"></i> -->
 						<img alt="Manage Users"
-							src="/CarParkingManagementSystem/images/QuickActions/ManageUser.png"
+							src="../images/QuickActions/ManageUser.png"
 							class="mb-2 custom-img"> <br /> <b> Manage Users </b>
 					</button>
 				</div>
@@ -50,7 +50,7 @@
 						onclick="window.location.href='../AdminPages/ManageVehicle.jsp'">
 						<!-- <i class="fas fa-map-marker-alt fa-2x mb-2"></i> -->
 						<img alt="Manage Vehicles"
-							src="/CarParkingManagementSystem/images/QuickActions/ManageVehicle.png"
+							src="../images/QuickActions/ManageVehicle.png"
 							class="mb-2 custom-img"> <br /> <b> Manage Vehicles </b>
 					</button>
 				</div>
@@ -63,7 +63,7 @@
 					<button class="btn btn-success p-4">
 						<!--   <i class="fas fa-car-crash fa-2x mb-2"></i> -->
 						<img alt="Manage Parking Rates"
-							src="/CarParkingManagementSystem/images/QuickActions/ManagePrice.png"
+							src="../images/QuickActions/ManagePrice.png"
 							class="mb-2 custom-img"> <br /> <b> Manage Parking
 							Rates </b>
 					</button>
@@ -74,7 +74,7 @@
 					<button class="btn btn-primary p-4"
 						onclick="window.location.href='../AdminPages/ManageSlots.jsp'">
 						<img alt="Manage Parking Rates"
-							src="/CarParkingManagementSystem/images/QuickActions/ManageSlot.png"
+							src="../images/QuickActions/ManageSlot.png"
 							class="mb-2 custom-img"> <br /> <b> Manage Slot </b>
 					</button>
 				</div>
@@ -84,7 +84,7 @@
 					<button class="btn btn-info p-4">
 						<!--   <i class="fas fa-receipt fa-2x mb-2"></i><br /> -->
 						<img alt="View FeedBack and Complaints"
-							src="/CarParkingManagementSystem/images/QuickActions/Feedback&Review.png"
+							src="../images/QuickActions/Feedback&Review.png"
 							class="mb-2 custom-img"> <br /> <b> View Feedback and
 							Complaint </b>
 					</button>
