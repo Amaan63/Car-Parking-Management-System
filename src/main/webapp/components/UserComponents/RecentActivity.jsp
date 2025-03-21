@@ -1,8 +1,9 @@
-<!-- Recent Activity and Stats -->
-<div class="col-md-8 ">
-	<div class="card  shadow-none border-0">
-		<div class="card-header bg-danger ">
-			<h5 class="card-title mb-0 ">Recent Activity</h5>
+<!-- Recent Activity Section -->
+<div class="col-lg-8 col-md-12">
+	<!-- Takes full width on small screens -->
+	<div class="card shadow-none border-0">
+		<div class="card-header bg-danger">
+			<h5 class="card-title mb-0">Recent Activity</h5>
 		</div>
 		<div class="card-body bg-dark text-light">
 			<div class="list-group list-group-flush">
@@ -31,7 +32,7 @@
 						<h6 class="mb-1">Payment Received</h6>
 						<small class="text-muted">1 week ago</small>
 					</div>
-					<p class="mb-1">$15.00 for Booking #1233</p>
+					<p class="mb-1">₹15.00 for Booking #1233</p>
 					<small class="text-success"> <i
 						class="fas fa-check-circle me-1"></i> Transaction completed
 					</small>
