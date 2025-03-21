@@ -26,7 +26,7 @@ public class Vehicle {
 	@Column(length = 100, name = "user_name")
 	private String userName;
 
-	@Column(length = 100, name = "user_email", unique = true)
+	@Column(length = 100, name = "user_email")
 	private String userEmailId;
 
 	@Column(length = 100, name = "vehicle_company")
