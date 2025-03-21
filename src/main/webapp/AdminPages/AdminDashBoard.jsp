@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Admin DashBoard</title>
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 
 </head>
-<body>
+<body class="min-vh-100">
 
 	<div class="container-fluid">
 		<div class="row">
