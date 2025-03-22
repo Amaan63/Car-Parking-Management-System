@@ -21,6 +21,7 @@
 	<%@include file="components/Features.jsp"%>
 	<%@include file="components/Services.jsp"%>
 	<%@include file="components/AdditionalContent.jsp"%>
+	<%@include file="components/FeedbackAndReviewForm.jsp"%>
 	<%@include file="components/Footer.jsp"%>
 	<%
 	// Get the logout message from the session
