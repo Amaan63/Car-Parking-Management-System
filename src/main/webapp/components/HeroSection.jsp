@@ -56,7 +56,7 @@
                 <div class="mt-4 d-grid gap-3 d-md-inline-flex">
                     <!-- Buttons with Bootstrap classes for styling -->
                     <a href="#features" class="btn btn-outline-light btn-lg">Explore Features</a>
-                    <a href="#contact" class="btn btn-outline-light btn-lg">Get in Touch</a>
+                    <a href="#FeedbackForm" class="btn btn-outline-light btn-lg">Get in Touch</a>
                 </div>
             </div>
         </div>
