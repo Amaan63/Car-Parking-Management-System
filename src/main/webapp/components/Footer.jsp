@@ -135,10 +135,10 @@
 	</div>
 
 	<!-- Bottom Bar -->
-	<div class="footer-bottom mt-5">
+	<div class="footer-bottom mt-5 mx-3 rounded">
 		<div class="container">
 			<div class="row py-3">
-				<div class="col-md-12 text-center   fs-2">
+				<div class="col-md-12 text-center    fs-2">
 					<small>&copy; 2025 Park Ease. All rights reserved.</small>
 				</div>
 
