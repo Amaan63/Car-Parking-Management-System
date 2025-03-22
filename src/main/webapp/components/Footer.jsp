@@ -65,24 +65,26 @@
 			<!-- Company Info -->
 			<div class="col-lg-4 col-md-6">
 				<h5 class="footer-title">
-					<i class="fas fa-parking me-2"></i>Car Parking Management Sytem
+					<i class="fas fa-parking me-2"></i>Park Ease
 				</h5>
 				<p class="mb-4">Making parking hassle-free with smart solutions.
 					Find, book, and manage parking spaces with ease.</p>
 				<div class="mb-4">
-					<a href="#" class="social-icon footer-link"> <i
-						class="fab fa-facebook-f"></i>
-					</a> <a href="#" class="social-icon footer-link"> <i
-						class="fab fa-twitter"></i>
-					</a> <a href="#" class="social-icon footer-link"> <i
+					<a href="https://www.facebook.com" class="social-icon footer-link"
+						target="_blank"> <i class="fab fa-facebook-f"></i>
+					</a> <a href="https://www.twitter.com" class="social-icon footer-link"
+						target="_blank"> <i class="fab fa-twitter"></i>
+					</a> <a href="https://www.instagram.com"
+						class="social-icon footer-link" target="_blank"> <i
 						class="fab fa-instagram"></i>
-					</a> <a href="#" class="social-icon footer-link"> <i
-						class="fab fa-linkedin-in"></i>
+					</a> <a href="https://www.linkedin.com" class="social-icon footer-link"
+						target="_blank"> <i class="fab fa-linkedin-in"></i>
 					</a>
+
 				</div>
 			</div>
 
-			<!-- Quick Links -->
+			<!-- Quick Links 
 			<div class="col-lg-3 col-md-6">
 				<h5 class="footer-title">Quick Links</h5>
 				<ul class="list-unstyled">
@@ -95,51 +97,38 @@
 					<li class="mb-2"><a href="#" class="footer-link"> <i
 							class="fas fa-angle-right me-2"></i>My Bookings
 					</a></li>
-					<li class="mb-2"><a href="#" class="footer-link"> <i
-							class="fas fa-angle-right me-2"></i>Pricing
-					</a></li>
-					<li class="mb-2"><a href="#" class="footer-link"> <i
-							class="fas fa-angle-right me-2"></i>FAQs
-					</a></li>
 				</ul>
-			</div>
+			</div> -->
 
 			<!-- Contact Info -->
-			<div class="col-lg-3 col-md-6">
+			<div class="col-lg-4 col-md-6">
 				<h5 class="footer-title">Contact Info</h5>
 				<ul class="list-unstyled">
 					<li class="mb-3"><i class="fas fa-map-marker-alt me-2"></i>
-						123 Parking Street, City, Country</li>
-					<li class="mb-3"><i class="fas fa-phone me-2"></i> +1 234 567
-						8900</li>
+						Marol Church Road Andheri East Mumbai 400059</li>
+					<li class="mb-3"><i class="fas fa-phone me-2"></i> +91
+						8433829855</li>
 					<li class="mb-3"><i class="fas fa-envelope me-2"></i>
-						support@smartpark.com</li>
+						amaansayed@gmail.com</li>
 					<li class="mb-3"><i class="fas fa-clock me-2"></i> 24/7
 						Customer Support</li>
 				</ul>
 			</div>
 
 			<!-- Emergency Support -->
-			<div class="col-lg-2 col-md-6">
+			<div class="col-lg-3 col-md-6">
 				<h5 class="footer-title">24/7 Support</h5>
 				<div class="emergency-contact mb-4">
 					<h6 class="text-white mb-3">Emergency Support</h6>
 					<p class="mb-2">
-						<i class="fas fa-phone-alt me-2"></i>Emergency: 911
+						<i class="fas fa-phone-alt me-2"></i>Emergency: 100
 					</p>
 					<p class="mb-2">
-						<i class="fas fa-wrench me-2"></i>Breakdown: +1 555-0123
+						<i class="fas fa-wrench me-2"></i>Breakdown: +91 8898955174
 					</p>
 					<p class="mb-0">
-						<i class="fas fa-shield-alt me-2"></i>Security: +1 555-0124
+						<i class="fas fa-shield-alt me-2"></i>Security: +91 9610028149
 					</p>
-				</div>
-				<div>
-					<h6 class="text-white mb-3">Mobile Apps</h6>
-					<img src="/api/placeholder/120/40" alt="Download on App Store"
-						class="app-badge" /> <img
-						src="/api/placeholder/120/40" alt="Get it on Google Play"
-						class="app-badge" />
 				</div>
 			</div>
 		</div>
@@ -149,17 +138,10 @@
 	<div class="footer-bottom mt-5">
 		<div class="container">
 			<div class="row py-3">
-				<div class="col-md-6 text-center text-md-start">
-					<small>&copy; 2025 SmartPark. All rights reserved.</small>
+				<div class="col-md-12 text-center   fs-2">
+					<small>&copy; 2025 Park Ease. All rights reserved.</small>
 				</div>
-				<div class="col-md-6 text-center text-md-end">
-					<a href="#" class="footer-link me-3"> <small>Privacy
-							Policy</small>
-					</a> <a href="#" class="footer-link me-3"> <small>Terms of
-							Service</small>
-					</a> <a href="#" class="footer-link"> <small>Sitemap</small>
-					</a>
-				</div>
+
 			</div>
 		</div>
 	</div>
