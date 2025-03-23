@@ -26,6 +26,7 @@ double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to
 
 	// Initialize VehicleDao and retrieve vehicle details
 	VehicleDao vehicledao = new VehicleDao(FactoryProvider.getFactory());
+	vehicledao.updateAllVehicleStatuses();
 	List<Vehicle> vehicles = vehicledao.getAllVehicleByEmailId(email);
 	%>
 
@@ -47,23 +48,32 @@ double ratePerHour = ratesDao.getFixedRatePerHour() / 100.0; // Convert paise to
 			<%
 			Slot slotObj = vehicle.getSlot();
 			int slotId = (slotObj != null) ? slotObj.getSlotId() : 0;
+			String vehicleStatus = vehicle.getStatus(); // Fetch the vehicle status
 
-			if (slotId > 0) {
+			if ("Completed".equals(vehicleStatus)) {
 			%>
-			<!-- Smaller badge in the right corner for "Slot Allocated" -->
+			<!-- Badge for Parking Completed -->
 			<span
-				class="badge bg-success position-absolute top-0 end-0 m-1 p-1 px-2 fs-6 ">Slot
+				class="badge bg-info position-absolute top-0 end-0 m-1 p-1 px-2 fs-6">Parking
+				Completed</span>
+			<%
+			} else if (slotId > 0) {
+			%>
+			<!-- Badge for Slot Allocated -->
+			<span
+				class="badge bg-success position-absolute top-0 end-0 m-1 p-1 px-2 fs-6">Slot
 				Allocated</span>
 			<%
 			} else {
 			%>
-			<!-- Smaller badge in the right corner for "No Slot Allocated" -->
+			<!-- Badge for No Slot Allocated -->
 			<span
 				class="badge bg-danger position-absolute top-0 end-0 m-1 p-1 px-2 fs-6">No
 				Slot Allocated</span>
 			<%
 			}
 			%>
+
 		</div>
 		<div class="card-body">
 			<div class="row">
