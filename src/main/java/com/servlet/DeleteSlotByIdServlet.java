@@ -28,7 +28,6 @@ public class DeleteSlotByIdServlet extends HttpServlet {
 		
 		if (isDeleted) {
 			session.setAttribute("slotStatus", "Deleted Successfully");
-			System.out.println("Deleted Slot");
 			response.sendRedirect("AdminPages/ManageSlots.jsp");
 		} else {
 			session.setAttribute("slotStatus", "Deletion Failed");

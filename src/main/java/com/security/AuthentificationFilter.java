@@ -25,16 +25,10 @@ public class AuthentificationFilter implements Filter {
 		String requestURI = httpRequest.getRequestURI();
 
 		// Debugging: Log the request URI to make sure it's correct
-		// System.out.println("Request URI: " + requestURI);
 
 		boolean isLoggedIn = (session != null && session.getAttribute("userForAuthentication") != null);
 		boolean isAdminLoggedIn = (session != null && session.getAttribute("currentAdmin") != null); // Check if admin
 																										// is logged in
-		// Debugging: Check session attributes
-//	    if (session != null) {
-//	        System.out.println("Session ID: " + session.getId());
-//	        System.out.println("Session Admin: " + session.getAttribute("currentAdmin"));
-//	    }
 		// Skip filter for login, registration, admin login pages, static resources, or
 		// if user/admin is logged in
 		if (isLoginRequest(requestURI) || isPublicPage(requestURI) || isStaticResource(requestURI) || isLoggedIn
@@ -65,7 +59,8 @@ public class AuthentificationFilter implements Filter {
 	// Check if the request is targeting the login page, login servlet, admin login
 	// page, or admin login servlet
 	private boolean isLoginRequest(String uri) {
-		System.out.println("Checking URI: " + uri); // Add this line to print the URI
+		// Add this line to print the URI
+		//System.out.println("Checking URI: " + uri); 
 		// Ensure this includes both admin login and its servlet
 		return uri.endsWith("UserLoginServlet") || uri.endsWith("User-Registration&Login.jsp")
 				|| uri.endsWith("UserRegistrationServlet") || uri.endsWith("AdminLoginServlet")

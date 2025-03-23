@@ -37,11 +37,11 @@ public class DeleteVehicleByIdServlet extends HttpServlet {
 				if (deleted) {
 
 					session.setAttribute("deleteVehicleStatus", "Successfully Deleted");
-					System.out.println("Deleted Vehicle Id");
+
 				} else {
 
 					session.setAttribute("deleteVehicleStatus", "Error in Deleting the Vehicle");
-					System.out.println("Error in Deleting Vehicle");
+
 				}
 			} catch (NumberFormatException e) {
 

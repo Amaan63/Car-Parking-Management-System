@@ -39,9 +39,7 @@ public class SaveVehicleBooking extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// Validate if vehicle number already exists
-		System.out.println("Checking vehicle: " + vehicleNumber);
 		if (vehicleDao.isVehicleNumberExists(vehicleNumber)) {
-			System.out.println("Duplicate found: " + vehicleNumber);
 			session.setAttribute("bookingStatus", "Vehicle number already exists.");
 			response.sendRedirect("UserPages/BookingForm.jsp");
 			return;
@@ -58,11 +56,12 @@ public class SaveVehicleBooking extends HttpServlet {
 			// Ensure vehicle ID is generated (if using auto-increment)
 			if (vehicle.getVehicleId() > 0) {
 				vehicleDao.calculateAndUpdateCost(vehicle.getVehicleId());
-				System.out.println(vehicle.getVehicleId());
+				session.setAttribute("bookingStatus", "Successfully Booked the Parking Spot");
 			} else {
 				System.out.println("Cannot find the Vehicle Id");
+				session.setAttribute("bookingStatus", "Failed Booking");
 			}
-			session.setAttribute("bookingStatus", "Successfully Booked the Parking Spot");
+
 			response.sendRedirect("UserPages/UserDashBoard.jsp");
 		} else {
 			session.setAttribute("bookingStatus", "Failed Booking");

@@ -75,7 +75,7 @@ public class VehicleDao {
 			vehicles = query.list();
 
 			if (vehicles != null && !vehicles.isEmpty()) {
-				// System.out.println("Vehicles found: " + vehicles.size());
+				System.out.println("Vehicles found: " + vehicles.size());
 			}
 		} catch (Exception e) {
 			e.printStackTrace(); // Print the exception for debugging
@@ -170,30 +170,20 @@ public class VehicleDao {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-
 			// Step 3: Fetch the saved vehicle
 			Vehicle savedVehicle = session.get(Vehicle.class, vehicleId);
 			if (savedVehicle == null) {
 				System.out.println("Vehicle not found after save!");
 				return;
 			}
-
 			// Step 4: Calculate total cost
 			long ratePerHour = getRatePerHour();
-			// System.out.println(ratePerHour);
 			int totalHours = extractHours(savedVehicle.getTimeDuration());
-			// String Time = (String) savedVehicle.getTimeDuration();
-			// System.out.println(Time);
-			// System.out.println(totalHours);
 			long totalCost = ratePerHour * totalHours;
-			// System.out.println(totalCost);
-
 			// Step 5: Update vehicle with total cost
 			savedVehicle.setTotalCost(totalCost);
 			session.update(savedVehicle);
 			transaction.commit();
-
-			// System.out.println("Total cost updated successfully: " + totalCost);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

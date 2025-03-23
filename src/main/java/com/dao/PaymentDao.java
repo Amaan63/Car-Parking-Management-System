@@ -23,7 +23,6 @@ public class PaymentDao {
 			String parkingToken,String paymentId,String orderId) {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
-		System.out.println("Dao Start Here");
 		try {
 			transaction = session.beginTransaction();
 			if (email == null) {
@@ -34,13 +33,11 @@ public class PaymentDao {
 			session.save(payment);
 
 			transaction.commit();
-			System.out.println("Dao End Here successfully ");
 			return true;
 		} catch (Exception e) {
 			if (transaction != null)
 				transaction.rollback();
 			e.printStackTrace();
-			System.out.println("Dao End Here Failed ");
 			return false;
 		}
 		

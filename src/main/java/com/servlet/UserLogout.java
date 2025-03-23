@@ -28,16 +28,12 @@ public class UserLogout extends HttpServlet {
 		if (session != null) {
 			// Optional: Remove attributes related to the user
 			session.removeAttribute("currentUserForValidations");
-
-//			// Set a logout message BEFORE invalidating the session
-//			request.setAttribute("userLogoutMessage", "Logout Successfully");
-
 			// Invalidate the session to log out the user
 			session.invalidate();
 			
 			HttpSession s = request.getSession();
 			s.setAttribute("userLogoutMessage", "Logout Successfully");
-			System.out.println("User Logout");
+			
 		}
 
 		// Redirect to the login or home page

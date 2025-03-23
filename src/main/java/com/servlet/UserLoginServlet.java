@@ -27,7 +27,7 @@ public class UserLoginServlet extends HttpServlet {
 		try {
 			String emailAddress = request.getParameter("userEmail");
 			String password = request.getParameter("userPassword");
-			//System.out.println(emailAddress + password);
+			
 
 			// Initialize session
 			HttpSession session = request.getSession();
@@ -63,12 +63,10 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
 					session.setAttribute("userForPaymentHistory",user); // For Fetching Payment History for particular user
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
-					System.out.println("User session set: " + session.getAttribute("currentUserForValidations"));
 
 				} else {
 					// Password is incorrect
 					session.setAttribute("loginStatus", "Password is incorrect.");
-					System.out.println("Password is incorrect."); // Debugging line
 					response.sendRedirect("User-Registration&Login.jsp");
 				}
 			}

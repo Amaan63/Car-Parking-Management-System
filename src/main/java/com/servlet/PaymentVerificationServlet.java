@@ -47,12 +47,12 @@ public class PaymentVerificationServlet extends HttpServlet {
 		String paymentDate = now.format(formatter);
 
 		if (session != null) {
-			// Debugging: Print all session attributes
-			Enumeration<String> attributeNames = session.getAttributeNames();
-			while (attributeNames.hasMoreElements()) {
-				String attributeName = attributeNames.nextElement();
-				System.out.println(attributeName + " = " + session.getAttribute(attributeName));
-			}
+//			// Debugging: Print all session attributes
+//			Enumeration<String> attributeNames = session.getAttributeNames();
+//			while (attributeNames.hasMoreElements()) {
+//				String attributeName = attributeNames.nextElement();
+//				System.out.println(attributeName + " = " + session.getAttribute(attributeName));
+//			}
 
 			// Fetch session attributes
 			paymentEmail = (String) session.getAttribute("paymentEmail");
@@ -73,10 +73,10 @@ public class PaymentVerificationServlet extends HttpServlet {
 
 		String status;
 		if (paymentId != null && !paymentId.trim().isEmpty()) {
-			System.out.println("Payment Not Null");
+			
 			status = "SUCCESSFUL";
 		} else {
-			System.out.println("Payment Failed");
+			
 			status = "FAILED";
 			paymentId = "N/A"; // Store "N/A" for failed transactions
 		}
@@ -89,7 +89,6 @@ public class PaymentVerificationServlet extends HttpServlet {
 			if (paymentEmail == null || paymentEmail.isEmpty()) {
 				System.out.println("Error: Email is null before inserting into the database.");
 			} else {
-				System.out.println("Email before insertion: " + paymentEmail);
 				isUpdated = paymentDao.storePayment(paymentEmail, amount, status, vehicleNumber, paymentDate,
 						parkingToken, paymentId, orderId);
 			}

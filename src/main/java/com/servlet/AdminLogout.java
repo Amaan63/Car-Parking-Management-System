@@ -23,7 +23,7 @@ public class AdminLogout extends HttpServlet {
 			// Optional: Remove attributes related to the user
 			session.removeAttribute("currentAdmin");
 			// Set a logout message BEFORE invalidating the session
-			// request.setAttribute("userLogoutMessage", "Logout Successfully");
+			
 			// Invalidate the session to log out the user
 			session.invalidate();
 			HttpSession s = request.getSession();
