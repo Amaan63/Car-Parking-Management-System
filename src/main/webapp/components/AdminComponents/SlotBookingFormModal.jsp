@@ -26,8 +26,7 @@
 						</select>
 					</div>
 					<div class="btn col-md-12 mt-3">
-						<button type="submit" class="btn btn-success col-md-12">Book
-							Vehicle</button>
+						<button type="submit" class="btn btn-success col-md-12">Create Slot</button>
 					</div>
 				</form>
 			</div>
