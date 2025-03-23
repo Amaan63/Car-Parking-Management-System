@@ -22,13 +22,12 @@ public class PaymentCreatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// Load dotenv File
-	private static Dotenv dotenv;
+	private static final Dotenv dotenv;
 	private static final String RAZORPAY_KEY_ID;
 	private static final String RAZORPAY_SECRET_ID;
 
-
 	static {
-		 if (System.getenv("RENDER") != null || System.getenv("PORT") != null) {
+		if (System.getenv("RENDER") != null || System.getenv("PORT") != null) {
 			// Running on Render, use environment variables
 			RAZORPAY_KEY_ID = System.getenv("RAZORPAY_KEY_ID");
 			RAZORPAY_SECRET_ID = System.getenv("RAZORPAY_SECRET_KEY");
@@ -62,7 +61,6 @@ public class PaymentCreatingServlet extends HttpServlet {
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
 
 		try {
 			long amountInPaise = Long.parseLong(request.getParameter("amount")); // Amount in paise
@@ -96,7 +94,7 @@ public class PaymentCreatingServlet extends HttpServlet {
 			jsonResponse.put("success", true);
 			jsonResponse.put("key", RAZORPAY_KEY_ID);
 			jsonResponse.put("amount", amountInPaise);
-		
+
 			jsonResponse.put("orderId", orderId);
 
 			out.print(jsonResponse.toString());
