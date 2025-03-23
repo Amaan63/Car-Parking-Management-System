@@ -22,22 +22,42 @@ public class PaymentCreatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// Load dotenv File
-	private static final Dotenv dotenv = Dotenv.load();
-    private static final String RAZORPAY_KEY_ID;
-    private static final String RAZORPAY_SECRET_ID;
+	private static Dotenv dotenv;
+	private static final String RAZORPAY_KEY_ID;
+	private static final String RAZORPAY_SECRET_ID;
 
-    static {
-        if (System.getenv("RENDER") != null) {
-            // Running on Render, use system environment variables
-            RAZORPAY_KEY_ID = System.getenv("RAZORPAY_KEY_ID");
-            RAZORPAY_SECRET_ID = System.getenv("RAZORPAY_SECRET_KEY");
-        } else {
-            // Running locally, load from .env
-            Dotenv dotenv = Dotenv.load();
-            RAZORPAY_KEY_ID = dotenv.get("RAZORPAY_KEY_ID");
-            RAZORPAY_SECRET_ID = dotenv.get("RAZORPAY_SECRET_KEY");
-        }
-    }
+//    static {
+//        if (System.getenv("RENDER") != null) {
+//            // Running on Render, use system environment variables
+//            RAZORPAY_KEY_ID = System.getenv("RAZORPAY_KEY_ID");
+//            RAZORPAY_SECRET_ID = System.getenv("RAZORPAY_SECRET_KEY");
+//        } else {
+//            // Running locally, load from .env
+//            Dotenv dotenv = Dotenv.load();
+//            RAZORPAY_KEY_ID = dotenv.get("RAZORPAY_KEY_ID");
+//            RAZORPAY_SECRET_ID = dotenv.get("RAZORPAY_SECRET_KEY");
+//        }
+//    }
+	static {
+		 if (System.getenv("RENDER") != null || System.getenv("PORT") != null) {
+			// Running on Render, use environment variables
+			RAZORPAY_KEY_ID = System.getenv("RAZORPAY_KEY_ID");
+			RAZORPAY_SECRET_ID = System.getenv("RAZORPAY_SECRET_KEY");
+			dotenv = null; // Prevent loading dotenv on Render
+		} else {
+			// Running locally, load from .env file
+			dotenv = Dotenv.configure().ignoreIfMissing().load();
+			if (dotenv == null) {
+				throw new RuntimeException("Error: .env file is missing or not loaded.");
+			}
+			RAZORPAY_KEY_ID = dotenv.get("RAZORPAY_KEY_ID");
+			RAZORPAY_SECRET_ID = dotenv.get("RAZORPAY_SECRET_KEY");
+
+			if (RAZORPAY_KEY_ID == null || RAZORPAY_SECRET_ID == null) {
+				throw new RuntimeException("Error: RAZORPAY_KEY_ID or RAZORPAY_SECRET_KEY is missing in .env file.");
+			}
+		}
+	}
 
 	public PaymentCreatingServlet() {
 		super();
@@ -48,12 +68,12 @@ public class PaymentCreatingServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setHeader("Access-Control-Allow-Origin", "*");
-	    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-	    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-	    
-	    response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
-	    System.out.println("Using Razorpay Key: " + RAZORPAY_KEY_ID);
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		System.out.println("Using Razorpay Key: " + RAZORPAY_KEY_ID);
 
 		try {
 			long amountInPaise = Long.parseLong(request.getParameter("amount")); // Amount in paise
@@ -61,10 +81,7 @@ public class PaymentCreatingServlet extends HttpServlet {
 			String vehicleNumber = request.getParameter("vehicleNumber");
 			String parkingToken = request.getParameter("parkingToken");
 
-			
-			
-			System.out.println(vehicleNumber+" "+parkingToken+" "+amountInPaise+" "+email+" ");
-			
+			System.out.println(vehicleNumber + " " + parkingToken + " " + amountInPaise + " " + email + " ");
 
 			// Initialize Razorpay Client
 			RazorpayClient razorpay = new RazorpayClient(RAZORPAY_KEY_ID, RAZORPAY_SECRET_ID);
@@ -86,7 +103,6 @@ public class PaymentCreatingServlet extends HttpServlet {
 			session.setAttribute("parkingToken", parkingToken);
 			session.setAttribute("amount", amountInPaise);
 			session.setAttribute("order_id", orderId);
-			
 
 			// Send Order Details to Front-End
 			JSONObject jsonResponse = new JSONObject();
@@ -98,10 +114,6 @@ public class PaymentCreatingServlet extends HttpServlet {
 			// System.out.println("Finished Payment");
 
 			out.print(jsonResponse.toString());
-			
-	        
-	    
-
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -112,9 +124,11 @@ public class PaymentCreatingServlet extends HttpServlet {
 		}
 
 	}
+
 	// Optional: Override doGet to show a clear message instead of 405
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Use POST instead of GET");
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Use POST instead of GET");
+	}
 
 }
