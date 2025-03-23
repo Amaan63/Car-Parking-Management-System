@@ -1,19 +1,44 @@
+<!-- Bootstrap & Custom Styling -->
+<link rel="stylesheet" href="./css/FeedbackFormStyle.css">
 <!-- Feedback and Rating Form -->
 <div class="container d-flex justify-content-center mb-3"
 	id="FeedbackForm">
 	<div class="card p-4 shadow-lg border-0 mx-auto"
 		style="width: 80%; background: #1B1B1B !important;">
 
-		<!-- Images side by side with responsive size -->
-		<div class="d-flex justify-content-center gap-3 mb-3">
-			<img src="images/FeedbackAndReview/Feedback.svg" alt="Feedback Image"
+		<!-- Images side by side (Always stay in one row) -->
+		<div class="image-container mb-3">
+			<img src="images/FeedbackAndReview/Rating1.png" alt="Rating Image"
 				class="img-fluid feedback-img"> <img
-				src="images/FeedbackAndReview/Review.svg" alt="Review Image"
+				src="images/FeedbackAndReview/Rating2.png" alt="Rating Image"
+				class="img-fluid feedback-img"> <img
+				src="images/FeedbackAndReview/Rating3.png" alt="Rating Image"
 				class="img-fluid feedback-img">
 		</div>
 
 		<form action="FeedbackServlet" method="post">
 			<h2 class="text-center text-white">Give Your Feedback</h2>
+
+			<!-- Date  -->
+			<input type="hidden" name="feedbackTime"
+				value="<%=new java.util.Date()%>">
+
+
+			<!-- Email Input -->
+			<div class="mb-3">
+				<label for="email" class="form-label fw-bold text-white">Your
+					Email</label> <input type="email" class="form-control" id="email"
+					name="email" placeholder="Enter your email" required>
+			</div>
+
+			<!-- Feedback Message -->
+			<div class="mb-3">
+				<label for="feedbackMessage" class="form-label fw-bold text-white">Your
+					Feedback</label>
+				<textarea class="form-control" id="feedbackMessage"
+					name="feedbackMessage" placeholder="Share your experience..."
+					rows="4" required></textarea>
+			</div>
 
 			<!-- Star Rating -->
 			<div class="mb-3 text-center">
@@ -30,15 +55,15 @@
 						for="star1">&#9733;</label>
 				</div>
 			</div>
-
-			<!-- Feedback Message -->
+			
+			<!-- Suggestions -->
 			<div class="mb-3">
-				<label for="feedbackMessage" class="form-label fw-bold text-white">Your
-					Feedback</label>
-				<textarea class="form-control" id="feedbackMessage"
-					name="feedbackMessage" placeholder="Share your experience..."
-					rows="4" required></textarea>
+				<label for="suggestions" class="form-label fw-bold text-white">Any
+					Suggestions?</label>
+				<textarea class="form-control" id="suggestions" name="suggestions"
+					placeholder="How can we improve?" rows="2"></textarea>
 			</div>
+
 
 			<!-- Submit Button -->
 			<button type="submit" class="btn btn-success w-100">Submit
@@ -47,49 +72,4 @@
 	</div>
 </div>
 
-<!-- Bootstrap & Custom Styling -->
-<style>
-.rating {
-	direction: rtl;
-	display: flex;
-	justify-content: center;
-	font-size: 2rem;
-}
 
-.rating input {
-	display: none;
-}
-
-.rating label {
-	cursor: pointer;
-	padding: 5px;
-	transition: color 0.3s;
-}
-
-.rating input:checked ~ label, .rating label:hover, .rating label:hover 
-	 ~ label {
-	color: #FFD700;
-}
-
-.card {
-	border-radius: 10px;
-	background: transparent !important;
-	/* Ensures the card inherits the global background */
-}
-/* Responsive Image Sizes */
-.feedback-img {
-	width: 80px; /* Default for small screens */
-}
-
-@media ( min-width : 576px) {
-	.feedback-img {
-		width: 100px;
-	}
-}
-
-@media ( min-width : 992px) {
-	.feedback-img {
-		width: 150px;
-	}
-}
-</style>

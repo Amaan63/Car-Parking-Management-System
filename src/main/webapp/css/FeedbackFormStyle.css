@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/* Star Rating */
+.rating {
+	direction: rtl;
+	display: flex;
+	justify-content: center;
+	font-size: 2rem;
+}
+
+.rating input {
+	display: none;
+}
+
+.rating label {
+	cursor: pointer;
+	padding: 5px;
+	transition: color 0.3s;
+}
+
+.rating input:checked ~ label, .rating label:hover, .rating label:hover 
+	~ label {
+	color: #FFD700;
+}
+
+/* Card Styling */
+.card {
+	border-radius: 10px;
+	background: transparent !important;
+}
+
+/* Image Container to Keep Images Side by Side */
+.image-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	/* Ensures images stay in one row */
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	overflow-x: auto; /* Allows horizontal scrolling if needed */
+}
+
+/* Image Styling */
+.feedback-img {
+	width: 100%; /* Makes sure images take equal space */
+	max-width: 200px; /* Prevents too large images */
+	height: auto;
+	object-fit: contain;
+}
+
+/* Responsive Fix to Keep Images Always in One Row */
+@media ( max-width : 576px) {
+	.image-container {
+		grid-template-columns: repeat(3, minmax(100px, 1fr));
+		/* Ensures 3 images stay in a row */
+	}
+}
+
+@media ( min-width : 768px) {
+	.image-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media ( min-width : 992px) {
+	.feedback-img {
+		max-width: 250px;
+	}
+}
