@@ -144,6 +144,9 @@ public class ParkingSlotDao {
 		try {
 			transaction = session.beginTransaction();
 
+			// First, deallocate slots for completed vehicles
+			deallocateSlotsAutomatically();
+
 			// Fetch available slots
 			List<Slot> availableSlots = session.createQuery("FROM Slot s WHERE s.status = 'AVAILABLE'", Slot.class)
 					.getResultList();
@@ -199,6 +202,62 @@ public class ParkingSlotDao {
 		}
 
 		return slots;
+	}
+
+	public String deallocateSlotsAutomatically() {
+		// Open a Hibernate session
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+
+		try {
+			// Begin transaction
+			transaction = session.beginTransaction();
+
+			// Fetch vehicles with status "COMPLETED" and have an assigned slot
+			List<Vehicle> completedVehicles = session
+					.createQuery("FROM Vehicle v WHERE v.status = 'Completed' AND v.slot IS NOT NULL", Vehicle.class)
+					.getResultList();
+
+			// If no completed vehicles found, return message
+			if (completedVehicles.isEmpty()) {
+				return "No slots to deallocate.";
+			}
+
+			// Counter for deallocated slots
+			int deallocatedCount = 0;
+
+			// Iterate through completed vehicles and deallocate slots
+			for (Vehicle vehicle : completedVehicles) {
+				Slot slot = vehicle.getSlot();
+				if (slot != null) {
+					// Set slot as available and remove assigned vehicle
+					slot.setStatus("AVAILABLE");
+					slot.setAssignedVehicle(null);
+
+					// Remove slot reference from vehicle
+					vehicle.setSlot(null);
+
+					// Update slot and vehicle in the database
+					session.update(slot);
+					session.update(vehicle);
+
+					deallocatedCount++;
+				}
+			}
+
+			// Commit transaction
+			transaction.commit();
+			return deallocatedCount + " slots successfully deallocated.";
+		} catch (Exception e) {
+			// Roll back transaction in case of error
+			if (transaction != null)
+				transaction.rollback();
+			e.printStackTrace();
+			return "Error occurred during slot deallocation.";
+		} finally {
+			// Close session
+			session.close();
+		}
 	}
 
 }

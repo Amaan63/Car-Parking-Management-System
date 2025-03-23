@@ -23,6 +23,7 @@ public class SlotAssignmentServlet extends HttpServlet {
 		assignSlotsOnStartup();
 		vehicleDao = new VehicleDao(FactoryProvider.getFactory());
 		updateStatusOfVehicleOnStartup();
+		deallocateSlotsOnStartup();
 		
 	}
 
@@ -44,6 +45,16 @@ public class SlotAssignmentServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error during automatic Status assignment: " + e.getMessage());
+		}
+	}
+	public void deallocateSlotsOnStartup() {
+		try {
+			System.out.println("Server startup: Deallocating slots to vehicles...");
+			String result = parkingSlotDao.deallocateSlotsAutomatically();
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error during automatic slot Deallocation: " + e.getMessage());
 		}
 	}
 }
