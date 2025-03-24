@@ -1,4 +1,13 @@
+
+<%
+String email = (String) session.getAttribute("userForRecentActivity");
+%>
+
 <!-- Recent Activity Section -->
+<%@page import="com.dao.UtilsDao"%>
+<%@page import="com.entities.Vehicle"%>
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.dao.VehicleDao"%>
 <div class="col-lg-8 col-md-12">
 	<!-- Takes full width on small screens -->
 	<div class="card shadow-none border-0">
@@ -7,6 +16,7 @@
 		</div>
 		<div class="card-body bg-dark text-light">
 			<div class="list-group list-group-flush">
+				<!-- 
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">Booking #1234 Completed</h6>
@@ -16,7 +26,49 @@
 					<small class="text-success"> <i
 						class="fas fa-check-circle me-1"></i> Successfully completed
 					</small>
+				</div> -->
+				<%
+				UtilsDao utilsDao = new UtilsDao();
+				VehicleDao vDao = new VehicleDao(FactoryProvider.getFactory());
+				Vehicle vehicle = vDao.getLatestCompletedBooking(email);
+				%>
+
+				<%
+				if (vehicle != null) {
+
+					String bookingDate = vehicle.getBookingDate();
+					String timeDuration = vehicle.getTimeDuration();
+
+					// Calculate elapsed time dynamically in JSP
+					String timeElapsed = utilsDao.getTimeElapsed(bookingDate, timeDuration);
+				%>
+				<div class="list-group-item bg-dark text-light border-secondary">
+					<div class="d-flex w-100 justify-content-between">
+						<h6 class="mb-1">
+							Booking #<%=vehicle.getParkingTokennumber()%>
+							Completed
+						</h6>
+						<small class="text-muted"><%=timeElapsed%></small>
+					</div>
+					<p class="mb-1">
+						Duration:
+						<%=vehicle.getTimeDuration()%>
+						hours
+					</p>
+					<small class="text-success"> <i
+						class="fas fa-check-circle me-1"></i> Successfully completed
+					</small>
 				</div>
+				<%
+				} else {
+				%>
+				<div
+					class="list-group-item bg-dark text-light border-secondary text-center">
+					<p class="mb-1">No completed bookings available.</p>
+				</div>
+				<%
+				}
+				%>
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">New Vehicle Added</h6>

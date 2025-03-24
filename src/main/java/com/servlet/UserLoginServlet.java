@@ -53,6 +53,7 @@ public class UserLoginServlet extends HttpServlet {
 				if (user.getUserPassword().equals(password)) {
 					// Password is correct
 					int userId = (Integer)user.getUserId();
+					String userEmail = (String)user.getUserEmail();
 					session.setAttribute("loginStatus", "Successfully Logged In");
 					session.setAttribute("userForBanner", user); // Store the user object in session
 					session.setAttribute("userForProfile", user); // For Profile
@@ -62,6 +63,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userForAuthentication", user); // For Security
 					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
 					session.setAttribute("userForPaymentHistory",user); // For Fetching Payment History for particular user
+					session.setAttribute("userForRecentActivity",userEmail); // For Recent Activity
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 
 				} else {
