@@ -78,9 +78,13 @@ public class ParkingSlotDao {
 			// Begin the transaction
 			transaction = session.beginTransaction();
 
+			// First, deallocate slots for completed vehicles
+			deallocateSlotsAutomatically();
+
 			// Fetch vehicles that do not have any assigned parking slot (slotId is null)
 			List<Vehicle> vehiclesWithoutSlots = session
-					.createQuery("FROM Vehicle v WHERE v.slot IS NULL", Vehicle.class).getResultList();
+					.createQuery("FROM Vehicle v WHERE v.slot IS NULL AND v.status <> 'Completed'", Vehicle.class)
+					.getResultList();
 
 			// Fetch parking slots that are available for use
 			List<Slot> availableSlots = session.createQuery("FROM Slot s WHERE s.status = 'AVAILABLE'", Slot.class)
@@ -143,9 +147,6 @@ public class ParkingSlotDao {
 
 		try {
 			transaction = session.beginTransaction();
-
-			// First, deallocate slots for completed vehicles
-			deallocateSlotsAutomatically();
 
 			// Fetch available slots
 			List<Slot> availableSlots = session.createQuery("FROM Slot s WHERE s.status = 'AVAILABLE'", Slot.class)
