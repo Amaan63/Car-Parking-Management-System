@@ -91,6 +91,7 @@
 	color: #ccc;
 }
 
+/*
 .btn-custom {
 	background: #1db954;
 	border: none;
@@ -99,6 +100,38 @@
 
 .btn-custom:hover {
 	background: #17a74b;
+} */
+
+/* Default button styling */
+.btn-custom {
+	border: 2px solid #1db954;
+	color: #1db954;
+	font-weight: bold;
+	padding: 8px 14px; /* Reduced padding */
+	font-size: 0.9rem; /* Reduced font size */
+	border-radius: 6px;
+	transition: all 0.3s ease-in-out;
+	background: transparent;
+	position: relative;
+	overflow: hidden;
+	text-transform: uppercase;
+	letter-spacing: 0.5px; /* Reduced spacing */
+	display: inline-block;
+}
+
+/* Reduce button size for smaller screens */
+@media ( max-width : 768px) {
+	.btn-custom {
+		padding: 6px 12px;
+		font-size: 0.8rem;
+	}
+}
+
+@media ( max-width : 576px) {
+	.btn-custom {
+		padding: 5px 10px;
+		font-size: 0.75rem;
+	}
 }
 
 .custom-bg-color {
