@@ -44,8 +44,6 @@
 					href="../UserPages/ParkingHistory.jsp">Parking History</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="../UserPages/PaymentHistory.jsp">Payment History</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Change
-						Password</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Help &
 						Support</a></li>
 				<!-- Dropdown for user profile -->
