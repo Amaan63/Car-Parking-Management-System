@@ -330,6 +330,7 @@ public class VehicleDao {
 		return durationMap; // Return the final map
 	}
 
+	// Recent Activity Fetching Completed Vehicle
 	public Vehicle getLatestCompletedBooking(String email) {
 		Vehicle vehicle = null;
 		Session session = this.factory.openSession();
@@ -357,6 +358,19 @@ public class VehicleDao {
 			e.printStackTrace();
 		}
 		return vehicle;
+	}
+
+	// Recent Activity for latest Vehicle fetching
+	public Vehicle getLatestVehicleByEmail(String email) {
+		Session session = factory.openSession();
+		Vehicle latestVehicle = null;
+		try {
+			latestVehicle = session.createQuery("FROM Vehicle WHERE userEmailId = :email ORDER BY vehicleId DESC", Vehicle.class)
+					.setParameter("email", email).setMaxResults(1).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return latestVehicle;
 	}
 
 }

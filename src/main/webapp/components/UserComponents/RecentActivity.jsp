@@ -1,4 +1,6 @@
 
+<%@page import="com.entities.Payment"%>
+<%@page import="com.dao.PaymentDao"%>
 <%
 String email = (String) session.getAttribute("userForRecentActivity");
 %>
@@ -8,6 +10,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 <%@page import="com.entities.Vehicle"%>
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.VehicleDao"%>
+<%@page import="com.dao.PaymentDao"%>
 <div class="col-lg-8 col-md-12">
 	<!-- Takes full width on small screens -->
 	<div class="card shadow-none border-0">
@@ -30,6 +33,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<%
 				UtilsDao utilsDao = new UtilsDao();
 				VehicleDao vDao = new VehicleDao(FactoryProvider.getFactory());
+				PaymentDao pDao = new PaymentDao(FactoryProvider.getFactory());
 				Vehicle vehicle = vDao.getLatestCompletedBooking(email);
 				%>
 
@@ -69,6 +73,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<%
 				}
 				%>
+				<!-- 
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">New Vehicle Added</h6>
@@ -78,17 +83,45 @@ String email = (String) session.getAttribute("userForRecentActivity");
 					<small class="text-info"> <i
 						class="fas fa-info-circle me-1"></i> Vehicle verified
 					</small>
-				</div>
+				</div>  -->
+				<%
+				// Fetch the latest vehicle
+				Vehicle latestVehicle = vDao.getLatestVehicleByEmail(email);
+				%>
+				<%
+				if (latestVehicle != null) {
+
+					String bookingDate = latestVehicle.getBookingDate();
+					String timeDuration = latestVehicle.getTimeDuration();
+				%>
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
-						<h6 class="mb-1">Payment Received</h6>
-						<small class="text-muted">1 week ago</small>
+						<h6 class="mb-1">New Vehicle Added</h6>
+						<small class="text-muted"> <%=utilsDao.getTimeElapsed(bookingDate, timeDuration)%>
+						</small>
 					</div>
-					<p class="mb-1">₹15.00 for Booking #1233</p>
-					<small class="text-success"> <i
-						class="fas fa-check-circle me-1"></i> Transaction completed
+					<p class="mb-1">
+						<%=latestVehicle.getVehicleCompany()%>
+						:
+						<%=latestVehicle.getVehicleName()%>
+						(<%=latestVehicle.getVehicleNumberPlate()%>)
+					</p>
+					<small class="text-info"> <i
+						class="fas fa-info-circle me-1"></i> Vehicle verified
 					</small>
 				</div>
+				<%
+				} else {
+				%>
+				<div
+					class="list-group-item bg-dark text-light border-secondary text-center">
+					<p class="mb-1">No recent vehicle added.</p>
+				</div>
+				<%
+				}
+				%>
+
+				
 			</div>
 		</div>
 	</div>

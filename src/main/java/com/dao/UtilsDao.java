@@ -5,11 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.hibernate.SessionFactory;
-
 public class UtilsDao {
-
-	private SessionFactory factory;
 
 	public String getTimeElapsed(String bookingDateStr, String timeDurationStr) {
 		if (bookingDateStr == null || timeDurationStr == null || bookingDateStr.isEmpty()
