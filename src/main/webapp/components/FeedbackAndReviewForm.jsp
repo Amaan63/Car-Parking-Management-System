@@ -55,7 +55,7 @@
 						for="star1">&#9733;</label>
 				</div>
 			</div>
-			
+
 			<!-- Suggestions -->
 			<div class="mb-3">
 				<label for="suggestions" class="form-label fw-bold text-white">Any
