@@ -12,33 +12,14 @@
 		padding: 6px 12px; /* More padding */
 	}
 }
-/* Default logo size */
-.navbar-brand img {
-	max-height: 40px;
-	width: auto;
-}
-
-/* For tablets and smaller screens */
-@media ( max-width : 768px) {
-	.navbar-brand img {
-		max-height: 35px;
-	}
-}
-
-/* For mobile devices */
-@media ( max-width : 576px) {
-	.navbar-brand img {
-		max-height: 30px;
-	}
-}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 	<div
 		class="container-fluid d-flex justify-content-between align-items-center">
 		<!-- Brand Logo and Name -->
-		<a class="navbar-brand d-flex align-items-center" href="#"> <img
-			src="videos/AnimatedLogo/ParkingLogo.gif" class="img-fluid" /> <span
+		<a class="navbar-brand d-flex align-items-center" href="#"> <i
+			class="fas fa-parking fs-4 text-success me-2"></i> <span
 			class="fs-4 fw-bold">ParkEase</span>
 		</a>
 
