@@ -125,8 +125,8 @@ public class VehicleDao {
 		List<Vehicle> unassignedVehicles = new ArrayList<>();
 
 		try {
-			// Fetch vehicles without assigned slots
-			unassignedVehicles = session.createQuery("FROM Vehicle v WHERE v.slot IS NULL", Vehicle.class)
+			// Fetch vehicles without assigned slots and and ignore whose status is completed
+			unassignedVehicles = session.createQuery("FROM Vehicle v WHERE v.slot IS NULL AND v.status <> 'Completed'", Vehicle.class)
 					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
