@@ -84,5 +84,22 @@ public class PaymentDao {
         return payments;
     }
 	
+	// Recent Activity for latest Payment fetching
+	public Payment getLatestPaymentByEmail(String email) {
+	    Session session = factory.openSession();
+	    Payment latestPayment = null;
+	    try {
+	        latestPayment = session.createQuery("FROM Payment WHERE email = :email ORDER BY id DESC", Payment.class)
+	                .setParameter("email", email)
+	                .setMaxResults(1)
+	                .uniqueResult();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return latestPayment;
+	}
+
 	
 }

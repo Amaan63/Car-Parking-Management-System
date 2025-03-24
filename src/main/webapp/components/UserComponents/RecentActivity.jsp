@@ -121,7 +121,39 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				}
 				%>
 
-				
+				<%
+				// Fetch the latest payment
+				Payment latestPayment = pDao.getLatestPaymentByEmail(email);
+				%>
+				<%
+				if (latestPayment != null) {
+					String dateTimeStr = latestPayment.getPaymentDate();
+					long amount = latestPayment.getAmount()/100;
+				%>
+				<div class="list-group-item bg-dark text-light border-secondary">
+					<div class="d-flex w-100 justify-content-between">
+						<h6 class="mb-1">Payment Received</h6>
+						<small class="text-muted"> <%=utilsDao.getTimeElapsedWithTime(dateTimeStr)%>
+						</small>
+					</div>
+					<p class="mb-1">
+						&#8377; <%=amount%>
+						for Booking #<%=latestPayment.getVehicleNumber()%>
+					</p>
+					<small class="text-success"> <i
+						class="fas fa-check-circle me-1"></i> Transaction completed
+					</small>
+				</div>
+				<%
+				} else {
+				%>
+				<div
+					class="list-group-item bg-dark text-light border-secondary text-center">
+					<p class="mb-1">No recent payments.</p>
+				</div>
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</div>
