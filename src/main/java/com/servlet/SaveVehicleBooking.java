@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +36,11 @@ public class SaveVehicleBooking extends HttpServlet {
 		String vehicleType = request.getParameter("vehicleType");
 		String bookingDate = request.getParameter("bookingDate");
 		String timeDuration = request.getParameter("timeDuration");
+		
+		// Get current timestamp
+	    LocalDateTime createdAt = LocalDateTime.now();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	    String formattedCreatedAt = createdAt.format(formatter); // Format to store in database
 
 		VehicleDao vehicleDao = new VehicleDao(FactoryProvider.getFactory());
 		HttpSession session = request.getSession();
@@ -46,7 +53,7 @@ public class SaveVehicleBooking extends HttpServlet {
 		}
 
 		Vehicle vehicle = new Vehicle(userName, userEmail, vehicleCompany, vehicleName, vehicleNumber, vehicleType,
-				bookingDate, timeDuration);
+				bookingDate, timeDuration,formattedCreatedAt);
 
 		User user = vehicleDao.getUserById(userId);
 		vehicle.setUser(user);
