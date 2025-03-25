@@ -330,6 +330,8 @@ public class VehicleDao {
 		return durationMap; // Return the final map
 	}
 
+	/* For Recent Activity */
+
 	// Recent Activity Fetching Completed Vehicle
 	public Vehicle getLatestCompletedBooking(String email) {
 		Vehicle vehicle = null;
@@ -365,7 +367,8 @@ public class VehicleDao {
 		Session session = factory.openSession();
 		Vehicle latestVehicle = null;
 		try {
-			latestVehicle = session.createQuery("FROM Vehicle WHERE userEmailId = :email ORDER BY vehicleId DESC", Vehicle.class)
+			latestVehicle = session
+					.createQuery("FROM Vehicle WHERE userEmailId = :email ORDER BY vehicleId DESC", Vehicle.class)
 					.setParameter("email", email).setMaxResults(1).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -373,4 +376,79 @@ public class VehicleDao {
 		return latestVehicle;
 	}
 
+	/* For Quick Stats */
+
+	// Get total number of vehicles parked by a user
+	public long getTotalVehiclesParked(String userEmail) {
+		Session session = this.factory.openSession();
+		try {
+			Query<Long> query = session
+					.createQuery("SELECT COUNT(v.vehicleId) FROM Vehicle v WHERE v.userEmailId = :email", Long.class);
+			query.setParameter("email", userEmail);
+			return query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			session.close();
+		}
+	}
+
+	// Get total parking fees paid by a user
+	public long getTotalParkingFeesPaid(String userEmail) {
+		Session session = this.factory.openSession();
+		try {
+			Query<Long> query = session.createQuery(
+					"SELECT COALESCE(SUM(p.amount), 0) FROM Payment p WHERE p.email = :email AND p.status = 'SUCCESSFUL'",
+					Long.class);
+			query.setParameter("email", userEmail);
+			return query.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			session.close();
+		}
+	}
+
+	// Get the current active parking slot (if any)
+	public String getCurrentActiveParkingSlots(String userEmail) {
+		Session session = this.factory.openSession();
+		try {
+			Query<String> query = session.createQuery(
+					"SELECT s.slotName FROM Vehicle v JOIN v.slot s WHERE v.userEmailId = :email AND v.status = 'Active'",
+					String.class);
+			query.setParameter("email", userEmail);
+			List<String> result = query.getResultList();
+
+			return result.isEmpty() ? "No Active Parking" : String.join(", ", result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error fetching slots";
+		} finally {
+			session.close();
+		}
+	}
+
+	// Get total hours parked by a user (assuming timeDuration is stored as "X
+	// hours")
+	public int getTotalHoursParked(String userEmail) {
+		Session session = this.factory.openSession();
+		try {
+			Query<String> query = session
+					.createQuery("SELECT v.timeDuration FROM Vehicle v WHERE v.userEmailId = :email", String.class);
+			query.setParameter("email", userEmail);
+			List<String> durations = query.getResultList();
+			int totalHours = 0;
+			for (String duration : durations) {
+				totalHours += Integer.parseInt(duration.split(" ")[0]); // Extract hours assuming format "X hours"
+			}
+			return totalHours;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			session.close();
+		}
+	}
 }
