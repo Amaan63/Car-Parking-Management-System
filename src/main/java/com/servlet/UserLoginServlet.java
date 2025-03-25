@@ -64,6 +64,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userIdForUpcomingReservation",userId); // For Fetching Upcoming Booking for particular user
 					session.setAttribute("userForPaymentHistory",user); // For Fetching Payment History for particular user
 					session.setAttribute("userForRecentActivity",userEmail); // For Recent Activity
+					session.setAttribute("userForQuickStats",userEmail); // For Quick Stats
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 
 				} else {
