@@ -63,6 +63,9 @@ public class Vehicle {
 
 	@Column(length = 20, name = "status")
 	private String status;
+	
+	@Column(length = 50, name = "created_at")
+	private String created_at;
 
 	public Vehicle() {
 		super();
@@ -87,7 +90,7 @@ public class Vehicle {
 	}
 
 	public Vehicle(String userName, String userEmailId, String vehicleCompany, String vehicleName,
-			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration) {
+			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration,String created_at) {
 		super();
 		this.userName = userName;
 		this.userEmailId = userEmailId;
@@ -97,6 +100,7 @@ public class Vehicle {
 		this.vehicleType = vehicleType;
 		BookingDate = bookingDate;
 		this.timeDuration = timeDuration;
+		this.created_at = created_at;
 	}
 
 	public int getVehicleId() {
@@ -209,6 +213,14 @@ public class Vehicle {
 
 	public void setTotalCost(long totalCost) {
 		this.totalCost = totalCost;
+	}
+	
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
 	}
 
 	// Update status based on the booking date
