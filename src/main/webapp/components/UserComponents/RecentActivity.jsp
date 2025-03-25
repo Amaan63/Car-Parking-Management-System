@@ -69,13 +69,13 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<%
 				if (latestVehicle != null) {
 
-					String bookingDate = latestVehicle.getBookingDate();
-					String timeDuration = latestVehicle.getTimeDuration();
+					String addedAt = latestVehicle.getCreated_at(); // Fetch actual vehicle insertion time (not booking time)
+					String timeElapsed = timeUtils.getTimeElapsedWithTime(addedAt); // Calculate "X hours/days ago"
 				%>
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">New Vehicle Added</h6>
-						<small class="text-muted"> <%=timeUtils.getTimeElapsed(bookingDate, timeDuration)%>
+						<small class="text-muted"> <%=timeElapsed%>
 						</small>
 					</div>
 					<p class="mb-1">
