@@ -15,9 +15,7 @@ long totalParkingFeesPaid = vehicleDAO.getTotalParkingFeesPaid(userEmail);
 String currentActiveParking = vehicleDAO.getCurrentActiveParkingSlots(userEmail);
 int totalHoursParked = vehicleDAO.getTotalHoursParked(userEmail);
 
-// Format the parking fee for currency display
-//NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-//String formattedTotalParkingFees =currencyFormat.format(totalParkingFeesPaid / 100.0); // Convert from paise to INR
+
 String totalParkingFeesPaidInRupees = String.valueOf(totalParkingFeesPaid / 100.0);
 
 
