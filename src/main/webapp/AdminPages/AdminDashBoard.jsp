@@ -57,8 +57,8 @@
 		<div class="modal-dialog ">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger">Slot Is Already Exist
-						Please Use Different Name for a SLot</h5>
+					<h5 class="modal-title text-danger">Slot Name  Already Exist
+						Please Use Different Name for the Slot</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
