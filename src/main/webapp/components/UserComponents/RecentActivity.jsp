@@ -115,9 +115,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 						</small>
 					</div>
 					<p class="mb-1">
-						&#8377;
-						<%=amount%>
-						for Booking #<%=latestPayment.getVehicleNumber()%>
+						<span class="font-weight-bold">&#8377;<%=amount%></span> (<%=latestPayment.getVehicleNumber()%>)
 					</p>
 					<small class="text-success"> <i
 						class="fas fa-check-circle me-1"></i> Transaction completed
