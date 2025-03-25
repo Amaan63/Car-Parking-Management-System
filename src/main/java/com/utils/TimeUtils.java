@@ -26,12 +26,16 @@ public class TimeUtils {
 			// Convert LocalDate to LocalDateTime (start of the day + duration)
 			LocalDateTime bookingTime = bookingDate.atStartOfDay().plusHours(durationHours);
 
-			// Convert booking time to system default timezone
-			ZonedDateTime bookingZoned = bookingTime.atZone(ZoneId.of("UTC"))
-					.withZoneSameInstant(ZoneId.systemDefault());
+			// Convert to system timezone
+			ZonedDateTime bookingZoned = bookingTime.atZone(ZoneId.systemDefault());
 
-			// Current time in system default timezone
+			// Current time
 			ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
+
+			// Ensure no negative values
+			if (bookingZoned.isAfter(now)) {
+				return "Just now"; // Future booking case
+			}
 
 			// Calculate elapsed time
 			long days = ChronoUnit.DAYS.between(bookingZoned, now);
@@ -39,8 +43,10 @@ public class TimeUtils {
 
 			if (days > 0) {
 				return days + " days " + hours + " hours ago";
-			} else {
+			} else if (hours > 0) {
 				return hours + " hours ago";
+			} else {
+				return "Just now";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,12 +65,16 @@ public class TimeUtils {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			LocalDateTime paymentTime = LocalDateTime.parse(dateTimeStr, formatter);
 
-			// Convert payment time to system default timezone
-			ZonedDateTime paymentZoned = paymentTime.atZone(ZoneId.of("UTC"))
-					.withZoneSameInstant(ZoneId.systemDefault());
+			// Convert to system timezone
+			ZonedDateTime paymentZoned = paymentTime.atZone(ZoneId.systemDefault());
 
-			// Current time in system default timezone
+			// Current time
 			ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
+
+			// Ensure no negative values
+			if (paymentZoned.isAfter(now)) {
+				return "Just now"; // Future payment case
+			}
 
 			// Calculate elapsed time
 			long days = ChronoUnit.DAYS.between(paymentZoned, now);
@@ -75,8 +85,10 @@ public class TimeUtils {
 				return days + " days " + hours + " hours ago";
 			} else if (hours > 0) {
 				return hours + " hours " + minutes + " minutes ago";
-			} else {
+			} else if (minutes > 0) {
 				return minutes + " minutes ago";
+			} else {
+				return "Just now";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
