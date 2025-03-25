@@ -1,12 +1,12 @@
 
-<%@page import="com.entities.Payment"%>
-<%@page import="com.dao.PaymentDao"%>
 <%
 String email = (String) session.getAttribute("userForRecentActivity");
 %>
 
 <!-- Recent Activity Section -->
-<%@page import="com.dao.UtilsDao"%>
+<%@page import="com.utils.TimeUtils"%>
+<%@page import="com.entities.Payment"%>
+<%@page import="com.dao.PaymentDao"%>
 <%@page import="com.entities.Vehicle"%>
 <%@page import="com.helper.FactoryProvider"%>
 <%@page import="com.dao.VehicleDao"%>
@@ -19,19 +19,8 @@ String email = (String) session.getAttribute("userForRecentActivity");
 		</div>
 		<div class="card-body bg-dark text-light">
 			<div class="list-group list-group-flush">
-				<!-- 
-				<div class="list-group-item bg-dark text-light border-secondary">
-					<div class="d-flex w-100 justify-content-between">
-						<h6 class="mb-1">Booking #1234 Completed</h6>
-						<small class="text-muted">3 days ago</small>
-					</div>
-					<p class="mb-1">Slot A1, Duration: 2 hours</p>
-					<small class="text-success"> <i
-						class="fas fa-check-circle me-1"></i> Successfully completed
-					</small>
-				</div> -->
 				<%
-				UtilsDao utilsDao = new UtilsDao();
+				TimeUtils timeUtils = new TimeUtils();
 				VehicleDao vDao = new VehicleDao(FactoryProvider.getFactory());
 				PaymentDao pDao = new PaymentDao(FactoryProvider.getFactory());
 				Vehicle vehicle = vDao.getLatestCompletedBooking(email);
@@ -44,7 +33,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 					String timeDuration = vehicle.getTimeDuration();
 
 					// Calculate elapsed time dynamically in JSP
-					String timeElapsed = utilsDao.getTimeElapsed(bookingDate, timeDuration);
+					String timeElapsed = timeUtils.getTimeElapsed(bookingDate, timeDuration);
 				%>
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
@@ -73,17 +62,6 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<%
 				}
 				%>
-				<!-- 
-				<div class="list-group-item bg-dark text-light border-secondary">
-					<div class="d-flex w-100 justify-content-between">
-						<h6 class="mb-1">New Vehicle Added</h6>
-						<small class="text-muted">5 days ago</small>
-					</div>
-					<p class="mb-1">Toyota Camry (ABC 123)</p>
-					<small class="text-info"> <i
-						class="fas fa-info-circle me-1"></i> Vehicle verified
-					</small>
-				</div>  -->
 				<%
 				// Fetch the latest vehicle
 				Vehicle latestVehicle = vDao.getLatestVehicleByEmail(email);
@@ -97,7 +75,7 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">New Vehicle Added</h6>
-						<small class="text-muted"> <%=utilsDao.getTimeElapsed(bookingDate, timeDuration)%>
+						<small class="text-muted"> <%=timeUtils.getTimeElapsed(bookingDate, timeDuration)%>
 						</small>
 					</div>
 					<p class="mb-1">
@@ -128,16 +106,17 @@ String email = (String) session.getAttribute("userForRecentActivity");
 				<%
 				if (latestPayment != null) {
 					String dateTimeStr = latestPayment.getPaymentDate();
-					long amount = latestPayment.getAmount()/100;
+					long amount = latestPayment.getAmount() / 100;
 				%>
 				<div class="list-group-item bg-dark text-light border-secondary">
 					<div class="d-flex w-100 justify-content-between">
 						<h6 class="mb-1">Payment Received</h6>
-						<small class="text-muted"> <%=utilsDao.getTimeElapsedWithTime(dateTimeStr)%>
+						<small class="text-muted"> <%=timeUtils.getTimeElapsedWithTime(dateTimeStr)%>
 						</small>
 					</div>
 					<p class="mb-1">
-						&#8377; <%=amount%>
+						&#8377;
+						<%=amount%>
 						for Booking #<%=latestPayment.getVehicleNumber()%>
 					</p>
 					<small class="text-success"> <i
