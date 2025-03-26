@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>User Registration and Login</title>
 <%@include file="css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="css/User-Register&Login-Css.css">
