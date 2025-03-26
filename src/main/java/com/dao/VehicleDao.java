@@ -125,6 +125,7 @@ public class VehicleDao {
 		List<Vehicle> unassignedVehicles = new ArrayList<>();
 
 		try {
+			updateAllVehicleStatuses();
 			// Fetch vehicles without assigned slots and and ignore whose status is
 			// completed
 			unassignedVehicles = session

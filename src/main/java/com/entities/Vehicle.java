@@ -63,7 +63,7 @@ public class Vehicle {
 
 	@Column(length = 20, name = "status")
 	private String status;
-	
+
 	@Column(length = 50, name = "created_at")
 	private String created_at;
 
@@ -90,7 +90,7 @@ public class Vehicle {
 	}
 
 	public Vehicle(String userName, String userEmailId, String vehicleCompany, String vehicleName,
-			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration,String created_at) {
+			String vehicleNumberPlate, String vehicleType, String bookingDate, String timeDuration, String created_at) {
 		super();
 		this.userName = userName;
 		this.userEmailId = userEmailId;
@@ -214,7 +214,7 @@ public class Vehicle {
 	public void setTotalCost(long totalCost) {
 		this.totalCost = totalCost;
 	}
-	
+
 	public String getCreated_at() {
 		return created_at;
 	}
@@ -225,16 +225,19 @@ public class Vehicle {
 
 	// Update status based on the booking date
 	public void updateStatus(LocalDate referenceDate) {
-		LocalDate bookingDateObj = LocalDate.parse(this.BookingDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	    LocalDate bookingDateObj = LocalDate.parse(this.BookingDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-		if (bookingDateObj.isAfter(referenceDate)) {
-			this.status = "Upcoming";
-		} else if (bookingDateObj.isEqual(referenceDate)) {
-			this.status = "Active";
-		} else {
-			this.status = "Completed";
-		}
+	    if (bookingDateObj.isAfter(referenceDate)) {
+	        this.status = "Upcoming";
+	    } else if (bookingDateObj.isEqual(referenceDate)) {
+	        this.status = "Active";
+	    } else if (bookingDateObj.isBefore(referenceDate)) {
+	        this.status = "Completed";
+	    } else {
+	        this.status = "Unknown"; // This case should never occur, but added as a safeguard
+	    }
 	}
+
 
 	// Generate the token before Saving the entity in to DB
 	@PrePersist // this annotation is used to generate the token before saving the data to
