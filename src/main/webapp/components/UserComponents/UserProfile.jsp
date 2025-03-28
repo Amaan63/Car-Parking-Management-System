@@ -98,18 +98,18 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 			<form action="../UpdateUserByIdServlet" method="post"
 				id="updateProfileForm">
 				<div class="profile-info">
-					<input type="hidden" class="form-control" id="userId" name="userId"
+					<input type="hidden" class="form-control"  name="userId"
 						value="<%=userId%>" readonly />
 				</div>
 				<div class="profile-info">
 					<label for="name" class="form-label">Full Name</label> <input
-						type="text" class="form-control" id="name" name="userName"
+						type="text" class="form-control"  name="userName"
 						value="<%=userName%>" readonly />
 				</div>
 
 				<div class="profile-info">
 					<label for="email" class="form-label">Email Address</label> <input
-						type="email" class="form-control " id="email" name="userEmail"
+						type="email" class="form-control "  name="userEmail"
 						value="<%=userEmail%>" readonly />
 				</div>
 
