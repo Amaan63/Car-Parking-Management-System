@@ -10,70 +10,83 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "feedback")
 public class Feedback {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @Column(length = 100, name = "email", nullable = false)
-    private String email;
+	@Column(length = 100, name = "email", nullable = false)
+	private String email;
 
-    @Column(name = "rating", nullable = false)
-    private int rating;
+	@Column(name = "rating", nullable = false)
+	private int rating;
 
-    @Column(length = 1000, name = "suggestion")
-    private String suggestion;
+	@Column(length = 1000, name = "suggestion")
+	private String suggestion;
 
-    @Column(length = 2000, name = "feedback", nullable = false)
-    private String feedback;
+	@Column(length = 2000, name = "feedback", nullable = false)
+	private String feedback;
 
-    // Constructors
-    public Feedback() {}
+	@Column(length = 100, name = "feedback_time", nullable = false)
+	private String feedbackTime; // Storing date as a String
 
-    public Feedback(String email, int rating, String suggestion, String feedback) {
-        this.email = email;
-        this.rating = rating;
-        this.suggestion = suggestion;
-        this.feedback = feedback;
-    }
+	// Constructors
+	public Feedback() {
+	}
 
-    // Getters and Setters
-    public int getId() {
-        return id;
-    }
+	public Feedback(String email, int rating, String suggestion, String feedback, String feedbackTime) {
+		this.email = email;
+		this.rating = rating;
+		this.suggestion = suggestion;
+		this.feedback = feedback;
+		this.feedbackTime = feedbackTime;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	// Getters and Setters
+	public int getId() {
+		return id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public int getRating() {
-        return rating;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+	public int getRating() {
+		return rating;
+	}
 
-    public String getSuggestion() {
-        return suggestion;
-    }
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 
-    public void setSuggestion(String suggestion) {
-        this.suggestion = suggestion;
-    }
+	public String getSuggestion() {
+		return suggestion;
+	}
 
-    public String getFeedback() {
-        return feedback;
-    }
+	public void setSuggestion(String suggestion) {
+		this.suggestion = suggestion;
+	}
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public String getFeedbackTime() {
+		return feedbackTime;
+	}
+
+	public void setFeedbackTime(String feedbackTime) {
+		this.feedbackTime = feedbackTime;
+	}
 }
