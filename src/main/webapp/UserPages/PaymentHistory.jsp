@@ -10,7 +10,7 @@
 <%@include file="../css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="../css/PaymentHistory.css" />
-
+<link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 </head>
 <body>
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
