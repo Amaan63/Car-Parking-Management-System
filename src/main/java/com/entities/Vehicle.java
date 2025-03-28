@@ -229,10 +229,13 @@ public class Vehicle {
 
 	    if (bookingDateObj.isAfter(referenceDate)) {
 	        this.status = "Upcoming";
+	        System.out.println("Upcoming Selected");
 	    } else if (bookingDateObj.isEqual(referenceDate)) {
 	        this.status = "Active";
+	        System.out.println("Active Selected");
 	    } else if (bookingDateObj.isBefore(referenceDate)) {
 	        this.status = "Completed";
+	        System.out.println("Completed Selected");
 	    } else {
 	        this.status = "Unknown"; // This case should never occur, but added as a safeguard
 	    }

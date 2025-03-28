@@ -93,6 +93,7 @@ public class VehicleDao {
 		try {
 			session = this.factory.openSession();
 			Transaction transaction = session.beginTransaction();
+			
 
 			Query<Vehicle> query = session.createQuery("FROM Vehicle", Vehicle.class);
 			vehicles = query.list();
