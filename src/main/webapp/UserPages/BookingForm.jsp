@@ -24,7 +24,7 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 		<div class="form-container">
 			<h2 class="text-center mb-4 highlight">Vehicle Booking Form</h2>
 			<form action="../SaveVehicleBooking" method="post"
-				onsubmit="return validateForm()">
+				onsubmit="return validateForm()" id="bookingForm">
 
 				<input type="hidden" name="userId"
 					value="<%=userDetailForBooking.getUserId()%>">
@@ -48,8 +48,8 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 				<div class="form-group m-3">
 					<label for="carCompany" class="form-label">Automobile Brand
 						Company</label> <select id="carCompany" class="form-select"
-						name="vehicleCompany" required>
-						<option selected>Choose...</option>
+						name="vehicleCompany" >
+						<option value="Choose..." selected>Choose...</option>
 						<option value="Toyota">Toyota</option>
 						<option value="Honda">Honda</option>
 						<option value="Ford">Ford</option>
@@ -193,7 +193,7 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 							<option value="12 hour">12 hours</option>
 							<option value="24 hour">24 hours</option>
 							<option value="48 hour">48 hours</option>
-							
+
 						</select>
 					</div>
 				</div>
@@ -237,5 +237,6 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 	</script>
 	<script type="text/javascript"
 		src="../javascript/VehicleBookingFormValidations.js"></script>
+
 </body>
 </html>

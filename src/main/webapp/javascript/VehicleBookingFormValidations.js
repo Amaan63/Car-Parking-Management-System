@@ -33,6 +33,7 @@ function validateForm() {
 		isValid = false;
 	} else if (!regex.test(numberPlate)) {
 		alert('Invalid vehicle number plate. Please enter a valid Indian vehicle number plate.');
+		console.log('Numberplate is wrong');
 		isValid = false;
 	}
 
@@ -43,14 +44,7 @@ function validateForm() {
 		isValid = false;
 	}
 
-	// Booking date validation - should not be before today
-	/*
-	const bookingDate = new Date(document.getElementById('bookingDate').value);
-	const today = new Date();
-	if (bookingDate < today) {
-		alert('Booking date cannot be before today.');
-		isValid = false;
-	}*/
+
 	// Get the selected booking date from the input field
 	const bookingDate = new Date(document.getElementById('bookingDate').value);
 
@@ -74,10 +68,15 @@ function validateForm() {
 		isValid = false;
 	}
 
+
 	// Car company validation - dropdown and manual entry
-	const carCompany = document.getElementById('carCompany').value;
+	const carCompany = carCompanyElement.value;
 	const otherCarCompany = document.getElementById('otherCarCompany').value.trim();
-	if (carCompany === 'Other' && otherCarCompany === '') {
+
+	if (carCompany === 'Choose...') {
+		alert('Please select a valid car brand.');
+		isValid = false;
+	} else if (carCompany === 'Other' && otherCarCompany === '') {
 		alert('Please enter your car company.');
 		isValid = false;
 	}
