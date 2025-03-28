@@ -16,7 +16,7 @@
 				class="img-fluid feedback-img">
 		</div>
 
-		<form action="FeedbackServlet" method="post">
+		<form action="../SaveFeedbackServlet" method="post">
 			<h2 class="text-center text-white">Give Your Feedback</h2>
 
 			<!-- Date  -->
