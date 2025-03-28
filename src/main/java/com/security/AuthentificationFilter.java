@@ -64,7 +64,7 @@ public class AuthentificationFilter implements Filter {
 		// Ensure this includes both admin login and its servlet
 		return uri.endsWith("UserLoginServlet") || uri.endsWith("User-Registration&Login.jsp")
 				|| uri.endsWith("UserRegistrationServlet") || uri.endsWith("AdminLoginServlet")
-				|| uri.endsWith("Admin-Login.jsp");
+				|| uri.endsWith("Admin-Login.jsp") || uri.endsWith("SaveFeedbackServlet");
 	}
 
 }
