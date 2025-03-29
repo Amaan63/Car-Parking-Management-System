@@ -1,4 +1,10 @@
-<section id="features" class="py-5">
+<style>
+#features {
+	scroll-margin-top: 80px;
+	/* Adjust this value based on your navbar height */
+}
+</style>
+<section id="features" class="py-5  mt-5 pt-5">
 	<div class="container text-center">
 		<h2 class="mb-4">Features</h2>
 		<div class="row g-4">
