@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Landing Page</title>
 <%@include file="css/bootstrapCDN.jsp"%>
 <link rel="stylesheet" href="css/LandingPage-Css.css" />
@@ -21,7 +22,7 @@
 	<%@include file="components/Features.jsp"%>
 	<%@include file="components/Services.jsp"%>
 	<%@include file="components/AdditionalContent.jsp"%>
-	<%@include file="components/FeedbackAndReviewForm.jsp"%>
+	<jsp:include page="components/FeedbackAndReviewForm.jsp" />
 	<%@include file="components/Footer.jsp"%>
 	<%
 	// Get the logout message from the session
@@ -37,29 +38,37 @@
 	}
 	%>
 	<%
-	// Get the logout message from the session
 	String adminLogout = (String) session.getAttribute("adminLogoutMessage");
-
-	// Check if the logout message is set
 	if (adminLogout != null && adminLogout.equals("Admin Logout Successfully")) {
 	%>
 	<%@ include file="components/popups/AdminLogoutPopup.jsp"%>
 	<%
-	// Remove the logout message from the session to prevent the popup from showing on reload
 	session.removeAttribute("adminLogoutMessage");
 	}
 	%>
 	<%
-	// Get the logout message from the session
 	String authenticationError = (String) session.getAttribute("notAuthenticated");
-
-	// Check if the logout message is set
 	if (authenticationError != null && authenticationError.equals("Please login to access this page.")) {
 	%>
 	<%@ include file="components/popups/AuthenticationErrorPopup.jsp"%>
 	<%
-	// Remove the logout message from the session to prevent the popup from showing on reload
 	session.removeAttribute("notAuthenticated");
+	}
+	%>
+	<%
+	String feedbackStatus = (String) session.getAttribute("feedbackStatus");
+	if (feedbackStatus != null && feedbackStatus.equals("Feedback submitted successfully!")) {
+	%>
+	<%@ include file="components/popups/FeedbackFormSuccessfulPopup.jsp"%>
+	<%
+	session.removeAttribute("feedbackStatus");
+	} else if (feedbackStatus != null && feedbackStatus.equals("Failed to submit feedback. Please try again!")) {
+	%>
+	<script type="text/javascript">
+		alert("Server error! Please try again later.");
+	</script>
+	<%
+	session.removeAttribute("feedbackStatus");
 	}
 	%>
 </body>

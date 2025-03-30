@@ -15,5 +15,21 @@
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 	<jsp:include page="../components/FeedbackAndReviewForm.jsp" />
 	<%@include file="../components/Footer.jsp"%>
+	<%
+	String feedbackStatus = (String) session.getAttribute("feedbackStatus");
+	if (feedbackStatus != null && feedbackStatus.equals("Feedback submitted successfully!")) {
+	%>
+	<%@ include file="../components/popups/FeedbackFormSuccessfulPopup.jsp"%>
+	<%
+	session.removeAttribute("feedbackStatus");
+	} else if (feedbackStatus != null && feedbackStatus.equals("Failed to submit feedback. Please try again!")) {
+	%>
+	<script type="text/javascript">
+		alert("Server error! Please try again later.");
+	</script>
+	<%
+	session.removeAttribute("feedbackStatus");
+	}
+	%>
 </body>
 </html>
