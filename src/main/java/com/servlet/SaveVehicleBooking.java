@@ -69,10 +69,10 @@ public class SaveVehicleBooking extends HttpServlet {
 				session.setAttribute("bookingStatus", "Failed Booking");
 			}
 
-			response.sendRedirect("UserPages/UserDashBoard.jsp");
+			response.sendRedirect("UserPages/ParkingHistory.jsp");
 		} else {
 			session.setAttribute("bookingStatus", "Failed Booking");
-			response.sendRedirect("UserPages/UserDashBoard.jsp");
+			response.sendRedirect("UserPages/ParkingHistory.jsp");
 		}
 
 	}
