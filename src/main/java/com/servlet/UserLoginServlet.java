@@ -65,6 +65,7 @@ public class UserLoginServlet extends HttpServlet {
 					session.setAttribute("userForPaymentHistory",user); // For Fetching Payment History for particular user
 					session.setAttribute("userForRecentActivity",userEmail); // For Recent Activity
 					session.setAttribute("userForQuickStats",userEmail); // For Quick Stats
+					session.setAttribute("userForFeedbackForm",userEmail); // For Feedback Form
 					response.sendRedirect("UserPages/UserDashBoard.jsp");
 
 				} else {
