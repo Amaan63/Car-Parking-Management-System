@@ -46,6 +46,7 @@
 					href="../UserPages/PaymentHistory.jsp">Payment History</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Help &
 						Support</a></li>
+				<li class="nav-item"><a class="nav-link" href="../UserPages/ContactUs.jsp">Contact Us</a></li>
 				<!-- Dropdown for user profile -->
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
