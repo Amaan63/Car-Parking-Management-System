@@ -55,22 +55,6 @@
 	session.removeAttribute("loginStatus");
 	}
 	%>
-	<%
-	//For Booking COnfirmation
-	// Retrieve the session attribute
-	String bookingStatus = (String) session.getAttribute("bookingStatus");
-
-	// Check if the attribute is null
-	if (bookingStatus != null) {
-		if ("Successfully Booked the Parking Spot".equals(bookingStatus)) {
-			// Include the popup for successful registration
-	%>
-	<%@include file="../components/popups/VehicleBookingSuccessful.jsp"%>
-	<%
-	}
-	// Remove the attribute to prevent the message from appearing again
-	session.removeAttribute("bookingStatus");
-	}
-	%>
+	
 </body>
 </html>
