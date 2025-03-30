@@ -8,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.dao.FeedbackDao;
+import com.entities.Feedback;
+import com.helper.FactoryProvider;
 
 /**
  * Servlet implementation class SaveFeedbackServlet
@@ -28,7 +33,7 @@ public class SaveFeedbackServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 
 		try {
 			// Retrieving form data
@@ -44,19 +49,32 @@ public class SaveFeedbackServlet extends HttpServlet {
 				rating = Integer.parseInt(ratingParam);
 			}
 
-			// Displaying the retrieved data
-			out.println("<html><head><title>Feedback Details</title></head><body>");
-			out.println("<h2>Feedback Details</h2>");
-			out.println("<p><strong>Email:</strong> " + email + "</p>");
-			out.println("<p><strong>Feedback Message:</strong> " + feedbackMessage + "</p>");
-			out.println("<p><strong>Rating:</strong> " + rating + " Star(s)</p>");
-			out.println("<p><strong>Suggestions:</strong> " + (suggestions.isEmpty() ? "No suggestions" : suggestions)
-					+ "</p>");
-			out.println("<p><strong>Feedback Time:</strong> " + feedbackTime + "</p>");
-			out.println("<a href='feedback_form.jsp'>Go Back</a>"); // Link to feedback form
-			out.println("</body></html>");
-		} catch (NumberFormatException e) {
-			out.println("<h3>Error: Invalid rating value</h3>");
+			// Identify the page from which the request came
+			String sourcePage = request.getParameter("sourcePage"); // New hidden field in form
+
+			// Save feedback
+			FeedbackDao feedbackDao = new FeedbackDao(FactoryProvider.getFactory());
+			Feedback feedback = new Feedback(email, rating, suggestions, feedbackMessage, feedbackTime);
+			boolean status = feedbackDao.saveFeedback(feedback);
+
+			if (status) {
+				// Set success message in session
+				session.setAttribute("feedbackStatus", "Feedback submitted successfully!");
+			} else {
+				// Set failure message in session
+				session.setAttribute("feedbackStatus", "Failed to submit feedback. Please try again!");
+			}
+
+			// Redirect back to the page where the form was submitted
+			if ("contactus".equalsIgnoreCase(sourcePage)) {
+				response.sendRedirect("UserPages/ContactUs.jsp");
+			} else {
+				response.sendRedirect("index.jsp");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
 		}
 
 	}
