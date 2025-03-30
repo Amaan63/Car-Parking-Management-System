@@ -70,6 +70,8 @@ function validateForm() {
 
 
 	// Car company validation - dropdown and manual entry
+	const carCompanyElement = document.getElementById('carCompany');
+	console.log(carCompanyElement);
 	const carCompany = carCompanyElement.value;
 	const otherCarCompany = document.getElementById('otherCarCompany').value.trim();
 
