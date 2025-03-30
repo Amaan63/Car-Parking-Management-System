@@ -22,7 +22,28 @@
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 
 	<%@include file="../components/UserComponents/VehicleDetails.jsp"%>
-	
-	
+	<%
+	// Retrieve the session attribute
+	String bookingStatus = (String) session.getAttribute("bookingStatus");
+
+	if (bookingStatus != null) {
+		if ("Successfully Booked the Parking Spot".equals(bookingStatus)) {
+			// Include the popup for successful booking
+	%>
+	<%@include file="../components/popups/VehicleBookingSuccessful.jsp"%>
+	<%
+	} else if (bookingStatus.equals("Failed Booking")) {
+	%>
+	<script type="text/javascript">
+		alert("Server error! Please try again later.");
+	</script>
+	<%
+	}
+	// Remove the attribute to prevent duplicate alerts
+	session.removeAttribute("bookingStatus");
+	}
+	%>
+
+
 </body>
 </html>
