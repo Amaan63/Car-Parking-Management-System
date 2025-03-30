@@ -1,12 +1,14 @@
+
 <!-- Bootstrap & Custom Styling -->
-<link rel="stylesheet" href="./css/FeedbackFormStyle.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/FeedbackFormStyle.css">
 <!-- Feedback and Rating Form -->
-<div class="container d-flex justify-content-center mb-3"
+<div class="container d-flex justify-content-center mb-3 mt-3"
 	id="FeedbackForm">
 	<div class="card p-4 shadow-lg border-0 mx-auto"
 		style="width: 80%; background: #1B1B1B !important;">
 
-		<!-- Images side by side (Always stay in one row) -->
+		<!-- Images side by side (Always stay in one row) 
 		<div class="image-container mb-3">
 			<img src="images/FeedbackAndReview/Rating1.png" alt="Rating Image"
 				class="img-fluid feedback-img"> <img
@@ -14,10 +16,25 @@
 				class="img-fluid feedback-img"> <img
 				src="images/FeedbackAndReview/Rating3.png" alt="Rating Image"
 				class="img-fluid feedback-img">
+		</div> -->
+		<div class="image-container mb-3">
+			<img
+				src="<%=request.getContextPath()%>/images/FeedbackAndReview/Rating1.png"
+				alt="Rating Image" class="img-fluid feedback-img"> <img
+				src="<%=request.getContextPath()%>/images/FeedbackAndReview/Rating2.png"
+				alt="Rating Image" class="img-fluid feedback-img"> <img
+				src="<%=request.getContextPath()%>/images/FeedbackAndReview/Rating3.png"
+				alt="Rating Image" class="img-fluid feedback-img">
 		</div>
 
-		<form action="SaveFeedbackServlet" method="post">
+		<form action="<%=request.getContextPath()%>/SaveFeedbackServlet"
+			method="post">
 			<h2 class="text-center text-white">Give Your Feedback</h2>
+
+			<!--  -->
+			<input type="hidden" name="sourcePage"
+				value="<%=request.getRequestURI().contains("ContactUs.jsp") ? "contactus" : "index"%>">
+
 
 			<!-- Date  -->
 			<input type="hidden" name="feedbackTime"
@@ -28,7 +45,10 @@
 			<div class="mb-3">
 				<label for="email" class="form-label fw-bold text-white">Your
 					Email</label> <input type="email" class="form-control" id="email"
-					name="email" placeholder="Enter your email" required>
+					name="email" placeholder="Enter your email"
+					value="<%=session.getAttribute("userForFeedbackForm") != null ? session.getAttribute("userForFeedbackForm") : ""%>"
+					required>
+
 			</div>
 
 			<!-- Feedback Message -->
