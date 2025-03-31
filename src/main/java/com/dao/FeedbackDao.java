@@ -1,8 +1,11 @@
 package com.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.entities.Feedback;
 
@@ -41,6 +44,24 @@ public class FeedbackDao {
 				session.close();
 			}
 		}
+	}
+
+	// For Admin Panel
+	public List<Feedback> getAllFeedback() {
+		Session session = null;
+		List<Feedback> feedbackList = null;
+		try {
+			session = factory.openSession();
+			Query<Feedback> query = session.createQuery("FROM Feedback", Feedback.class);
+			feedbackList = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return feedbackList;
 	}
 
 }
