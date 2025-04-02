@@ -21,8 +21,7 @@
 		<div class="row">
 			<%@include file="../components/AdminComponents/Sidebar.jsp"%>
 			<%@include file="../components/AdminComponents/AdminNavBar.jsp"%>
-			<!-- Main Content -->
-
+		
 			<!-- Main Content -->
 			<div
 				class="page-header d-flex justify-content-between align-items-start mt-4 pt-3 pb-2 px-3 shadow-sm bg-warning rounded">
