@@ -27,8 +27,7 @@
 					<button class="btn btn-light p-4" data-bs-toggle="modal"
 						data-bs-target="#SlotCreatingModal">
 						<!--  <i class="fas fa-car-side fa-2x mb-2"></i> -->
-						<img alt="Slot Icon"
-							src="../images/QuickActions/ParkingSlot.png"
+						<img alt="Slot Icon" src="../images/QuickActions/ParkingSlot.png"
 							class="mb-2 custom-img"><br /> <b> Slot Creating </b>
 					</button>
 				</div>
@@ -81,7 +80,8 @@
 			</div>
 			<div class="col-md-4 feature-card">
 				<div class="d-grid">
-					<button class="btn btn-info p-4">
+					<button class="btn btn-info p-4"
+						onclick="window.location.href='../AdminPages/ManageFeedbacksAndComplaints.jsp'">
 						<!--   <i class="fas fa-receipt fa-2x mb-2"></i><br /> -->
 						<img alt="View FeedBack and Complaints"
 							src="../images/QuickActions/Feedback&Review.png"
