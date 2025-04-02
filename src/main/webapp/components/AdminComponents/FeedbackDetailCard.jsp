@@ -15,7 +15,7 @@
 
 		if (feedbackList != null && !feedbackList.isEmpty()) {
 			for (Feedback feedback : feedbackList) {
-				String addedAt = feedback.getFeedbackTime(); 
+				String addedAt = feedback.getFeedbackTime();
 				String timeElapsed = timeUtils.getTimeElapsedWithTime(addedAt);
 		%>
 
@@ -38,15 +38,16 @@
 						</div>
 						<div class="field-value">
 							<span class="rating-value"> <%
+ int rating = feedback.getRating(); // Get rating from feedback
  for (int i = 1; i <= 5; i++) {
- %>
-								<i
-								class="fas <%=(i <= feedback.getRating()) ? "fa-star" : "far fa-star"%>"></i>
+ %> <i
+								class="<%=(i <= rating) ? "fas fa-star" : "far fa-star"%>"></i>
 								<%
 								}
-								%> <span class="ms-2"><%=feedback.getRating()%>/5</span>
+								%> <span class="ms-2"><%=rating%>/5</span>
 							</span>
 						</div>
+
 					</div>
 					<div class="field-container">
 						<div class="field-label">
