@@ -1,5 +1,7 @@
 
 <!-- Bootstrap & Custom Styling -->
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/FeedbackFormStyle.css">
 <!-- Feedback and Rating Form -->
@@ -36,9 +38,14 @@
 				value="<%=request.getRequestURI().contains("ContactUs.jsp") ? "contactus" : "index"%>">
 
 
-			<!-- Date  -->
-			<input type="hidden" name="feedbackTime"
-				value="<%=new java.util.Date()%>">
+			<%
+			// Format the current date to match the expected format
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String formattedDate = formatter.format(new Date());
+			%>
+
+			<!-- Date -->
+			<input type="hidden" name="feedbackTime" value="<%=formattedDate%>">
 
 
 			<!-- Email Input -->
