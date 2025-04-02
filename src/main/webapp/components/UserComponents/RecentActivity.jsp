@@ -46,7 +46,6 @@ String email = (String) session.getAttribute("userForRecentActivity");
 					<p class="mb-1">
 						Duration:
 						<%=vehicle.getTimeDuration()%>
-						hours
 					</p>
 					<small class="text-success"> <i
 						class="fas fa-check-circle me-1"></i> Successfully completed
