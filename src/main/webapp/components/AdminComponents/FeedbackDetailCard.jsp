@@ -20,7 +20,7 @@
 		%>
 
 		<!-- Feedback Card -->
-		<div class="col-lg-4 col-md-6 col-12">
+		<div class="col-lg-4 col-md-6 col-sm-12">
 			<div class="feedback-card card">
 				<div class="card-header">
 					<i class="fas fa-comments me-2"></i> User Feedback
@@ -40,11 +40,9 @@
 							<span class="rating-value"> <%
  int rating = feedback.getRating(); // Get rating from feedback
  for (int i = 1; i <= 5; i++) {
- %> <i
-								class="<%=(i <= rating) ? "fas fa-star" : "far fa-star"%>"></i>
-								<%
-								}
-								%> <span class="ms-2"><%=rating%>/5</span>
+ %> <i class="<%=(i <= rating) ? "fas fa-star" : "far fa-star"%>"></i> <%
+ }
+ %> <span class="ms-2"><%=rating%>/5</span>
 							</span>
 						</div>
 
