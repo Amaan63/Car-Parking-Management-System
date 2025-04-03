@@ -12,8 +12,19 @@
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 </head>
 <body class="min-vh-100">
-	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
+	<%-- <%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 	<jsp:include page="../components/FeedbackAndReviewForm.jsp" />
+	<%@include file="../components/Footer.jsp"%> --%>
+	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
+
+	<div class="container mt-4 text-center">
+		<h2 class="fw-bold highlight">Get in Touch with Us</h2>
+		<p class="text-light">Have questions or need assistance? Feel free
+			to reach out to us. We’re here to help!</p>
+	</div>
+
+	<jsp:include page="../components/FeedbackAndReviewForm.jsp" />
+
 	<%@include file="../components/Footer.jsp"%>
 	<%
 	String feedbackStatus = (String) session.getAttribute("feedbackStatus");
