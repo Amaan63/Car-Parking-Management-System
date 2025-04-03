@@ -12,9 +12,6 @@
 <link rel="icon" type="image/x-icon" href="../images/Logo/Logo2.png">
 </head>
 <body class="min-vh-100">
-	<%-- <%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
-	<jsp:include page="../components/FeedbackAndReviewForm.jsp" />
-	<%@include file="../components/Footer.jsp"%> --%>
 	<%@include file="../components/UserComponents/UserHomeNavBar.jsp"%>
 
 	<div class="container mt-4 text-center">
