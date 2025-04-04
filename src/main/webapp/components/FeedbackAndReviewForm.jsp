@@ -10,15 +10,7 @@
 	<div class="card p-4 shadow-lg border-0 mx-auto"
 		style="width: 80%; background: #1B1B1B !important;">
 
-		<!-- Images side by side (Always stay in one row) 
-		<div class="image-container mb-3">
-			<img src="images/FeedbackAndReview/Rating1.png" alt="Rating Image"
-				class="img-fluid feedback-img"> <img
-				src="images/FeedbackAndReview/Rating2.png" alt="Rating Image"
-				class="img-fluid feedback-img"> <img
-				src="images/FeedbackAndReview/Rating3.png" alt="Rating Image"
-				class="img-fluid feedback-img">
-		</div> -->
+		<!-- Images side by side (Always stay in one row)  -->
 		<div class="image-container mb-3">
 			<img
 				src="<%=request.getContextPath()%>/images/FeedbackAndReview/Rating1.png"
