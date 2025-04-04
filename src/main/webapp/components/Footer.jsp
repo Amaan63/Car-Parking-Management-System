@@ -83,23 +83,6 @@
 
 				</div>
 			</div>
-
-			<!-- Quick Links 
-			<div class="col-lg-3 col-md-6">
-				<h5 class="footer-title">Quick Links</h5>
-				<ul class="list-unstyled">
-					<li class="mb-2"><a href="#" class="footer-link"> <i
-							class="fas fa-angle-right me-2"></i>Find Parking
-					</a></li>
-					<li class="mb-2"><a href="#" class="footer-link"> <i
-							class="fas fa-angle-right me-2"></i>Book a Spot
-					</a></li>
-					<li class="mb-2"><a href="#" class="footer-link"> <i
-							class="fas fa-angle-right me-2"></i>My Bookings
-					</a></li>
-				</ul>
-			</div> -->
-
 			<!-- Contact Info -->
 			<div class="col-lg-4 col-md-6">
 				<h5 class="footer-title">Contact Info</h5>
