@@ -1,11 +1,10 @@
-
-<div class="card mt-4 mb-4 bg-dark " id="user-guide">
-	<div class="card-header custom-header ">
-		<h3 class="text-center">
+<div class="card mt-4 mb-4 bg-dark" id="user-guide">
+	<div class="card-header custom-header">
+		<h3 class="text-center text-white">
 			<i class="fas fa-book-reader"></i> User Guide
 		</h3>
 	</div>
-	<div class="card-body ">
+	<div class="card-body text-white">
 		<div class="overflow-auto">
 			<ul class="nav nav-tabs mb-3 d-flex flex-nowrap" id="userTabs"
 				role="tablist">
@@ -36,8 +35,6 @@
 			</ul>
 		</div>
 
-
-
 		<div class="tab-content" id="userTabsContent">
 			<!-- Booking Tab -->
 			<div class="tab-pane fade show active" id="booking" role="tabpanel"
@@ -46,11 +43,11 @@
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-sign-in-alt fa-lg text-primary"></i>
+						<i class="fas fa-sign-in-alt fa-lg text-success"></i>
 					</div>
 					<div>
-						<strong>Log in to your account</strong> - Use your email and
-						password to access the dashboard.
+						<strong>Log in</strong> - Enter your registered email and
+						password.
 					</div>
 				</div>
 
@@ -59,18 +56,28 @@
 						<i class="fas fa-map-marker-alt fa-lg text-primary"></i>
 					</div>
 					<div>
-						<strong>Select location and date</strong> - Choose your preferred
-						parking location and date/time.
+						<strong>Select a slot</strong> - View available slots on the
+						dashboard and choose your preferred one.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-car fa-lg text-primary"></i>
+						<i class="fas fa-calendar-check fa-lg text-light"></i>
 					</div>
 					<div>
-						<strong>Enter vehicle details</strong> - Provide your license
-						plate, vehicle type, and model.
+						<strong>Choose time duration</strong> - Set the booking start and
+						end time.
+					</div>
+				</div>
+
+				<div class="d-flex mb-3">
+					<div class="me-3">
+						<i class="fas fa-car fa-lg text-info"></i>
+					</div>
+					<div>
+						<strong>Enter vehicle details</strong> - Provide your vehicle
+						number, type, and model.
 					</div>
 				</div>
 
@@ -79,87 +86,72 @@
 						<i class="fas fa-check-circle fa-lg text-success"></i>
 					</div>
 					<div>
-						<strong>Confirm and pay</strong> - Review your booking details and
-						complete payment.
+						<strong>Confirm booking</strong> - Submit the details and get
+						confirmation.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-ticket-alt fa-lg text-warning"></i>
+						<i class="fas fa-qrcode fa-lg text-warning"></i>
 					</div>
 					<div>
-						<strong>Receive confirmation</strong> - A QR code will be sent to
-						your email for entry/exit.
+						<strong>QR Code</strong> - Your booking confirmation includes a QR
+						code for entry and exit.
 					</div>
 				</div>
 
-				<h5 class="mt-4">Checking Availability</h5>
-				<p>The interactive map on the dashboard shows real-time
-					availability using color coding:</p>
+				<h5 class="mt-4">Availability Status</h5>
 				<ul>
-					<li><span class="text-success">Green</span>: Available slots</li>
-					<li><span class="text-warning">Yellow</span>: Limited
-						availability (filling up)</li>
-					<li><span class="text-danger">Red</span>: Fully booked</li>
+					<li><span class="text-success">Green</span>: Available Slots</li>
+					<li><span class="text-warning">Yellow</span>: Reserved Slots</li>
+					<li><span class="text-danger">Red</span>: Occupied Slots</li>
 				</ul>
 
-				<h5 class="mt-4">Cancellation Policy</h5>
-				<p>To cancel a booking:</p>
-				<ol>
-					<li>Navigate to "My Bookings" in your dashboard</li>
-					<li>Select the booking you wish to cancel</li>
-					<li>Click the "Cancel Booking" button</li>
-					<li>Confirm your cancellation</li>
-				</ol>
-				<p>
-					<strong>Note:</strong> Cancellations made 2+ hours before the
-					reservation start time receive a full refund. Cancellations made
-					less than 2 hours before receive a 50% refund.
-				</p>
 			</div>
 
 			<!-- Account Tab -->
 			<div class="tab-pane fade" id="account" role="tabpanel"
 				aria-labelledby="account-tab">
-				<h5>Managing Your Account</h5>
+				<h5>Manage Account</h5>
+
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-user-edit fa-lg text-info"></i>
+						<i class="fas fa-user-edit fa-lg text-success"></i>
 					</div>
 					<div>
-						<strong>Profile Settings</strong> - Update your personal
-						information, contact details, and notification preferences.
+						<strong>Profile Settings</strong> - Edit your name, email, contact
+						info, etc.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-key fa-lg text-secondary"></i>
+						<i class="fas fa-key fa-lg text-light"></i>
 					</div>
 					<div>
-						<strong>Security</strong> - Change your password or set up
-						two-factor authentication for enhanced security.
+						<strong>Change Password</strong> - Easily update your login
+						password.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-car-side fa-lg text-dark"></i>
+						<i class="fas fa-car-side fa-lg text-danger"></i>
 					</div>
 					<div>
-						<strong>Saved Vehicles</strong> - Add, edit, or remove your
-						vehicles for faster booking in the future.
+						<strong>Vehicle List</strong> - Save vehicle info for faster
+						booking.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-history fa-lg text-muted"></i>
+						<i class="fas fa-history fa-lg text-warning"></i>
 					</div>
 					<div>
-						<strong>Booking History</strong> - View all your past bookings,
-						receipts, and parking history.
+						<strong>Booking History</strong> - View all your past bookings and
+						activity.
 					</div>
 				</div>
 			</div>
@@ -168,56 +160,28 @@
 			<div class="tab-pane fade" id="payments" role="tabpanel"
 				aria-labelledby="payments-tab">
 				<h5>Payment Options</h5>
-				<p>We support multiple secure payment methods:</p>
 				<ul>
-					<li><strong>Credit/Debit Cards</strong> - Visa, Mastercard,
-						American Express</li>
-					<li><strong>Digital Wallets</strong> - Apple Pay, Google Pay</li>
-					<li><strong>ParkSmart Credits</strong> - Pre-load your account
-						with parking credits</li>
-					<li><strong>Corporate Accounts</strong> - Business billing
-						solutions with monthly invoicing</li>
+					<li><strong>UPI / Net Banking</strong> (based on your
+						integration)</li>
+					<li><strong>Credit/Debit Cards</strong> (if enabled)</li>
 				</ul>
 
-				<h5 class="mt-4">Subscription Plans</h5>
-				<p>For frequent parkers, we offer subscription plans with
-					special benefits:</p>
-				<ul>
-					<li><strong>Monthly Pass</strong> - Unlimited parking at your
-						designated location</li>
-					<li><strong>Flex Pass</strong> - 15 parking sessions per month
-						at any location</li>
-					<li><strong>Premium Pass</strong> - Priority booking, reserved
-						spaces, and no cancellation fees</li>
-				</ul>
-
-				<h5 class="mt-4">Receipts & Invoices</h5>
-				<p>All payment receipts are automatically emailed to you and
-					available in your account dashboard under "Payment History". For
-					business users, detailed monthly invoices can be generated.</p>
+				<h5 class="mt-4">Invoices</h5>
+				<p>Every successful booking generates an invoice available in
+					your dashboard.</p>
 			</div>
 
 			<!-- Features Tab -->
 			<div class="tab-pane fade" id="features" role="tabpanel"
 				aria-labelledby="features-tab">
-				<h5>Special Features</h5>
+				<h5>Features</h5>
+
 				<div class="d-flex mb-3">
 					<div class="me-3">
 						<i class="fas fa-bell fa-lg text-warning"></i>
 					</div>
 					<div>
-						<strong>Reminders & Notifications</strong> - Receive alerts before
-						your parking time expires.
-					</div>
-				</div>
-
-				<div class="d-flex mb-3">
-					<div class="me-3">
-						<i class="fas fa-calendar-alt fa-lg text-primary"></i>
-					</div>
-					<div>
-						<strong>Recurring Bookings</strong> - Set up daily, weekly, or
-						monthly recurring parking reservations.
+						<strong>Alerts</strong> - Get notified before your slot time ends.
 					</div>
 				</div>
 
@@ -226,32 +190,21 @@
 						<i class="fas fa-clock fa-lg text-success"></i>
 					</div>
 					<div>
-						<strong>Extend Parking Time</strong> - Add extra time to your
-						current parking session remotely.
+						<strong>Extend Time</strong> - If needed, extend your parking time
+						before it ends.
 					</div>
 				</div>
 
 				<div class="d-flex mb-3">
 					<div class="me-3">
-						<i class="fas fa-map fa-lg text-danger"></i>
+						<i class="fas fa-map fa-lg text-info"></i>
 					</div>
 					<div>
-						<strong>Navigation</strong> - Get directions to your reserved
-						parking spot with our integrated maps.
-					</div>
-				</div>
-
-				<div class="d-flex mb-3">
-					<div class="me-3">
-						<i class="fas fa-tags fa-lg text-info"></i>
-					</div>
-					<div>
-						<strong>Loyalty Program</strong> - Earn points with every booking
-						and redeem for free parking.
+						<strong>Live Map View</strong> - Dashboard shows slot availability
+						in real-time.
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
