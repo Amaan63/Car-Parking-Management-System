@@ -59,7 +59,7 @@
 	border: 1px solid rgba(255, 255, 255, 0.1);
 }
 </style>
-<footer class="footer pt-5">
+<footer class="footer pt-5" id="support">
 	<div class="container">
 		<div class="row gy-4">
 			<!-- Company Info -->
