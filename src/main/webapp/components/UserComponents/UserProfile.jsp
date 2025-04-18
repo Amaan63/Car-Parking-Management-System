@@ -22,7 +22,6 @@ User userDetailsForProfile = (User) session.getAttribute("userForProfile");
 
 		<%
 		String updateStatus = (String) session.getAttribute("updateStatus");
-		System.out.println("🔍 Debug: updateStatus = " + updateStatus); // Check in Tomcat logs
 		if (updateStatus != null && updateStatus.equals("Updated Successfully")) {
 		%>
 		<!-- Updation Details Alert -->
