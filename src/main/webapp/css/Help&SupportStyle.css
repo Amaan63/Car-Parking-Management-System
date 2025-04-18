@@ -1,0 +1,44 @@
+.custom-header{
+	background-color: #1db954;
+}
+
+
+.quick-link-item:hover {
+	background-color: #132A1C;
+	color: inherit;
+}
+
+.quick-link-item:hover {
+	color: inherit;
+}
+
+.nav-tabs {
+	border-bottom: 2px solid #1E1E1E;
+	/* Keeps the overall border on the tab container */
+}
+
+.nav-tabs .nav-link {
+	border: none; /* Remove borders from individual tabs */
+}
+
+.nav-tabs .nav-link.active {
+	border-bottom: 2px solid #1db954;
+	/* Green border when active tab is clicked */
+	background-color: transparent !important; /* Transparent background */
+	color: #fff !important;
+	box-shadow: none !important; /* Remove box-shadow */
+}
+.nav-tabs .nav-link:hover {
+	background-color: #1db954;
+	color:#000;
+}
+.faq-item {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+/* Optional: Remove border from last item */
+.faq-item:last-child {
+    border-bottom: none;
+}
