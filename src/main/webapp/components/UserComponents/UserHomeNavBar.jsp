@@ -13,11 +13,15 @@
 	border-radius: 5px;
 }
 
-.navbar-nav .nav-item .nav-link:hover, .navbar-nav .nav-item .nav-link.active
+.navbar-nav .nav-item .nav-link:hover 
 	{
 	transform: scale(1.1); /* Slightly increase size */
-	background-color: black !important; /* Change background */
-	color: #1db954 !important; /* Ensure text is visible */
+	background-color:  #1db954 !important; /* Change background */
+	color: black !important; /* Ensure text is visible */
+}
+.navbar-nav .nav-item .nav-link.active{
+	background-color:  black !important; /* Change background */
+	color:  #1db954 !important; /* Ensure text is visible */
 }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -44,7 +48,7 @@
 					href="../UserPages/ParkingHistory.jsp">Parking History</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="../UserPages/PaymentHistory.jsp">Payment History</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Help &
+				<li class="nav-item"><a class="nav-link" href="../UserPages/Help&Support.jsp">Help &
 						Support</a></li>
 				<li class="nav-item"><a class="nav-link" href="../UserPages/ContactUs.jsp">Contact Us</a></li>
 				<!-- Dropdown for user profile -->
