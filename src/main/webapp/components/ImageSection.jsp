@@ -5,7 +5,6 @@
             <div class="col-md-6 text-center">
                 <img src="images/info.svg" alt="Car Parking Info" class="img-fluid w-75">
             </div>
-            
             <!-- Text Column -->
             <div class="col-md-6">
                 <h2 class="fw-bold text-white">Why Choose Our System?</h2>
