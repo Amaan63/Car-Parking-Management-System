@@ -90,39 +90,39 @@ public class UserDao {
 			return null;
 		}
 	}
-	
-	// For Validations
-	
-	// Method to check if an email already exists
-    public boolean isEmailExists(String email) {
-        Session session = this.factory.openSession();
-        try {
-            Query query = session.createQuery("from User where email = :email", User.class);
-            query.setParameter("email", email);
-            User user = (User) query.uniqueResult(); // Returns null if no user is found with that email
-            return user != null; // If a user is found, email exists
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false; // Return false in case of any exception
-        } finally {
-            session.close();
-        }
-    }
 
-    // Method to check if a phone number already exists
-    public boolean isPhoneNumberExists(String phoneNumber) {
-        Session session = this.factory.openSession();
-        try {
-            Query query = session.createQuery("from User where phoneNumber = :phoneNumber", User.class);
-            query.setParameter("phoneNumber", phoneNumber);
-            User user = (User) query.uniqueResult(); // Returns null if no user is found with that phone number
-            return user != null; // If a user is found, phone number exists
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false; // Return false in case of any exception
-        } finally {
-            session.close();
-        }
-    }
+	// For Validations
+
+	public boolean isEmailExists(String email) {
+		Session session = this.factory.openSession();
+		try {
+			Query<User> query = session.createQuery("from User where userEmail = :email", User.class);
+			query.setParameter("email", email);
+			query.setMaxResults(1); // ✅ Limit to 1 result
+			User user = query.uniqueResult();
+			return user != null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			session.close();
+		}
+	}
+
+	public boolean isPhoneNumberExists(String phoneNumber) {
+		Session session = this.factory.openSession();
+		try {
+			Query<User> query = session.createQuery("from User where userPhoneNumber = :phoneNumber", User.class);
+			query.setParameter("phoneNumber", phoneNumber);
+			query.setMaxResults(1); // ✅ Limit to 1 result
+			User user = query.uniqueResult();
+			return user != null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			session.close();
+		}
+	}
 
 }
