@@ -42,6 +42,15 @@
 							placeholder="Enter your password" name="userPassword" required />
 					</div>
 					<button type="submit" class="btn mt-3">Login</button>
+					<!-- Forgot Password Link -->
+					<div class="text-right mt-4">
+						<a href="#" data-bs-toggle="modal"
+							data-bs-target="#forgotPasswordModal" class="customHover">
+							Forgot Password? </a>
+							<%@include file="components/ForgetPasswordModal.jsp" %>
+					</div>
+
+
 				</form>
 			</div>
 			<!-- Registration Form -->
