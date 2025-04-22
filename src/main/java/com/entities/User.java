@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 
 public class User {
@@ -35,6 +34,12 @@ public class User {
 	@Column(length = 12, name = "user_phoneNumber")
 	private String userPhoneNumber;
 
+	@Column(length = 1000, name = "security_question")
+	private String securityQuestion;
+
+	@Column(length = 1000, name = "security_answer")
+	private String securityAnswer;
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Vehicle> vehicles;
 
@@ -57,13 +62,15 @@ public class User {
 	}
 
 	public User(String userFullName, String userEmail, String userPassword, String userAddress,
-			String userPhoneNumber) {
+			String userPhoneNumber ,String securityQuestion,String securityAnswer) {
 		super();
 		this.userFullName = userFullName;
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 		this.userAddress = userAddress;
 		this.userPhoneNumber = userPhoneNumber;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
 	}
 
 	public int getUserId() {
@@ -120,6 +127,22 @@ public class User {
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 
 }
