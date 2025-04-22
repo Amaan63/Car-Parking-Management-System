@@ -3,174 +3,190 @@
 /* Main body styling */
 /* Dark background with centered flex layout */
 body {
-  background-color: #121212; /* Dark theme background */
-  color: #ffffff; /* White text for contrast */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  min-height: 100vh; /* Full viewport height */
-  margin: 0; /* Remove default margin */
-  font-family: Arial, sans-serif; /* Standard font */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+	background-color: #121212; /* Dark theme background */
+	color: #ffffff; /* White text for contrast */
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* Center horizontally */
+	justify-content: center; /* Center vertically */
+	min-height: 100vh; /* Full viewport height */
+	margin: 0; /* Remove default margin */
+	font-family: Arial, sans-serif; /* Standard font */
+	overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Toggle Button Styling */
 /* Container for the Login/Register toggle buttons */
 .toggle {
-  display: flex;
-  gap: 20px; /* Space between buttons */
-  margin-bottom: 20px;
-  z-index: 0; /* Keep buttons above other elements */
-  position: relative;
+	display: flex;
+	gap: 20px; /* Space between buttons */
+	margin-bottom: 20px;
+	z-index: 0; /* Keep buttons above other elements */
+	position: relative;
 }
 
 /* Individual toggle button styling */
 .toggle button {
-  padding: 8px 30px;
-  border: 1px solid #1db954; /* Spotify green border */
-  background-color: transparent; /* Transparent background */
-  color: #1db954; /* Green text */
-  border-radius: 20px; /* Rounded corners */
-  cursor: pointer; /* Show hand cursor on hover */
-  font-weight: bold;
-  transition: background-color 0.3s, color 0.3s; /* Smooth color transitions */
+	padding: 8px 30px;
+	border: 1px solid #1db954; /* Spotify green border */
+	background-color: transparent; /* Transparent background */
+	color: #1db954; /* Green text */
+	border-radius: 20px; /* Rounded corners */
+	cursor: pointer; /* Show hand cursor on hover */
+	font-weight: bold;
+	transition: background-color 0.3s, color 0.3s;
+	/* Smooth color transitions */
 }
 
 /* Active state for toggle buttons */
 .toggle button.active {
-  background-color: #1db954; /* Green background when active */
-  color: #ffffff; /* White text when active */
+	background-color: #1db954; /* Green background when active */
+	color: #ffffff; /* White text when active */
 }
 
 /* Container for Forms */
 /* Main container that holds both forms */
 .custom-container {
-  width: 90%; /* Take 90% of available width */
-  max-width: 1200px; /* Maximum width for large screens */
-  min-height: 600px; /* Taller on desktop for better form display */
-  background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  flex-direction: column;
-  margin: 0 auto; /* Center horizontally */
+	width: 90%; /* Take 90% of available width */
+	max-width: 1200px; /* Maximum width for large screens */
+	min-height: 600px; /* Taller on desktop for better form display */
+	background-color: rgba(255, 255, 255, 0.05);
+	/* Slightly transparent white */
+	border-radius: 15px; /* Rounded corners */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+	/* Subtle shadow for depth */
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	flex-direction: column;
+	margin: 0 auto; /* Center horizontally */
 }
 
 /* Form Container */
 /* Wrapper for both login and registration forms */
 .form-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 
 /* Form Wrapper - Initially Hidden */
 /* Container for each individual form (login or register) */
 .form-wrapper {
-  display: none; /* Hidden by default, shown when active */
-  flex-direction: row; /* Side-by-side layout on desktop */
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 20px;
+	display: none; /* Hidden by default, shown when active */
+	flex-direction: row; /* Side-by-side layout on desktop */
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 20px;
 }
 
 /* Show Active Form */
 /* Class added via JavaScript to show the active form */
 .form-wrapper.active {
-  display: flex; /* Show the active form */
+	display: flex; /* Show the active form */
 }
 
 /* Image and Form Layout */
 /* Styling for the images beside the forms */
 .form-wrapper img {
-  width: 45%; /* Take 45% of the wrapper width */
-  max-height: 500px; /* Limit height for very large screens */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-  margin-right: 20px; /* Space between image and form */
-  object-fit: contain; /* Maintain aspect ratio without cropping */
+	width: 45%; /* Take 45% of the wrapper width */
+	max-height: 500px; /* Limit height for very large screens */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+	margin-right: 20px; /* Space between image and form */
+	object-fit: contain; /* Maintain aspect ratio without cropping */
 }
 
 /* Form Styling */
 /* The actual form with inputs */
 .form {
-  width: 50%; /* Take 50% of the wrapper width */
-  padding: 20px;
+	width: 50%; /* Take 50% of the wrapper width */
+	padding: 20px;
 }
 
 /* Form heading */
 .form h2 {
-  margin-bottom: 20px;
-  color: #1db954; /* Green heading */
+	margin-bottom: 20px;
+	color: #1db954; /* Green heading */
 }
 
 /* Form labels */
 .form .form-label {
-  color: #ffffff; /* White text for labels */
+	color: #ffffff; /* White text for labels */
 }
 
 /* Form submit button */
 .form .btn {
-  width: 100%; /* Full-width button */
-  background: #1db954; /* Green background */
-  color: #ffffff; /* White text */
-  border: none;
-  transition: background 0.3s ease; /* Smooth hover effect */
+	width: 100%; /* Full-width button */
+	background: #1db954; /* Green background */
+	color: #ffffff; /* White text */
+	border: none;
+	transition: background 0.3s ease; /* Smooth hover effect */
 }
 
 /* Hover effect for submit button */
 .form .btn:hover {
-  background: #17a74b; /* Slightly darker green on hover */
+	background: #17a74b; /* Slightly darker green on hover */
+}
+
+/* Target only anchor tags with this class */
+a.customHover {
+	color: #1db954;
+	font-weight: bold;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+/* Force hover color */
+a.customHover:hover {
+	color: #fff !important;
 }
 
 /* Responsive Design */
 /* Adjustments for tablet and smaller desktop screens */
-@media (max-width: 992px) {
-  .custom-container {
-    min-height: auto; /* Allow height to adjust based on content */
-    width: 95%; /* Take more width on smaller screens */
-  }
-  
-  /* Switch to vertical layout */
-  .form-wrapper {
-    flex-direction: column; /* Stack vertically on smaller screens */
-    text-align: center;
-  }
-  
-  /* Adjust image size for vertical layout */
-  .form-wrapper img {
-    width: 70%; /* Wider image when stacked */
-    max-height: 250px; /* Shorter image when stacked */
-    margin-right: 0; /* Remove right margin */
-    margin-bottom: 20px; /* Add bottom margin instead */
-  }
-  
-  /* Full-width form when stacked */
-  .form {
-    width: 100%;
-  }
+@media ( max-width : 992px) {
+	.custom-container {
+		min-height: auto; /* Allow height to adjust based on content */
+		width: 95%; /* Take more width on smaller screens */
+	}
+
+	/* Switch to vertical layout */
+	.form-wrapper {
+		flex-direction: column; /* Stack vertically on smaller screens */
+		text-align: center;
+	}
+
+	/* Adjust image size for vertical layout */
+	.form-wrapper img {
+		width: 70%; /* Wider image when stacked */
+		max-height: 250px; /* Shorter image when stacked */
+		margin-right: 0; /* Remove right margin */
+		margin-bottom: 20px; /* Add bottom margin instead */
+	}
+
+	/* Full-width form when stacked */
+	.form {
+		width: 100%;
+	}
 }
 
 /* Extra Fix for Small Screens */
 /* Additional adjustments for mobile phones */
-@media (max-width: 480px) {
-  .custom-container {
-    padding: 15px; /* Less padding on very small screens */
-    width: 95%;
-  }
-  
-  /* Further adjust image size for tiny screens */
-  .form-wrapper img {
-    width: 80%;
-    max-height: 200px;
-  }
+@media ( max-width : 480px) {
+	.custom-container {
+		padding: 15px; /* Less padding on very small screens */
+		width: 95%;
+	}
+
+	/* Further adjust image size for tiny screens */
+	.form-wrapper img {
+		width: 80%;
+		max-height: 200px;
+	}
 }
