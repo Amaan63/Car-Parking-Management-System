@@ -47,7 +47,7 @@
 						<a href="#" data-bs-toggle="modal"
 							data-bs-target="#forgotPasswordModal" class="customHover">
 							Forgot Password? </a>
-							<%@include file="components/ForgetPasswordModal.jsp" %>
+						<%@include file="components/ForgetPasswordModal.jsp"%>
 					</div>
 
 
@@ -89,6 +89,40 @@
 						<textarea class="form-control" id="userAddress" name="userAddress"
 							rows="3" placeholder="Enter your address" required></textarea>
 					</div>
+
+					<!-- Security Question Dropdown -->
+					<div class="mb-3">
+						<label for="securityQuestion" class="form-label">Security
+							Question</label> <select class="form-select" id="securityQuestion"
+							name="securityQuestion" required>
+							<option value="" disabled selected>Select a security
+								question</option>
+							<option value="What is your favorite food?">What is your
+								favorite food?</option>
+							<option value="What is the name of your
+								first friend?">What
+								is the name of your first friend?</option>
+							<option value="What is the name of your first
+								pet?">What
+								is the name of your first pet?</option>
+							<option value="What is your mother's
+								name?">What
+								is your mother's name?</option>
+							<option value="What is your favorite
+								color?">What
+								is your favorite color?</option>
+						</select>
+					</div>
+
+					<!-- Answer to Security Question -->
+					<div class="mb-3">
+						<label for="securityAnswer" class="form-label">Answer</label> <input
+							type="text" class="form-control" id="securityAnswer"
+							name="securityAnswer"
+							placeholder="Enter Answer to Security Question" required />
+					</div>
+
+
 					<button type="submit" class="btn mt-3">Register</button>
 				</form>
 			</div>
@@ -106,9 +140,39 @@
 	%>
 	<%@ include file="components/popups/UserRegistrationPopup.jsp"%>
 	<%
-	} else {
+	} else if ("Failed".equals(registrationStatus)) {
 	%>
 	<h1>Registration failed</h1>
+	<%
+	} else if ("Email already exists".equals(registrationStatus)) {
+	%><div class="modal fade" id="registerModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Email already registered!</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%
+	} else if ("Phone number already exists".equals(registrationStatus)) {
+	%>
+	<div class="modal fade" id="registerModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Phone Number Already Exist!</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 	}
 	// Remove the attribute to prevent the message from appearing again
@@ -175,6 +239,14 @@
 	%>
 	<script src="javascript/Registration_Validation.js"></script>
 	<script src="javascript/Login_Register_toggle.js"></script>
+	<script>
+	
+			var registerUserModal = new bootstrap.Modal(document
+					.getElementById('registerModal'));
+			registerUserModal.show();
+		
+	</script>
+
 	<script>
 		var loginUserModal = new bootstrap.Modal(document
 				.getElementById('loginUserModal'));
