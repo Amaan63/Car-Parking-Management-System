@@ -30,9 +30,11 @@ public class UserRegistrationServlet extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 		String userPhoneNumber = request.getParameter("userPhoneNumber");
 		String userAddress = request.getParameter("userAddress");
+		String securityQuestion = request.getParameter("securityQuestion");
+		String securityAnswer = request.getParameter("securityAnswer");
 		HttpSession session = request.getSession();
 		
-		User user = new User(userFullName, userEmail, userPassword, userAddress, userPhoneNumber);
+		User user = new User(userFullName, userEmail, userPassword, userAddress, userPhoneNumber,securityQuestion,securityAnswer);
 
 		 // Initialize UserDao
 	    UserDao userDao = new UserDao(FactoryProvider.getFactory());
