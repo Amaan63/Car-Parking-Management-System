@@ -71,5 +71,50 @@
 	session.removeAttribute("feedbackStatus");
 	}
 	%>
+	<%
+	String showResetModal = (String) session.getAttribute("ShowResetModal");
+	if (showResetModal != null && showResetModal.equals("Hide")) {
+	%>
+	<div class="modal fade" id="errorModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Your answer or Question does not match our records. Please try again.</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+	}
+	session.removeAttribute("ShowResetModal");
+	%>
+	<%
+	String passwordErrorModal = (String) session.getAttribute("PasswordStatus");
+	if (passwordErrorModal != null && passwordErrorModal.equals("Failed")) {
+	%>
+	<div class="modal fade" id="errorModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Error is Been Occured While resetting the Password , Please try again</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+	}
+	session.removeAttribute("PasswordStatus");
+	%>
+	<script>
+		var errorModal = new bootstrap.Modal(document
+				.getElementById('errorModal'));
+		errorModal.show();
+	</script>
 </body>
 </html>

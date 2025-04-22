@@ -47,7 +47,7 @@
 						<a href="#" data-bs-toggle="modal"
 							data-bs-target="#forgotPasswordModal" class="customHover">
 							Forgot Password? </a>
-						<%@include file="components/ForgetPasswordModal.jsp"%>
+
 					</div>
 
 
@@ -166,7 +166,8 @@
 		<div class="modal-dialog">
 			<div class="modal-content bg-dark">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger">Phone Number Already Exist!</h5>
+					<h5 class="modal-title text-danger">Phone Number Already
+						Exist!</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -239,12 +240,11 @@
 	%>
 	<script src="javascript/Registration_Validation.js"></script>
 	<script src="javascript/Login_Register_toggle.js"></script>
+	<%@include file="components/ForgetPasswordModal.jsp"%>
 	<script>
-	
-			var registerUserModal = new bootstrap.Modal(document
-					.getElementById('registerModal'));
-			registerUserModal.show();
-		
+		var registerUserModal = new bootstrap.Modal(document
+				.getElementById('registerModal'));
+		registerUserModal.show();
 	</script>
 
 	<script>
@@ -252,5 +252,74 @@
 				.getElementById('loginUserModal'));
 		loginUserModal.show();
 	</script>
+
+
+	<%
+	String ShowResetModal = (String) session.getAttribute("ShowResetModal");
+
+	if ("visible".equalsIgnoreCase(ShowResetModal)) {
+	%>
+	<%@ include file="components/ResetPasswordModal.jsp"%>
+
+	<script>
+		window.onload = function() {
+			var resetModal = new bootstrap.Modal(document
+					.getElementById('resetPasswordModal'));
+			resetModal.show();
+		}
+	</script>
+	<%
+	// Clear the session attribute after showing it once
+	session.removeAttribute("ShowResetModal");
+	}
+	%>
+
+
+
+	<%
+	String passwordErrorModal = (String) session.getAttribute("PasswordStatus");
+	if (passwordErrorModal != null && passwordErrorModal.equals("Reset The Password Successfully")) {
+	%>
+	<div class="modal fade" id="passwordErrorModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-success">Password has been Reseted
+						Succesfully</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+	} else if (passwordErrorModal != null && passwordErrorModal.equals("Both the password does not match")) {
+	%><div
+		class="modal fade" id="passwordErrorModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Password Does Not Match With each other</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+	}
+	session.removeAttribute("PasswordStatus");
+	%>
+	<script>
+		var passwordErrorModal = new bootstrap.Modal(document
+				.getElementById('passwordErrorModal'));
+		passwordErrorModal.show();
+	</script>
+
+
+
+
 </body>
 </html>
