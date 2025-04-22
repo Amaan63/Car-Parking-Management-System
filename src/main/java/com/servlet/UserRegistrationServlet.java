@@ -34,8 +34,25 @@ public class UserRegistrationServlet extends HttpServlet {
 		
 		User user = new User(userFullName, userEmail, userPassword, userAddress, userPhoneNumber);
 
-		UserDao userdao = new UserDao(FactoryProvider.getFactory());
-		boolean status = userdao.saveUser(user);
+		 // Initialize UserDao
+	    UserDao userDao = new UserDao(FactoryProvider.getFactory());
+
+	    // Check if the email or phone number already exists in the database
+	    boolean isEmailExists = userDao.isEmailExists(userEmail);
+	    boolean isPhoneNumberExists = userDao.isPhoneNumberExists(userPhoneNumber);
+
+	    if (isEmailExists) {
+	        session.setAttribute("UserRegistration", "Email already exists");
+	        response.sendRedirect("User-Registration&Login.jsp");
+	        return;
+	    }
+
+	    if (isPhoneNumberExists) {
+	        session.setAttribute("UserRegistration", "Phone number already exists");
+	        response.sendRedirect("User-Registration&Login.jsp");
+	        return;
+	    }
+		boolean status = userDao.saveUser(user);
 		if (status) {
 			session.setAttribute("UserRegistration", "Successfull");
 			response.sendRedirect("User-Registration&Login.jsp");
