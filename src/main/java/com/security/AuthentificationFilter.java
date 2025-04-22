@@ -48,7 +48,7 @@ public class AuthentificationFilter implements Filter {
 	// Method to identify public pages
 	private boolean isPublicPage(String uri) {
 		return uri.endsWith("index.jsp") || uri.endsWith("/") || uri.endsWith("User-Registration&Login.jsp")
-				|| uri.endsWith("Admin-Login.jsp"); // Ensure login pages are public
+				|| uri.endsWith("Admin-Login.jsp")|| uri.endsWith("VerifySecurityQuestion") || uri.endsWith("ResetPasswordServlet"); // Ensure login pages are public
 	}
 
 	// Improved static resource detection (CSS, JS, images)
@@ -64,7 +64,7 @@ public class AuthentificationFilter implements Filter {
 		// Ensure this includes both admin login and its servlet
 		return uri.endsWith("UserLoginServlet") || uri.endsWith("User-Registration&Login.jsp")
 				|| uri.endsWith("UserRegistrationServlet") || uri.endsWith("AdminLoginServlet")
-				|| uri.endsWith("Admin-Login.jsp") || uri.endsWith("SaveFeedbackServlet");
+				|| uri.endsWith("Admin-Login.jsp") || uri.endsWith("SaveFeedbackServlet")  ;
 	}
 
 }
