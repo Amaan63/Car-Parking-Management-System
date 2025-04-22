@@ -7,6 +7,8 @@ function validateForm() {
 	let password = document.getElementById("userPassword").value;
 	let phoneNumber = document.getElementById("userPhoneNumber").value;
 	let address = document.getElementById("userAddress").value;
+	let securityQuestion = document.getElementById("securityQuestion").value;
+	let securityAnswer = document.getElementById("securityAnswer").value;
 
 
 
@@ -60,6 +62,20 @@ function validateForm() {
 		alert("Address is required!");
 		return false; // Prevent form submission
 	}
+
+
+	// Validate Security Question
+	if (securityQuestion === "" || securityQuestion === null) {
+	    alert("Please select a security question!");
+	    return false; // Prevent form submission
+	}
+
+	// Validate Security Answer
+	if (securityAnswer === "") {
+		alert("Please provide an answer to the selected security question!");
+		return false; // Prevent form submission
+	}
+
 
 	// If all fields are valid, return true and submit the form
 	return true; // Allow form submission
