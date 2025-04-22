@@ -125,4 +125,87 @@ public class UserDao {
 		}
 	}
 
+	// Verify Security Question
+	public boolean verifySecurityDetails(String question, String answer, String email) {
+		// Open a session to interact with the database
+		Session session = this.factory.openSession();
+		Transaction tx = null;
+		boolean isValid = false; // Variable to store the result (true if matched, false if not)
+
+		try {
+			// Begin the transaction to perform database operations
+			tx = session.beginTransaction();
+
+			// HQL query to check if the security question and answer match for the given
+			// email
+			String hql = "FROM User WHERE lower(userEmail) = :email AND lower(securityQuestion) = :question AND lower(securityAnswer) = :answer";
+
+			// Create a query object and set the parameters for email, question, and answer
+			Query<User> query = session.createQuery(hql, User.class);
+			query.setParameter("email", email.toLowerCase()); // Convert email to lowercase
+			query.setParameter("question", question.toLowerCase()); // Convert question to lowercase
+			query.setParameter("answer", answer.toLowerCase()); // Convert answer to lowercase
+
+			// Execute the query and retrieve the matching User object (if found)
+			User user = query.uniqueResult();
+
+			// If a matching user is found, set isValid to true (question and answer match)
+			if (user != null) {
+				isValid = true;
+			}
+
+			// Commit the transaction after successfully executing the query
+			tx.commit();
+		} catch (Exception e) {
+			// If any exception occurs, rollback the transaction to avoid inconsistent data
+			if (tx != null)
+				tx.rollback();
+
+			// Print the exception stack trace for debugging
+			e.printStackTrace();
+		} finally {
+			// Ensure the session is closed to release resources
+			session.close();
+		}
+
+		// Return true if question and answer matched, false otherwise
+		return isValid;
+	}
+	
+	// For Reset the Password
+	public boolean resetPassword(String email, String newPassword) {
+	    Session session = this.factory.openSession();
+	    Transaction tx = null;
+
+	    try {
+	        tx = session.beginTransaction();
+
+	        // Fetch the user by phone number
+	        Query<User> query = session.createQuery("from User where userEmail = :email", User.class);
+	        query.setParameter("email", email);
+	        query.setMaxResults(1);
+	        User user = query.uniqueResult();
+
+	        if (user != null) {
+	            // Set the new password
+	            user.setUserPassword(newPassword);
+
+	            // Save the updated user
+	            session.update(user);
+
+	            tx.commit();
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    } catch (Exception e) {
+	        if (tx != null) tx.rollback();
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        session.close();
+	    }
+	}
+
+
 }
