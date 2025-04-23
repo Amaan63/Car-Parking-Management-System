@@ -33,7 +33,7 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 					<label for="customerName" class="form-label h3">Customer
 						Name</label> <input type="text" class="form-control " id="customerName"
 						placeholder="Enter your name" name="userName"
-						value="<%=userDetailForBooking.getUserFullName()%>" required />
+						value="<%=userDetailForBooking.getUserFullName()%>" required readonly="readonly" />
 				</div>
 
 				<!-- Contact Number -->
@@ -41,28 +41,68 @@ User userDetailForBooking = (User) session.getAttribute("userDetailForBooking");
 					<label for="email" class="form-label">Email Address</label> <input
 						type="text" class="form-control" id="email"
 						placeholder="Enter your email number" name="userEmail"
-						value="<%=userDetailForBooking.getUserEmail()%>" required />
+						value="<%=userDetailForBooking.getUserEmail()%>" required readonly="readonly" />
 				</div>
 
 				<!-- Vehicle Company -->
 				<div class="form-group m-3">
 					<label for="carCompany" class="form-label">Automobile Brand
 						Company</label> <select id="carCompany" class="form-select"
-						name="vehicleCompany" >
+						name="vehicleCompany">
 						<option value="Choose..." selected>Choose...</option>
+						<!-- Indian Car/Bike Manufacturers -->
+						<option value="Maruti Suzuki">Maruti Suzuki</option>
+						<option value="Tata Motors">Tata Motors</option>
+						<option value="Mahindra">Mahindra</option>
+						<option value="Hero MotoCorp">Hero MotoCorp</option>
+						<option value="TVS Motor">TVS Motor</option>
+						<option value="Bajaj Auto">Bajaj Auto</option>
+						<option value="Royal Enfield">Royal Enfield</option>
+						<option value="Ashok Leyland">Ashok Leyland</option>
+						<option value="Eicher Motors">Eicher Motors</option>
+						<option value="Force Motors">Force Motors</option>
+
+						<!-- Foreign Car/Bike Manufacturers (Common in India) -->
 						<option value="Toyota">Toyota</option>
 						<option value="Honda">Honda</option>
-						<option value="Ford">Ford</option>
-						<option value="Chevrolet">Chevrolet</option>
-						<option value="Nissan">Nissan</option>
-						<option value="BMW">BMW</option>
-						<option value="Mercedes">Mercedes</option>
 						<option value="Hyundai">Hyundai</option>
 						<option value="Kia">Kia</option>
+						<option value="Nissan">Nissan</option>
+						<option value="Ford">Ford</option>
+						<option value="Chevrolet">Chevrolet</option>
 						<option value="Volkswagen">Volkswagen</option>
-						<option value="Maruti Suzuki">Maruti Suzuki</option>
-						<option value="Royal Enfield">Royal Enfield</option>
+						<option value="Skoda">Skoda</option>
+						<option value="MG Motor">MG Motor</option>
+						<option value="BMW">BMW</option>
+						<option value="Mercedes-Benz">Mercedes-Benz</option>
+						<option value="Audi">Audi</option>
+						<option value="Volvo">Volvo</option>
+						<option value="Lexus">Lexus</option>
+						<option value="Porsche">Porsche</option>
+						<option value="Jeep">Jeep</option>
+
+						<!-- Foreign Bike Manufacturers -->
 						<option value="Yamaha">Yamaha</option>
+						<option value="KTM">KTM</option>
+						<option value="Harley-Davidson">Harley-Davidson</option>
+						<option value="Ducati">Ducati</option>
+						<option value="Suzuki">Suzuki</option>
+						<option value="Aprilia">Aprilia</option>
+						<option value="Triumph">Triumph</option>
+						<option value="Benelli">Benelli</option>
+
+						<!-- Truck/Bus Manufacturers -->
+						<option value="Volvo Trucks">Volvo Trucks</option>
+						<option value="Scania">Scania</option>
+						<option value="MAN Trucks">MAN Trucks</option>
+						<option value="Isuzu">Isuzu</option>
+						<option value="Ashok Leyland (Bus/Truck)">Ashok Leyland
+							(Bus/Truck)</option>
+						<option value="Tata Motors (Bus/Truck)">Tata Motors
+							(Bus/Truck)</option>
+						<option value="BharatBenz">BharatBenz</option>
+						<option value="Eicher (Bus/Truck)">Eicher (Bus/Truck)</option>
+						<option value="Mahindra (Truck/Bus)">Mahindra (Truck/Bus)</option>
 						<option value="Other">Other</option>
 					</select>
 
