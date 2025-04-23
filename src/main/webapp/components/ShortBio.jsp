@@ -25,7 +25,7 @@
 
 		<!-- Text Column -->
 		<div class="col-md-6">
-			<h2 class="highlight">Why This Is Important</h2>
+			<h2 class="highlight fw-bold">Why This Is Important ?</h2>
 			<p>In a world where parking spaces are limited, efficient
 				management systems become crucial. Our system provides optimized
 				solutions for managing spaces, reducing time spent searching for
@@ -39,7 +39,7 @@
 	<div class="row align-items-center">
 		<!-- Text Column (Displays first on larger screens) -->
 		<div class="col-md-6">
-			<h2 class="highlight">Short Bio</h2>
+			<h2 class="highlight fw-bold">Short Bio</h2>
 			<p>Parking Management Systems are transforming how cities and
 				businesses handle car spaces. Our solution is designed to offer
 				seamless user experiences with integrated payment systems and easy
@@ -65,7 +65,7 @@
 
 		<!-- Text Column -->
 		<div class="col-md-6">
-			<h2 class="highlight">Everything is Online</h2>
+			<h2 class="highlight fw-bold">Everything is Online</h2>
 			<p>Manage parking space reservations and payments entirely
 				online. Access the system from anywhere, book a slot, and complete
 				payments effortlessly. All you need is an internet connection.</p>
