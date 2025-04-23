@@ -23,6 +23,11 @@ function validateForm() {
 		alert('Please enter the vehicle name.');
 		isValid = false;
 	}
+	// Check if vehicle name is only numbers
+	else if (/^\d+$/.test(vehicleName)) {
+		alert('Vehicle name cannot contain only numbers.');
+		isValid = false;
+	}
 
 	// Vehicle number plate validation
 	const numberPlate = document.getElementById('numberPlate').value.trim();
