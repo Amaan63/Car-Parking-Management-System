@@ -14,16 +14,16 @@
 </style>
 
 <!-- Services Section -->
-<h1 class="text-center mb-3">Services We Provide</h1>
+<h2 class="text-center mb-3 fw-bold highlight">Services We Provide</h2>
 <div class="d-flex justify-content-center align-items-center">
 	<div class="container ">
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 			<div class="col">
-				<div class="card custom-bg-color card-custom  shadow-sm h-100 ">
+				<div class="card  card-custom  shadow-sm h-100 ">
 					<img src="images/Services We Provide/Parking.jpg"
 						class="card-img-top img-fluid pt-1"
 						style="height: 200px; object-fit: contain;" alt="Parking Facility" />
-					<div class="card-body ">
+					<div class="card-body custom-bg-color">
 						<h5 class="card-title highlight">Parking Facility</h5>
 						<p class="card-text">Our parking facilities are
 							state-of-the-art, ensuring a safe and convenient experience.</p>
@@ -31,11 +31,11 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card  custom-bg-color card-custom shadow-sm h-100">
+				<div class="card card-custom shadow-sm h-100">
 					<img src="images/Services We Provide/Parking Security.jpg"
 						class="card-img-top img-fluid pt-1"
 						style="height: 200px; object-fit: contain;" alt="Parking Security" />
-					<div class="card-body ">
+					<div class="card-body custom-bg-color">
 						<h5 class="card-title  highlight">Parking
 							Security</h5>
 						<p class="card-text ">With our
@@ -45,11 +45,11 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card  custom-bg-color card-custom shadow-sm h-100">
+				<div class="card  card-custom shadow-sm h-100">
 					<img src="images/Services We Provide/Ev Charging.jpg"
 						class="card-img-top img-fluid pt-1"
 						style="height: 200px; object-fit: contain;" alt="Charging Station" />
-					<div class="card-body custom-bg-color">
+					<div class="card-body custom-bg-color ">
 						<h5 class="card-title  highlight">Charging
 							Station</h5>
 						<p class="card-text">Keep your electric vehicle charged and
@@ -59,11 +59,11 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card  custom-bg-color card-custom shadow-sm h-100">
+				<div class="card  card-custom shadow-sm h-100">
 					<img src="images/Services We Provide/Car Wash.png"
 						class="card-img-top img-fluid pt-1"
 						style="height: 200px; object-fit: contain;" alt="Car Wash" />
-					<div class="card-body ">
+					<div class="card-body custom-bg-color">
 						<h5 class="card-title highlight">Car Wash</h5>
 						<p class="card-text">Keep your vehicle spotless with our
 							premium car wash service, offering a thorough clean that leaves
