@@ -28,8 +28,8 @@
 			href="../AdminPages/ManageFeedbacksAndComplaints.jsp"> <i
 				class="fas fa-chart-bar me-2"></i> Feedback and Complaints
 		</a></li>
-		<li class="nav-item"><a class="nav-link"> <i
-				class="fas fa-cog me-2"></i> Settings
+		<li class="nav-item"><a class="nav-link" href="../AdminPages/PaymentList.jsp"> <i
+				class="fa-solid fa-list-check"></i> Payment List
 		</a></li>
 	</ul>
 </div>
