@@ -81,7 +81,7 @@ public class ParkingSlotDao {
 			// First, deallocate slots for completed vehicles
 			deallocateSlotsAutomatically();
 
-			// Fetch vehicles that do not have any assigned parking slot (slotId is null)
+			// Fetch vehicles that do not have any assigned parking slot (slotId is null) and  <> is HQL not equal sign
 			List<Vehicle> vehiclesWithoutSlots = session
 					.createQuery("FROM Vehicle v WHERE v.slot IS NULL AND v.status <> 'Completed'", Vehicle.class)
 					.getResultList();

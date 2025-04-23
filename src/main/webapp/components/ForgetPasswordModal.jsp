@@ -1,5 +1,5 @@
 <style>
-.customBtn{
+.customBtn {
 	width: 100%; /* Full-width button */
 	background: #1db954; /* Green background */
 	color: #ffffff; /* White text */
@@ -49,13 +49,13 @@
 							<option value="What is your favorite
 								color?">What
 								is your favorite color?</option>
-						</select> 
+						</select>
 					</div>
 					<div class="mb-3">
 						<label for="forgotPasswordAnswer" class="form-label text-dark">Your
 							Answer</label> <input type="text" class="form-control"
-							id="forgotPasswordAnswer" name="forgotPasswordAnswer" placeholder="Enter your answer"
-							required />
+							id="forgotPasswordAnswer" name="forgotPasswordAnswer"
+							placeholder="Enter your answer" required />
 					</div>
 					<button type="submit" class="btn customBtn">Submit</button>
 				</form>

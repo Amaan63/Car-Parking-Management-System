@@ -244,7 +244,7 @@ public class VehicleDao {
 		return exists;
 	}
 
-	// Manually update all vehicle statuses (Optional: Call this on a button click)
+	// Manually update all vehicle statuses 
 	public String updateAllVehicleStatuses() {
 		Session session = this.factory.openSession();
 		Transaction transaction = null;
