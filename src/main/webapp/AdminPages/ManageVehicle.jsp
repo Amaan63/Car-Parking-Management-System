@@ -46,6 +46,7 @@
 							<th>Booking Date</th>
 							<th>Duration</th>
 							<th>Parking Token</th>
+							<th>Status</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -62,6 +63,23 @@
 							<td class="text-truncate" style="max-width: 110px;"><%=vehicle.getBookingDate() != null ? vehicle.getBookingDate() : "N/A"%></td>
 							<td class="text-truncate" style="max-width: 90px;"><%=vehicle.getTimeDuration() != null ? vehicle.getTimeDuration() : "N/A"%></td>
 							<td class="text-truncate" style="max-width: 100px;"><%=vehicle.getParkingTokennumber() != null ? vehicle.getParkingTokennumber() : "N/A"%></td>
+							<td class="text-truncate" style="max-width: 90px;">
+								<%
+								String status = vehicle.getStatus();
+								String badgeClass = "bg-secondary"; // default
+
+								if ("Completed".equalsIgnoreCase(status)) {
+									badgeClass = "bg-success";
+								} else if ("Active".equalsIgnoreCase(status)) {
+									badgeClass = "bg-warning";
+								} else if ("Upcoming".equalsIgnoreCase(status)) {
+									badgeClass = "bg-danger";
+								}
+								%> <span class="badge <%=badgeClass%>"> <%=status != null ? status : "N/A"%>
+							</span>
+							</td>
+
+
 							<td>
 								<div class="d-flex gap-2">
 									<button class="btn btn-danger btn-sm"
