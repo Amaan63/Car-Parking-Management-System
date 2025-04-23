@@ -18,6 +18,14 @@ function validateForm() {
 		return false; // Prevent form submission
 	}
 
+	// Check if Full Name contains only numbers
+	if (/^\d+$/.test(fullName.trim())) {
+		// Show alert if full name is entirely numeric
+		alert("Full Name cannot contain only numbers!");
+		return false; // Prevent form submission
+	}
+
+
 	// Validate Email
 	if (email === "") {
 		console.log("Email is invalid");
@@ -66,8 +74,8 @@ function validateForm() {
 
 	// Validate Security Question
 	if (securityQuestion === "" || securityQuestion === null) {
-	    alert("Please select a security question!");
-	    return false; // Prevent form submission
+		alert("Please select a security question!");
+		return false; // Prevent form submission
 	}
 
 	// Validate Security Answer
