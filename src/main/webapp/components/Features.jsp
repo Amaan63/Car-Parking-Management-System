@@ -6,7 +6,7 @@
 </style>
 <section id="features" class="py-5  mt-5 pt-5">
 	<div class="container text-center">
-		<h2 class="mb-4">Features</h2>
+		<h2 class="mb-4 highlight fw-bold">Features</h2>
 		<div class="row g-4">
 			<div class="col-md-4">
 				<div class="card-custom p-4">
