@@ -7,7 +7,7 @@
             </div>
             <!-- Text Column -->
             <div class="col-md-6">
-                <h2 class="fw-bold text-white">Why Choose Our System?</h2>
+                <h2 class="fw-bold highlight">Why Choose Our System?</h2>
                 <p class="text-light">
                     Our Car Parking Management System is designed to streamline the parking process for both users 
                     and administrators. With real-time updates, secure payment integrations, and a user-friendly 
