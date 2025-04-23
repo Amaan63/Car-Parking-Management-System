@@ -2,7 +2,7 @@
 <section id="statss" class="py-5 text-center" style="background: #1b1b1b">
     <div class="container">
         <!-- Section Title -->
-        <h2 class="mb-4 text-white">Stats</h2>
+        <h2 class="mb-4 highlight fw-bold">Stats</h2>
 
         <div class="row g-4">
             <!-- Stats Item 1 -->
