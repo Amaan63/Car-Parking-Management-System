@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.entities.Payment;
 import com.entities.Slot;
 import com.entities.User;
 import com.entities.Vehicle;
@@ -199,5 +200,26 @@ public class AdminDao {
 
 		return isDeleted;
 	}
+	
+	// Payment List 
+	public List<Payment> getAllPayment() {
+		Session session = this.factory.openSession();
+		Transaction transaction = null;
+		List<Payment> payments = null;
+		try {
+			transaction = session.beginTransaction();
+			// HQL Query to get all vehicles
+			Query<Payment> query = session.createQuery("FROM Payment", Payment.class);
+			payments = query.list();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return payments;
+	}
+	
+	
 
 }
