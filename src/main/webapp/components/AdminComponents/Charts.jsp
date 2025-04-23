@@ -61,7 +61,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const labels = vehicleData.map(item => item.label);
     const dataValues = vehicleData.map(item => item.value);
-    const barColors = ["#0d6efd", "#dc3545", "#ffc107", "#28a745", "#6610f2", "#fd7e14", "#20c997", "#6610f2"];
+    const barColors = [
+    	  "#0d6efd", // Bright Blue
+    	  "#dc3545", // Bright Red
+    	  "#ffc107", // Bright Yellow
+    	  "#28a745", // Bright Green
+    	  "#6610f2", // Purple
+    	  "#fd7e14", // Orange
+    	  "#20c997", // Teal
+    	  "#e83e8c", // Pink
+    	  "#17a2b8", // Cyan
+    	  "#ff6f61", // Coral
+    	  "#6f42c1", // Indigo
+    	  "#00d1b2", // Turquoise
+    	  "#ff3860", // Reddish Pink
+    	  "#b86adf"  // Lavender Purple
+    	];
+
 
     const usageCtx = document.getElementById("usageChart")?.getContext("2d");
     if (!usageCtx) {
