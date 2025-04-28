@@ -8,14 +8,6 @@ A comprehensive web-based Car Parking Management System that streamlines vehicle
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Screenshots](#screenshots)
-- [Getting Started](#getting-started)
-- [Database Schema](#database-schema)
-- [Modules](#modules)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -51,7 +43,6 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 ## 🖼 Screenshots
 
-
 1. **Landing Page**  
    ![Landing Page](OutputImages/Landing%20Page.png)
 
@@ -81,19 +72,3 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 10. **Admin Panel**  
    ![Admin Panel](OutputImages/Admin%20Panel.png)
-
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Java JDK 8 or above
-- Apache Tomcat 9 or above
-- MySQL
-- Maven
-
-### Steps to Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/car-parking-management-system.git
