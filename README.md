@@ -53,7 +53,36 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 > _Add screenshots of your login page, dashboard, booking page, etc._
 
----
+1. **Landing Page**  
+   ![Landing Page](OutputImages/Landing%20Page.png)
+
+2. **User Registration**  
+   ![User Registration](OutputImages/UserRegistration.png)
+
+3. **User Login**  
+   ![User Login](OutputImages/UserLogin.png)
+
+4. **Vehicle Booking Form**  
+   ![Vehicle Booking Form](OutputImages/VehicleBookingForm.png)
+
+5. **User Dashboard**  
+   ![User Dashboard](OutputImages/UserDashboard.png)
+
+6. **Parking History**  
+   ![Parking History](OutputImages/ParkingHistory.png)
+
+7. **Payment History**  
+   ![Payment History](OutputImages/PaymentHistory.png)
+
+8. **Payment Integration**  
+   ![Payment Integration](OutputImages/PaymentIntegration.png)
+
+9. **Admin Login**  
+   ![Admin Login](OutputImages/Admin%20Login.png)
+
+10. **Admin Panel**  
+   ![Admin Panel](OutputImages/Admin%20Panel.png)
+
 
 ## 🚀 Getting Started
 
