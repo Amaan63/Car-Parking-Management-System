@@ -5,7 +5,7 @@ A comprehensive web-based Car Parking Management System that streamlines vehicle
 ## 📌 Table of Contents
 
 - [About the Project](#about-the-project)
-- [Features](#features)
+- [Features](#Features)
 - [Tech Stack](#tech-stack)
 - [Screenshots](#screenshots)
 
