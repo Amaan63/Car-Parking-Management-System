@@ -5,19 +5,19 @@ A comprehensive web-based Car Parking Management System that streamlines vehicle
 ## 📌 Table of Contents
 
 - [About the Project](#about-the-project)
-- [Features](#Features)
+- [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Screenshots](#screenshots)
 
 ---
 
-## 📖 About the Project
+## <span id="about-the-project">📖 About the Project</span>
 
 This Car Parking Management System automates the entire process of vehicle parking, from booking to checkout. It includes modules for Admins, Employees (Staff), and Users, allowing for an organized flow of parking operations. The system reduces the complexity of manual parking allocation and brings in features such as real-time availability, rate per hour calculation, and payment tracking.
 
 ---
 
-## ✨ Features
+## <span id="features">✨ Features</span>
 
 - 🔐 **Secure Login/Signup** for Admin, Staff, and Users
 - 📆 **Reservation System** – Book slots in advance
@@ -30,7 +30,7 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 ---
 
-## 🛠 Tech Stack
+## <span id="tech-stack">🛠 Tech Stack</span>
 
 - **Backend:** Java (Servlets, JDBC, Hibernate)
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap
@@ -41,7 +41,7 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 ---
 
-## 🖼 Screenshots
+## <span id="screenshots">🖼 Screenshots</span>
 
 1. **Landing Page**  
    ![Landing Page](OutputImages/Landing%20Page.png)
@@ -71,4 +71,4 @@ This Car Parking Management System automates the entire process of vehicle parki
    ![Admin Login](OutputImages/Admin%20Login.png)
 
 10. **Admin Panel**  
-   ![Admin Panel](OutputImages/Admin%20Panel.png)
+    ![Admin Panel](OutputImages/Admin%20Panel.png)
