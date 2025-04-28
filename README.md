@@ -51,7 +51,6 @@ This Car Parking Management System automates the entire process of vehicle parki
 
 ## 🖼 Screenshots
 
-> _Add screenshots of your login page, dashboard, booking page, etc._
 
 1. **Landing Page**  
    ![Landing Page](OutputImages/Landing%20Page.png)
