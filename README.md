@@ -46,29 +46,31 @@ This Car Parking Management System automates the entire process of vehicle parki
 1. **Landing Page**  
    ![Landing Page](OutputImages/Landing%20Page.png)
 
-2. **User Registration**  
-   ![User Registration](OutputImages/UserRegistration.png)
-
-3. **User Login**  
-   ![User Login](OutputImages/UserLogin.png)
-
-4. **Vehicle Booking Form**  
-   ![Vehicle Booking Form](OutputImages/VehicleBookingForm.png)
-
-5. **User Dashboard**  
-   ![User Dashboard](OutputImages/UserDashboard.png)
-
-6. **Parking History**  
-   ![Parking History](OutputImages/ParkingHistory.png)
-
-7. **Payment History**  
-   ![Payment History](OutputImages/PaymentHistory.png)
-
-8. **Payment Integration**  
-   ![Payment Integration](OutputImages/PaymentIntegration.png)
-
-9. **Admin Login**  
+2. **Admin Login**  
    ![Admin Login](OutputImages/Admin%20Login.png)
 
-10. **Admin Panel**  
+3. **Admin Panel**  
     ![Admin Panel](OutputImages/Admin%20Panel.png)
+
+4. **User Registration**  
+   ![User Registration](OutputImages/UserRegistration.png)
+
+5. **User Login**  
+   ![User Login](OutputImages/UserLogin.png)
+
+6. **Vehicle Booking Form**  
+   ![Vehicle Booking Form](OutputImages/VehicleBookingForm.png)
+
+7. **User Dashboard**  
+   ![User Dashboard](OutputImages/UserDashboard.png)
+
+8. **Parking History**  
+   ![Parking History](OutputImages/ParkingHistory.png)
+
+9. **Payment History**  
+   ![Payment History](OutputImages/PaymentHistory.png)
+
+10. **Payment Integration**  
+   ![Payment Integration](OutputImages/PaymentIntegration.png)
+
+
